@@ -1,0 +1,6 @@
+# Khmer Vocabulary Configuration
+# Total: 117 tokens as specified in PRD
+ 
+# Special Tokens (4)
+special_tokens:
+  - " 

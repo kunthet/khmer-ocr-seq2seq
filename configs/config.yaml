@@ -1,0 +1,16 @@
+# Khmer OCR Seq2Seq Model Configuration
+# Based on PRD specifications
+
+# Data Configuration
+data:
+  image_height: 32
+  image_channels: 1  # Grayscale
+  max_sequence_length: 256
+  vocab_size: 117
+  augmentation_prob: 0.5
+  concatenation_prob: 0.5
+
+# Vocabulary Configuration
+vocab:
+  special_tokens:
+    sos: " 

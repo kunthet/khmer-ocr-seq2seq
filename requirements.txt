@@ -1,0 +1,53 @@
+# Core Deep Learning Framework
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Computer Vision and Image Processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+scikit-image>=0.21.0
+
+# Numerical Computing
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Data Manipulation and Analysis
+pandas>=2.0.0
+
+# Text Processing and OCR
+pytesseract>=0.3.10
+python-Levenshtein>=0.21.0
+
+# Configuration Management
+PyYAML>=6.0
+omegaconf>=2.3.0
+
+# Logging and Monitoring
+tensorboard>=2.13.0
+wandb>=0.15.0
+tqdm>=4.65.0
+
+# Testing Framework
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Font and Text Rendering
+fonttools>=4.40.0
+freetype-py>=2.4.0
+
+# Utilities
+matplotlib>=3.7.0
+seaborn>=0.12.0
+requests>=2.31.0
+
+# Development Tools
+black>=23.7.0
+flake8>=6.0.0
+isort>=5.12.0
+
+# Optional: For advanced augmentation
+albumentations>=1.3.0
+
+# Optional: For distributed training
+accelerate>=0.21.0 

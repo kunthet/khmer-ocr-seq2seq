@@ -1,0 +1,5 @@
+# Khmer Vocabulary Configuration
+# Total: 117 tokens (4 special + 113 Khmer characters)
+ 
+special_tokens:
+  sos: " 
