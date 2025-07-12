@@ -369,7 +369,8 @@ def main():
             val_dataloader=val_dataloader,
             device=device,
             log_dir=args.log_dir,
-            checkpoint_dir=args.checkpoint_dir
+            checkpoint_dir=args.checkpoint_dir,
+            gdrive_backup=True  # Enable Google Drive backup for Colab training
         )
         
         if args.validate_only:

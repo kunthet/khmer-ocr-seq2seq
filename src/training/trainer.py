@@ -38,7 +38,8 @@ class Trainer:
         val_dataloader: DataLoader,
         device: torch.device,
         log_dir: str = "logs",
-        checkpoint_dir: str = "models/checkpoints"
+        checkpoint_dir: str = "models/checkpoints",
+        gdrive_backup: bool = True
     ):
         self.model = model
         self.config = config_manager
@@ -55,9 +56,12 @@ class Trainer:
         # Initialize loss function (NLLLoss for LogSoftmax output)
         self.criterion = nn.NLLLoss(ignore_index=self.config.vocab.PAD_IDX)
         
-        # Initialize components
+        # Initialize components with Google Drive backup
         self.validator = Validator(model, config_manager, device)
-        self.checkpoint_manager = CheckpointManager(checkpoint_dir)
+        self.checkpoint_manager = CheckpointManager(
+            checkpoint_dir=checkpoint_dir,
+            gdrive_backup=gdrive_backup
+        )
         
         # Setup logging
         self.logger = self._setup_logging()
@@ -76,6 +80,20 @@ class Trainer:
             'val_cer': [],
             'learning_rate': []
         }
+        
+        # Check for Google Drive backup status
+        gdrive_info = self.checkpoint_manager.get_gdrive_info()
+        if gdrive_info.get("enabled"):
+            self.logger.info(f"Google Drive backup: {'✅ Ready' if gdrive_info.get('gdrive_accessible') else '❌ Not accessible'}")
+            if gdrive_info.get('gdrive_accessible'):
+                self.logger.info(f"Google Drive dir: {gdrive_info.get('gdrive_dir')}")
+                # Try to sync from Google Drive if no local checkpoints
+                if not self.checkpoint_manager.list_checkpoints():
+                    synced = self.checkpoint_manager.sync_from_gdrive()
+                    if synced:
+                        self.logger.info("Synced checkpoints from Google Drive")
+        else:
+            self.logger.info("Google Drive backup: ❌ Disabled")
     
     def _initialize_optimizer(self) -> optim.Optimizer:
         """Initialize Adam optimizer with PRD specifications."""

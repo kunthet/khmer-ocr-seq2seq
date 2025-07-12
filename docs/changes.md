@@ -1,5 +1,20 @@
 # Change Log
 
+## Feature: Google Drive Checkpoint Backup
+**Purpose:**  
+Automatic backup of training checkpoints to Google Drive for seamless training resumption in Google Colab environments, preventing loss of training progress due to session disconnections.
+
+**Implementation:**  
+Enhanced CheckpointManager with Google Drive integration:
+- Automatic backup of best models and periodic checkpoints to Google Drive
+- Smart fallback loading from Google Drive when local checkpoints are missing
+- Training history and metrics backup for complete session recovery
+- Colab environment setup script for automated Google Drive mounting and directory creation
+- Configurable backup frequency and checkpoint cleanup
+
+**History:**
+- Created — Initial implementation with automatic Google Drive backup, fallback loading, training history preservation, and Colab setup automation.
+
 ## Feature: Multiple Training Files Support
 **Purpose:**  
 Support loading training data from multiple files (train_0.txt, train_1.txt, etc.) instead of requiring a single train.txt file, providing flexibility for large datasets and manual data splitting.
