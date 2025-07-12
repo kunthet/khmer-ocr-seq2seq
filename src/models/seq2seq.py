@@ -559,16 +559,16 @@ class KhmerOCRSeq2Seq(nn.Module):
             encoder_mask: Encoder mask (B, seq_len)
             
         Returns:
-            Tuple of (logits, new_hidden_state, attention_weights)
+            Tuple of (log_probs, new_hidden_state, attention_weights)
         """
-        logits, new_hidden, attention_weights, _ = self.decoder.forward_step(
+        log_probs, new_hidden, attention_weights, _ = self.decoder.forward_step(
             input_token=input_token.squeeze(-1),  # Remove last dim for forward_step
             hidden_state=hidden_state,
             encoder_outputs=encoder_outputs,
             encoder_mask=encoder_mask,
             coverage_vector=None
         )
-        return logits, new_hidden, attention_weights
+        return log_probs, new_hidden, attention_weights
 
 
 class Seq2SeqConfig:

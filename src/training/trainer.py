@@ -191,7 +191,7 @@ class Trainer:
                 valid_predictions = mask.sum().item()
                 
                 if valid_predictions > 0:
-                    # decoder_output: [B, vocab_size] (LogSoftmax output)
+                    # decoder_output: [B, vocab_size] (LogSoftmax output - log probabilities)
                     step_loss = self.criterion(decoder_output[mask], target_t[mask])
                     batch_loss += step_loss
                     total_predictions += valid_predictions

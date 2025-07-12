@@ -177,10 +177,11 @@ class AttentionGRUDecoder(nn.Module):
             embedded
         ], dim=1)  # (B, decoder_hidden_size + encoder_hidden_size + embedding_dim)
         
-        # Project to vocabulary
+        # Project to vocabulary and apply LogSoftmax as per PRD specifications
         output_logits = self.output_projection(combined_output)  # (B, vocab_size)
+        output_log_probs = F.log_softmax(output_logits, dim=-1)  # (B, vocab_size)
         
-        return output_logits, new_hidden, attention_weights, new_coverage
+        return output_log_probs, new_hidden, attention_weights, new_coverage
     
     def forward(
         self,
@@ -223,7 +224,7 @@ class AttentionGRUDecoder(nn.Module):
         
         for t in range(target_len):
             # Forward step
-            logits, hidden_state, attention_weights, coverage_vector = self.forward_step(
+            log_probs, hidden_state, attention_weights, coverage_vector = self.forward_step(
                 input_token=current_input,
                 hidden_state=hidden_state,
                 encoder_outputs=encoder_outputs,
@@ -232,7 +233,7 @@ class AttentionGRUDecoder(nn.Module):
             )
             
             # Store outputs
-            all_logits.append(logits)
+            all_logits.append(log_probs)
             all_attention_weights.append(attention_weights)
             if self.use_coverage:
                 coverage_vectors.append(coverage_vector)
@@ -242,11 +243,11 @@ class AttentionGRUDecoder(nn.Module):
             if use_teacher_forcing and t < target_len - 1:
                 current_input = target_sequences[:, t]
             else:
-                current_input = logits.argmax(dim=1)
+                current_input = log_probs.argmax(dim=1)
         
         # Stack outputs
         result = {
-            'logits': torch.stack(all_logits, dim=1),  # (B, target_len, vocab_size)
+            'logits': torch.stack(all_logits, dim=1),  # (B, target_len, vocab_size) - Actually log probabilities
             'attention_weights': torch.stack(all_attention_weights, dim=1)  # (B, target_len, seq_len)
         }
         
@@ -302,7 +303,7 @@ class AttentionGRUDecoder(nn.Module):
         
         for t in range(max_len):
             # Forward step
-            logits, hidden_state, attention_weights, coverage_vector = self.forward_step(
+            log_probs, hidden_state, attention_weights, coverage_vector = self.forward_step(
                 input_token=current_input,
                 hidden_state=hidden_state,
                 encoder_outputs=encoder_outputs,
@@ -315,9 +316,9 @@ class AttentionGRUDecoder(nn.Module):
             
             # Apply temperature and get next token
             if temperature != 1.0:
-                logits = logits / temperature
+                log_probs = log_probs / temperature
             
-            next_tokens = logits.argmax(dim=1)
+            next_tokens = log_probs.argmax(dim=1)
             
             # Store next tokens
             generated_sequences.append(next_tokens)
@@ -406,7 +407,7 @@ class AttentionGRUDecoder(nn.Module):
             current_hidden = beam_hidden_states[-1]  # (num_layers, beam_size, hidden_size)
             
             # Forward step for all beams
-            logits, new_hidden, attention_weights, new_coverage = self.forward_step(
+            log_probs, new_hidden, attention_weights, new_coverage = self.forward_step(
                 input_token=current_inputs,
                 hidden_state=current_hidden,
                 encoder_outputs=encoder_outputs,
@@ -414,8 +415,8 @@ class AttentionGRUDecoder(nn.Module):
                 coverage_vector=beam_coverage
             )
             
-            # Compute log probabilities
-            log_probs = F.log_softmax(logits, dim=1)  # (beam_size, vocab_size)
+            # The output is already log probabilities, no need to apply log_softmax again
+            # log_probs = F.log_softmax(logits, dim=1)  # (beam_size, vocab_size)
             
             # Add to beam scores
             vocab_size = log_probs.size(1)

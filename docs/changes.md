@@ -1,5 +1,25 @@
 # Change Log
 
+## Feature: Critical Loss Function Fix - LogSoftmax Implementation
+**Purpose:**  
+Fixed critical mismatch between decoder output and loss function that was causing negative losses and poor model performance. Implemented LogSoftmax output in decoder as specified in PRD to work correctly with NLLLoss.
+
+**Implementation:**  
+Resolved fundamental training issue where:
+- Decoder was outputting raw logits instead of log probabilities
+- Trainer was using NLLLoss which expects log probabilities
+- This mismatch caused negative losses and prevented proper learning
+
+Changes made:
+- Added LogSoftmax to decoder forward_step method output
+- Updated all decoder methods (forward, generate, beam_search) to handle log probabilities
+- Updated seq2seq model decode_step to return log probabilities
+- Updated trainer comments to reflect log probabilities
+- Ensured proper PRD compliance with LogSoftmax + NLLLoss combination
+
+**History:**
+- Created — Fixed critical loss function mismatch causing negative losses (-3.8369, -4.2791, etc.) and 116.84% CER. Now properly implements LogSoftmax + NLLLoss as specified in PRD, enabling correct gradient flow and model learning.
+
 ## Feature: Google Drive Checkpoint Backup
 **Purpose:**  
 Automatic backup of training checkpoints to Google Drive for seamless training resumption in Google Colab environments, preventing loss of training progress due to session disconnections.
@@ -152,11 +172,4 @@ Implement dynamic image generation during training to eliminate the need for pre
 - **`generate_fixed_validation_set.py`**: Script to generate exactly 6,400 fixed validation images that remain consistent across all training runs, ensuring reproducible evaluation metrics
 - **`src/training/train_onthefly.py`**: New training script that uses on-the-fly generation for training data and pre-generated fixed validation set for evaluation
 - **`test_onthefly_system.py`**: Comprehensive test suite validating on-the-fly dataset functionality, memory efficiency, reproducibility, and integration with training pipeline
-- **`docs/ON_THE_FLY_TRAINING.md`**: Complete documentation covering architecture, usage, benefits, troubleshooting, and migration from pre-generation approach
-- **Dynamic Generation**: Real-time image rendering from corpus text with random font selection and augmentation for unlimited training variety
-- **Fixed Validation**: Exactly 6,400 validation images generated once with deterministic font selection (hash-based) for consistent evaluation across training sessions
-- **Storage Optimization**: Reduces storage requirements by 90%+ (from ~50-100GB to ~100MB) by eliminating pre-generated training images
-- **Memory Efficiency**: Low memory footprint with on-demand generation and efficient batch processing
-
-**History:**
-- Created — Initial implementation providing dynamic training image generation with fixed validation set approach. Successfully tested on-the-fly dataset creation, batch processing, memory efficiency, and reproducibility. Fixed validation set generation creates exactly 6,400 images with seed=42 for consistent evaluation. Training pipeline optimized for unlimited augmentation variety per epoch while maintaining reproducible validation metrics. System ready for production training targeting ≤1.0% CER with significant storage and flexibility improvements. 
+- **`

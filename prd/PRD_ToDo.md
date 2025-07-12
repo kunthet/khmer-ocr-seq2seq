@@ -52,6 +52,13 @@
   - ✅ Comprehensive testing and documentation for production readiness
 
 ## **Phase 8: Ready for Production Training** [Ready] 🎯 READY
+- [x] **Critical Loss Function Fix**: Fixed negative losses and poor CER performance
+  - ✅ Implemented LogSoftmax in decoder output as specified in PRD
+  - ✅ Resolved mismatch between decoder (raw logits) and trainer (NLLLoss expecting log probabilities)
+  - ✅ Updated all decoder methods to handle log probabilities correctly
+  - ✅ Fixed negative losses (-3.8369, -4.2791, etc.) and 116.84% CER issue
+  - ✅ Ensured proper PRD compliance with LogSoftmax + NLLLoss combination
+  - ✅ Enabled correct gradient flow and model learning
 - [x] **Google Drive Checkpoint Backup**: Automatic backup of training checkpoints to Google Drive for seamless resumption
   - ✅ Enhanced `CheckpointManager` with Google Drive integration
   - ✅ Automatic backup of best models and periodic checkpoints (every 10 epochs)
