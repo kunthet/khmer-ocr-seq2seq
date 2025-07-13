@@ -27,13 +27,13 @@ model:
 # Training Parameters
 training:
   epochs: 150
-  batch_size: 48
+  batch_size: 64
   learning_rate: 1e-6
   optimizer: "adam"
   loss_function: "cross_entropy"
   teacher_forcing_ratio: 1.0
   gradient_clip: 5.0
-  gradient_accumulation_steps: 2
+  gradient_accumulation_steps: 1
   
 # Data Parameters
 data:
