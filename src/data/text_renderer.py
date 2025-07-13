@@ -357,7 +357,7 @@ class TextRenderer:
             font_path = self.fonts[0] if self.fonts else "fonts/KhmerOS.ttf"
         
         # Calculate appropriate font size for target height
-        font_size = int(self.image_height * 0.6)  # 80% of height
+        font_size = int(self.image_height * 0.5)  # 80% of height
         
         # Create a temporary image to measure text dimensions
         temp_image = Image.new('L', (1000, self.image_height), 255)
