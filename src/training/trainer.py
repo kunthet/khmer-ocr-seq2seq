@@ -263,8 +263,8 @@ class Trainer:
             # Update total loss (unscaled for proper averaging)
             total_loss += batch_loss.item() * self.gradient_accumulation_steps
             
-            # Clear intermediate variables to free memory
-            del batch_loss, decoder_output, attention_weights
+            # Clear intermediate variables to free memory (only delete batch_loss which exists in this scope)
+            del batch_loss
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
             
