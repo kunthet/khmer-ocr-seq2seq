@@ -191,6 +191,7 @@ Replace TextRenderer with KhmerOCRSyntheticGenerator in OnTheFlyDataset to provi
 
 **History:**
 - Created — Integrated KhmerOCRSyntheticGenerator into OnTheFlyDataset, replacing TextRenderer for improved Khmer text rendering with variable-width images, advanced backgrounds, and better font handling. This provides more realistic training data with proper subscript support and dynamic image sizing.
+- Updated — Fixed debug script attribute references to use correct `text_generator` property name, ensuring proper access to KhmerOCRSyntheticGenerator methods and properties.
 
 ## Feature: Font Size Consistency and Text Cropping Fix
 **Purpose:**  
