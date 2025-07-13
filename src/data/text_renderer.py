@@ -357,7 +357,7 @@ class TextRenderer:
             font_path = self.fonts[0] if self.fonts else "fonts/KhmerOS.ttf"
         
         # Calculate appropriate font size for target height
-        font_size = int(self.image_height * 0.8)  # 80% of height
+        font_size = int(self.image_height * 0.6)  # 80% of height
         
         # Create a temporary image to measure text dimensions
         temp_image = Image.new('L', (1000, self.image_height), 255)
@@ -367,7 +367,7 @@ class TextRenderer:
         try:
             temp_font = ImageFont.truetype(font_path, font_size)
             bbox = temp_draw.textbbox((0, 0), normalized_text, font=temp_font)
-            estimated_width = bbox[2] - bbox[0] + 20  # Add some padding
+            estimated_width = bbox[2] - bbox[0] + 50
         except:
             # Fallback width estimation
             estimated_width = len(normalized_text) * font_size // 2
@@ -487,7 +487,7 @@ class TextRenderer:
             temp_image = Image.new('L', (1000, self.image_height), 255)
             temp_draw = ImageDraw.Draw(temp_image)
             bbox = temp_draw.textbbox((0, 0), text, font=temp_font)
-            estimated_width = bbox[2] - bbox[0] + 40  # Add padding
+            estimated_width = bbox[2] - bbox[0] + 60
         except:
             estimated_width = len(text) * font_size // 2
         
