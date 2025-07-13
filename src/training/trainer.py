@@ -253,20 +253,20 @@ class Trainer:
             # Update total loss (unscaled for proper averaging)
             total_loss += batch_loss.item() * self.gradient_accumulation_steps
             
-            # Log batch progress (every 100 batches or at accumulation boundaries)
-            if batch_idx % 100 == 0 or accumulation_step == 0:
+            # Log batch progress (every 100 batches only)
+            if batch_idx % 100 == 0:
                 progress = 100.0 * batch_idx / num_batches
-                # Show the actual accumulated loss for logging clarity
-                display_loss = accumulated_loss if accumulation_step == 0 else accumulated_loss
+                # Show the current accumulated loss for this cycle
+                display_loss = accumulated_loss
                 self.logger.info(
                     f"Epoch {self.current_epoch}, Batch {batch_idx}/{num_batches} "
                     f"({progress:.1f}%), Loss: {display_loss:.4f}"
                 )
                 
-                # Log to TensorBoard (only when we complete an accumulation cycle)
-                if accumulation_step == 0:
-                    self.writer.add_scalar('Loss/Train_Batch', accumulated_loss, self.global_step)
-                    accumulated_loss = 0.0  # Reset for next accumulation cycle
+            # Log to TensorBoard (only when we complete an accumulation cycle)
+            if accumulation_step == 0:
+                self.writer.add_scalar('Loss/Train_Batch', accumulated_loss, self.global_step)
+                accumulated_loss = 0.0  # Reset for next accumulation cycle
         
         # Calculate epoch metrics
         avg_loss = total_loss / num_batches
