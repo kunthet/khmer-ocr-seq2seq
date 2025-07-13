@@ -1,16 +1,41 @@
-# Khmer OCR Seq2Seq Model Configuration
-# Based on PRD specifications
+# Khmer OCR Seq2Seq Model Architecture Configuration
 
-# Data Configuration
-data:
+# Model Architecture
+model:
+  # Encoder Configuration (CRNN)
+  encoder:
+    input_channels: 1
+    conv_channels: [64, 128, 256, 256, 512, 512, 512]
+    kernel_sizes: [3, 3, 3, 3, 3, 3, 3]
+    pool_sizes: [[2,2], [2,2], [2,1], [2,1]]
+    gru_hidden_size: 256
+    gru_num_layers: 2
+    bidirectional: true
+  
+  # Attention Configuration
+  attention:
+    type: "bahdanau"
+    hidden_size: 512
+    
+  # Decoder Configuration
+  decoder:
+    embedding_dim: 256
+    hidden_size: 512
+    vocab_size: 117
+    max_length: 256
+    dropout: 0.1
+
+# Model Parameters
+parameters:
+  total_params: 16327989
+  trainable_params: 16327989
+  
+# Input/Output Specifications
+input:
   image_height: 32
-  image_channels: 1  # Grayscale
-  max_sequence_length: 256
+  image_width: "variable"
+  channels: 1
+  
+output:
   vocab_size: 117
-  augmentation_prob: 0.5
-  concatenation_prob: 0.5
-
-# Vocabulary Configuration
-vocab:
-  special_tokens:
-    sos: " 
+  max_sequence_length: 256 

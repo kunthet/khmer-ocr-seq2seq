@@ -27,7 +27,7 @@ model:
 # Training Parameters
 training:
   epochs: 150
-  batch_size: 64
+  batch_size: 32
   learning_rate: 1e-6
   optimizer: "adam"
   loss_function: "cross_entropy"

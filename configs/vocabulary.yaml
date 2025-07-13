@@ -3,4 +3,157 @@
  
 # Special Tokens (4)
 special_tokens:
-  - " 
+  - "SOS"
+  - "EOS"
+  - "PAD"
+  - "UNK"
+
+# Khmer Numbers (10)
+khmer_numbers:
+  - "០"
+  - "១"
+  - "២"
+  - "៣"
+  - "៤"
+  - "៥"
+  - "៦"
+  - "៧"
+  - "៨"
+  - "៩"
+
+# Arabic Numbers (10)
+arabic_numbers:
+  - "0"
+  - "1"
+  - "2"
+  - "3"
+  - "4"
+  - "5"
+  - "6"
+  - "7"
+  - "8"
+  - "9"
+
+# Consonants (33)
+consonants:
+  - "ក"
+  - "ខ"
+  - "គ"
+  - "ឃ"
+  - "ង"
+  - "ច"
+  - "ឆ"
+  - "ជ"
+  - "ឈ"
+  - "ញ"
+  - "ដ"
+  - "ឋ"
+  - "ឌ"
+  - "ឍ"
+  - "ណ"
+  - "ត"
+  - "ថ"
+  - "ទ"
+  - "ធ"
+  - "ន"
+  - "ប"
+  - "ផ"
+  - "ព"
+  - "ភ"
+  - "ម"
+  - "យ"
+  - "រ"
+  - "ល"
+  - "វ"
+  - "ស"
+  - "ហ"
+  - "ឡ"
+  - "អ"
+
+# Independent Vowels (12)
+independent_vowels:
+  - "ឥ"
+  - "ឦ"
+  - "ឧ"
+  - "ឩ"
+  - "ឪ"
+  - "ឫ"
+  - "ឬ"
+  - "ឭ"
+  - "ឮ"
+  - "ឯ"
+  - "ឰ"
+  - "ឱ"
+
+# Dependent Vowels (23)
+dependent_vowels:
+  - "ា"
+  - "ិ"
+  - "ី"
+  - "ឹ"
+  - "ឺ"
+  - "ុ"
+  - "ូ"
+  - "ួ"
+  - "ើ"
+  - "ឿ"
+  - "ៀ"
+  - "េ"
+  - "ែ"
+  - "ៃ"
+  - "ោ"
+  - "ៅ"
+  - "ាំ"
+  - "ះ"
+  - "ៈ"
+  - "ំ"
+  - "ុំ"
+  - "ាៈ"
+  - "េៈ"
+
+# Subscript (1)
+subscript:
+  - "្"
+
+# Diacritics (10)
+diacritics:
+  - "់"
+  - "៉"
+  - "៊"
+  - "័"
+  - "៏"
+  - "៌"
+  - "៍"
+  - "៎"
+  - "៑"
+  - "៓"
+
+# Symbols (14)
+symbols:
+  - "("
+  - ")"
+  - ","
+  - "."
+  - "៕"
+  - "។"
+  - "ៗ"
+  - "?"
+  - " "
+  - ";"
+  - ":"
+  - "-"
+  - "!"
+  - "\""
+
+# Summary
+total_tokens: 117
+categories:
+  special_tokens: 4
+  khmer_numbers: 10
+  arabic_numbers: 10
+  consonants: 33
+  independent_vowels: 12
+  dependent_vowels: 23
+  subscript: 1
+  diacritics: 10
+  symbols: 14 

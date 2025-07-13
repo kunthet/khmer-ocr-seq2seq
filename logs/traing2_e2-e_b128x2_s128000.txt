@@ -214,3 +214,255 @@ Epoch 8 Results:
 2025-07-13 13:17:34,014 - KhmerOCRTrainer - INFO - Epoch 9/500
 2025-07-13 13:17:34,014 - KhmerOCRTrainer - INFO - ============================================================
 2025-07-13 13:17:44,311 - KhmerOCRTrainer - INFO - Epoch 8, Batch 0/1000 (0.0%), Loss: 3.4994
+2025-07-13 13:21:00,134 - KhmerOCRTrainer - INFO - Epoch 8, Batch 100/1000 (10.0%), Loss: 3.5003
+2025-07-13 13:24:07,402 - KhmerOCRTrainer - INFO - Epoch 8, Batch 200/1000 (20.0%), Loss: 3.4947
+2025-07-13 13:27:34,102 - KhmerOCRTrainer - INFO - Epoch 8, Batch 300/1000 (30.0%), Loss: 3.4822
+2025-07-13 13:30:55,268 - KhmerOCRTrainer - INFO - Epoch 8, Batch 400/1000 (40.0%), Loss: 3.4793
+2025-07-13 13:34:13,395 - KhmerOCRTrainer - INFO - Epoch 8, Batch 500/1000 (50.0%), Loss: 3.4851
+2025-07-13 13:37:25,708 - KhmerOCRTrainer - INFO - Epoch 8, Batch 600/1000 (60.0%), Loss: 3.4895
+2025-07-13 13:40:38,068 - KhmerOCRTrainer - INFO - Epoch 8, Batch 700/1000 (70.0%), Loss: 3.4782
+2025-07-13 13:43:57,399 - KhmerOCRTrainer - INFO - Epoch 8, Batch 800/1000 (80.0%), Loss: 3.4820
+2025-07-13 13:47:11,987 - KhmerOCRTrainer - INFO - Epoch 8, Batch 900/1000 (90.0%), Loss: 3.4762
+Validation progress: 0.0%
+2025-07-13 13:50:39,335 - KhmerOCRTrainer - INFO - 
+Epoch 9 Results:
+2025-07-13 13:50:39,336 - KhmerOCRTrainer - INFO -   Train Loss: 3.4908
+2025-07-13 13:50:39,336 - KhmerOCRTrainer - INFO -   Val Loss: 3.8276
+2025-07-13 13:50:39,336 - KhmerOCRTrainer - INFO -   Val CER: 112.97%
+2025-07-13 13:50:39,336 - KhmerOCRTrainer - INFO -   Epoch Time: 1966.64s
+2025-07-13 13:50:39,775 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_008.pth
+2025-07-13 13:50:39,779 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_003.pth
+2025-07-13 13:50:39,779 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 13:50:39,779 - KhmerOCRTrainer - INFO - Epoch 10/500
+2025-07-13 13:50:39,779 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 13:50:47,932 - KhmerOCRTrainer - INFO - Epoch 9, Batch 0/1000 (0.0%), Loss: 3.4700
+2025-07-13 13:50:53,191 - KhmerOCROnTheFlyTraining - INFO - 
+Training interrupted by user
+✅ Training completed!
+
+
+
+
+===============================
+
+Looking at your training logs, I can see the progression across two training sessions. Let me analyze the training performance:
+
+## Training Progress Summary
+
+### **Session 1** (`traing2_e0-e1_b64x2_s100000.txt`)
+- **Configuration**: Batch size 64, 100K samples/epoch
+- **Epochs**: 1-2 (interrupted at epoch 3)
+- **Initial Performance**: Started with 4.7060 loss, 114.43% CER
+- **Final Performance**: 3.6845 loss, 111.90% CER
+- **Progress**: ✅ Good initial learning, CER improved by ~2.5%
+
+### **Session 2** (`traing2_e2-e_b128x2_s128000.txt`)
+- **Configuration**: Batch size 128, 128K samples/epoch (scaled up)
+- **Epochs**: 3-8+ (resumed from previous session)
+- **Performance Trend**:
+
+| Epoch | Train Loss | Val Loss | Val CER | Status |
+|-------|------------|----------|---------|--------|
+| 3     | 3.6688     | 3.6932   | 111.80% | ✅ Slight improvement |
+| 4     | 3.6560     | 3.6939   | 114.79% | ⚠️ CER degraded |
+| 5     | 3.6404     | 3.6948   | 112.20% | ↗️ Recovering |
+| 6     | 3.6179     | 3.6976   | 109.38% | ✅ **Best CER so far** |
+| 7     | 3.5777     | 3.7730   | 112.76% | ⚠️ Validation diverging |
+| 8     | 3.5273     | 3.8111   | 112.91% | ⚠️ Overfitting signs |
+
+## Key Observations
+
+### ✅ **Positive Trends**
+- **Training loss consistently decreasing**: 4.7060 → 3.5273 (25% improvement)
+- **Best CER achieved**: 109.38% at epoch 6
+- **Model learning**: Clear progression from initial random state
+
+### ⚠️ **Concerns**
+- **Validation loss increasing**: 3.6932 → 3.8111 (potential overfitting)
+- **CER instability**: Fluctuating between 109-115% after epoch 6
+- **Train-validation gap**: Growing divergence suggests overfitting
+
+### 🎯 **Current Status**
+- **Target CER**: ≤1.0% (you're at 109.38% - still far from target)
+- **Training stage**: Early stages, model still learning basic patterns
+- **Recommendation**: Continue training but monitor for overfitting
+
+## Recommendations
+
+1. **Continue training** - You're still in early stages for OCR
+2. **Monitor validation closely** - Consider early stopping if overfitting worsens
+3. **Possible adjustments**:
+   - Reduce learning rate if validation loss keeps increasing
+   - Add regularization (dropout, weight decay)
+   - Increase validation frequency
+
+The training is progressing reasonably for a complex OCR task, but you'll likely need many more epochs to reach the target 1% CER.
+
+
+=====================================
+Looking at your training logs, **yes, I recommend changing back to batch size 64**. Here's why:
+
+## Analysis of Batch Size Impact
+
+### **Batch Size 64 Performance** (Session 1)
+- ✅ **Stable learning**: Consistent improvement from 114.43% → 111.90% CER
+- ✅ **Good train-val alignment**: Validation loss stayed close to training loss
+- ✅ **Smooth convergence**: No signs of overfitting in the short run
+
+### **Batch Size 128 Performance** (Session 2) 
+- ⚠️ **Validation divergence**: Val loss increased from 3.6932 → 3.8111
+- ⚠️ **CER instability**: Fluctuating performance after epoch 6
+- ⚠️ **Overfitting signs**: Growing gap between train and validation loss
+
+## Why Batch Size 64 is Better Here
+
+### **1. Better Generalization**
+- Smaller batches provide noisier gradients → better exploration
+- Helps escape local minima that larger batches might get stuck in
+- OCR tasks often benefit from more frequent parameter updates
+
+### **2. Memory Efficiency**
+- Allows for more complex augmentation without OOM errors
+- Better for the on-the-fly image generation system
+
+### **3. Learning Rate Compatibility**
+- Your learning rate (1e-06) was tuned for smaller batches
+- Larger batches typically need higher learning rates (linear scaling rule)
+
+## Recommended Changes
+
+```yaml
+# configs/train_config.yaml
+batch_size: 64                    # Change from 128 → 64
+samples_per_epoch: 100000        # Change from 128000 → 100000
+learning_rate: 1e-06             # Keep same (was working well)
+```
+
+## Expected Benefits
+
+1. **More stable validation loss**
+2. **Better CER consistency** 
+3. **Improved generalization**
+4. **Faster feedback loop** (shorter epochs)
+
+## Alternative: Gradual Scaling
+If you want to keep larger batches, try:
+- Increase learning rate to 1.6e-06 (128/64 × 1e-06)
+- Add more regularization (dropout, weight decay)
+
+But given your current overfitting trend, **batch size 64 is the safer choice** to get back on track.
+
+
+====================================================
+
+
+
+**Batch size 32 could be even better!** Here's my analysis:
+
+## Batch Size 32 Analysis
+
+### ✅ **Potential Benefits**
+
+**1. Superior Exploration**
+- **Noisier gradients** = better escape from local minima
+- **More frequent updates** = 3,125 batches/epoch vs 1,563 (64) or 1,000 (128)
+- **Better for complex landscapes** like OCR character recognition
+
+**2. OCR-Specific Advantages**
+- **High variance in text complexity** → smaller batches handle this better
+- **On-the-fly generation** works excellently with smaller batches
+- **Character-level learning** often benefits from more frequent updates
+
+**3. Memory & Augmentation**
+- **Lower memory pressure** = more aggressive augmentation possible
+- **Better cache utilization** for synthetic image generation
+
+### ⚠️ **Potential Drawbacks**
+
+**1. Training Time**
+- **Longer wall-clock time**: ~2x iterations per epoch
+- **More verbose logging**: 3,125 batches vs 1,563
+
+**2. Stability Concerns**
+- **Noisier training curves** (but this can be good for exploration)
+- **May need learning rate adjustment**
+
+## Recommended Configuration
+
+```yaml
+# configs/train_config.yaml
+batch_size: 32                    # Aggressive but potentially optimal
+samples_per_epoch: 100000        # Keep same total samples
+learning_rate: 1e-06             # Start with same, monitor closely
+```
+
+## Expected Performance
+
+| Metric | Batch 128 | Batch 64 | **Batch 32** |
+|--------|-----------|----------|-------------|
+| Convergence | Unstable | Good | **Potentially better** |
+| Generalization | Poor | Good | **Excellent** |
+| Training time | Fast | Medium | Slower |
+| Memory usage | High | Medium | **Low** |
+
+## Decision Framework
+
+**Choose batch size 32 if:**
+- ✅ You can tolerate longer training time
+- ✅ You want maximum exploration capability
+- ✅ You're seeing overfitting with larger batches
+
+**Stick with batch size 64 if:**
+- ⚠️ You need faster iteration cycles
+- ⚠️ You want proven stable performance
+
+## My Recommendation
+
+**Try batch size 32** - OCR tasks often benefit from smaller batches, and given your overfitting issues with 128, going smaller is the right direction. The extra training time is worth it for better convergence.
+
+**Monitor these metrics:**
+- Validation loss should stay closer to training loss
+- CER should improve more consistently
+- Training curves should be noisier but trending downward
+
+
+=================================
+
+Thank you for the update. The results from epoch 9 are very telling and confirm our suspicions.
+
+## Updated Training Performance
+
+The trend of overfitting is now undeniable. While your training loss continues to improve, the validation loss and CER are getting worse.
+
+| Epoch | Train Loss | Val Loss | Val CER | Status |
+|-------|------------|----------|---------|--------|
+| ...   | ...        | ...      | ...     | ...    |
+| 6     | 3.6179     | 3.6976   | 109.38% | ✅ **Best CER so far** |
+| 7     | 3.5777     | 3.7730   | 112.76% | ⚠️ Validation diverging |
+| 8     | 3.5273     | 3.8111   | 112.91% | ⚠️ Overfitting signs |
+| **9** | **3.4908** | **3.8276** | **112.97%** | 🚨 **Overfitting Confirmed** |
+
+<br>
+
+## Analysis of Epoch 9
+
+- **Train Loss**: Decreased by 1.0% (Good)
+- **Validation Loss**: Increased by 0.4% (Bad)
+- **Validation CER**: Increased slightly (Bad)
+
+This shows your model is getting better at memorizing the training data but is failing to generalize to new, unseen data. The gap between training performance and validation performance is widening, which is the classic definition of overfitting.
+
+## Strong Recommendation: Reduce Batch Size Now
+
+Continuing with a batch size of 128 will likely just waste time and resources as the model continues to overfit.
+
+My previous advice to **reduce the batch size to 32 (recommended) or 64 (safer)** is now more critical than ever. A smaller batch size acts as a regularizer, introducing noise into the learning process that forces the model to learn more robust, general features instead of memorizing the training set.
+
+### Action to Take
+
+1.  **Stop any current training session.**
+2.  **Edit your configuration file.** I'll find `train_config.yaml` and apply the change to use a batch size of 32.
+3.  **Restart the training script.** The trainer should automatically resume from the last checkpoint (`checkpoint_epoch_008.pth`) and apply the new batch size for epoch 10 and beyond.
+
+I will now locate `configs/train_config.yaml` and change the batch size to 32 for you.

@@ -13,4 +13,16 @@ data:
 # Vocabulary Configuration
 vocab:
   special_tokens:
-    sos: " 
+    sos: "SOS"
+    eos: "EOS"
+    pad: "PAD"
+    unk: "UNK"
+  
+  # Token indices
+  sos_idx: 0
+  eos_idx: 1
+  pad_idx: 2
+  unk_idx: 3
+  
+  # Total vocabulary size
+  vocab_size: 117 
