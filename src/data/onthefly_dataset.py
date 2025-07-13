@@ -14,13 +14,13 @@ from pathlib import Path
 
 import torch
 from torch.utils.data import Dataset
-from PIL import Image
+from PIL import Image, ImageFont
 import logging
 
-from .text_renderer import TextRenderer
 from .augmentation import DataAugmentation
 from .corpus_processor import KhmerCorpusProcessor
 from ..utils.config import ConfigManager
+from ..synthetic_data_generator.khmer_ocr_generator import KhmerOCRSyntheticGenerator
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +31,7 @@ class OnTheFlyDataset(Dataset):
     
     This dataset:
     - Loads text lines from corpus
-    - Generates images dynamically per batch
+    - Generates images dynamically per batch using KhmerOCRSyntheticGenerator
     - Applies real-time augmentation
     - Reduces storage requirements
     - Provides unlimited augmentation variety
@@ -57,7 +57,7 @@ class OnTheFlyDataset(Dataset):
             corpus_dir: Directory with processed corpus data
             samples_per_epoch: Number of samples to generate per epoch
             augment_prob: Probability of applying augmentation (0.0-1.0)
-            fonts: List of font paths to use for rendering
+            fonts: List of font paths to use for rendering (optional, will use default fonts)
             shuffle_texts: Whether to shuffle text lines for variety
             random_seed: Random seed for reproducibility
         """
@@ -77,16 +77,18 @@ class OnTheFlyDataset(Dataset):
         self.text_lines = self._load_text_lines()
         logger.info(f"Loaded {len(self.text_lines)} text lines for {split} split")
         
-        # Initialize text renderer
-        if fonts is None:
-            fonts = self._get_default_fonts()
-        
-        self.text_renderer = TextRenderer(
-            fonts=fonts,
-            image_height=self.config.data_config.image_height
+        # Initialize KhmerOCRSyntheticGenerator for text rendering
+        self.text_generator = KhmerOCRSyntheticGenerator(
+            corpus_dir=str(self.corpus_dir),
+            output_dir="data/synthetic",  # Not used for on-the-fly generation
+            config_manager=self.config,
+            fonts_dir="fonts",
+            augment_train=(split == "train" and augment_prob > 0.0),
+            use_advanced_backgrounds=True,
+            random_seed=random_seed or 42
         )
         
-        # Initialize augmentation
+        # Initialize additional augmentation if needed
         self.use_augmentation = (split == "train" and augment_prob > 0.0)
         if self.use_augmentation:
             self.augmentation = DataAugmentation(
@@ -105,7 +107,7 @@ class OnTheFlyDataset(Dataset):
         logger.info(f"  Text lines: {len(self.text_lines)}")
         logger.info(f"  Samples per epoch: {samples_per_epoch}")
         logger.info(f"  Augmentation: {'enabled' if self.use_augmentation else 'disabled'}")
-        logger.info(f"  Fonts: {len(self.text_renderer.fonts)}")
+        logger.info(f"  Fonts: {len(self.text_generator.fonts)}")
         
     def _load_text_lines(self) -> List[str]:
         """Load text lines from corpus files"""
@@ -159,18 +161,6 @@ class OnTheFlyDataset(Dataset):
         
         return lines
     
-    def _get_default_fonts(self) -> List[str]:
-        """Get default Khmer fonts"""
-        fonts_dir = Path("fonts")
-        if not fonts_dir.exists():
-            raise FileNotFoundError(f"Fonts directory not found: {fonts_dir}")
-        
-        font_files = list(fonts_dir.glob("*.ttf"))
-        if not font_files:
-            raise FileNotFoundError("No TTF fonts found in fonts directory")
-        
-        return [str(font) for font in font_files]
-    
     def __len__(self) -> int:
         """Return dataset size (samples per epoch)"""
         return self.samples_per_epoch
@@ -193,31 +183,43 @@ class OnTheFlyDataset(Dataset):
         if self.split == "train" and random.random() < 0.3:
             text = random.choice(self.text_lines)
         
-        # Select font
-        if self.split == "train":
-            # Random font selection for training (data augmentation)
-            font_path = random.choice(self.text_renderer.fonts)
-        else:
-            # Consistent font selection for val/test based on text hash
-            font_idx = hash(text + str(idx)) % len(self.text_renderer.fonts)
-            font_path = self.text_renderer.fonts[font_idx]
+        # Select font using the generator's font selection logic
+        font_path = self.text_generator._select_font(text, self.split)
         
-        # Render text to image
+        # Calculate optimal width for the text
+        temp_font = ImageFont.truetype(font_path, self.text_generator.font_size)
+        image_width = self.text_generator._calculate_optimal_width(text, temp_font)
+        
+        # Render text to image using KhmerOCRSyntheticGenerator
         try:
-            image = self.text_renderer.render_text(text, font_path)
+            image = self.text_generator._render_text_image(text, font_path, image_width)
         except Exception as e:
             logger.warning(f"Error rendering text '{text}': {e}")
             # Fallback to simple text if rendering fails
             fallback_text = "ខ្មែរ"  # Simple Khmer text
-            image = self.text_renderer.render_text(fallback_text, font_path)
-            text = fallback_text
+            try:
+                image = self.text_generator._render_text_image(fallback_text, font_path, image_width)
+                text = fallback_text
+            except Exception as e2:
+                logger.error(f"Error rendering fallback text: {e2}")
+                # Create minimal fallback image
+                image = Image.new('L', (image_width, self.text_generator.image_height), color=255)
+                text = ""
         
-        # Apply augmentation if enabled
+        # Apply augmentation using the generator if enabled
+        if self.use_augmentation and self.text_generator.augmentor:
+            try:
+                image = self.text_generator._apply_augmentation(image)
+            except Exception as e:
+                logger.warning(f"Error applying augmentation: {e}")
+                # Continue with original image if augmentation fails
+        
+        # Apply additional augmentation if configured
         if self.use_augmentation and self.augmentation:
             try:
                 image = self.augmentation.apply_augmentations(image)
             except Exception as e:
-                logger.warning(f"Error applying augmentation: {e}")
+                logger.warning(f"Error applying additional augmentation: {e}")
                 # Continue with original image if augmentation fails
         
         # Convert image to tensor
@@ -253,23 +255,18 @@ class OnTheFlyDataset(Dataset):
     
     def get_text_sample(self, num_samples: int = 5) -> List[str]:
         """Get a sample of text lines for inspection"""
-        sample_indices = random.sample(range(len(self.text_lines)), 
-                                     min(num_samples, len(self.text_lines)))
-        return [self.text_lines[i] for i in sample_indices]
+        return random.sample(self.text_lines, min(num_samples, len(self.text_lines)))
     
     def get_statistics(self) -> Dict[str, any]:
         """Get dataset statistics"""
-        text_lengths = [len(text) for text in self.text_lines]
-        
         return {
-            "total_text_lines": len(self.text_lines),
-            "samples_per_epoch": self.samples_per_epoch,
-            "avg_text_length": sum(text_lengths) / len(text_lengths) if text_lengths else 0,
-            "min_text_length": min(text_lengths) if text_lengths else 0,
-            "max_text_length": max(text_lengths) if text_lengths else 0,
             "split": self.split,
-            "augmentation_enabled": self.use_augmentation,
-            "fonts_available": len(self.text_renderer.fonts)
+            "text_lines": len(self.text_lines),
+            "samples_per_epoch": self.samples_per_epoch,
+            "fonts": len(self.text_generator.fonts),
+            "augmentation": self.use_augmentation,
+            "image_height": self.text_generator.image_height,
+            "variable_width": True
         }
 
 

@@ -3,7 +3,7 @@ Debug script for testing synthetic image generation in a Colab environment.
 
 This script will:
 1. Initialize the necessary components from the khmer-ocr-seq2seq project.
-2. Create an instance of the on-the-fly dataset generator.
+2. Create an instance of the on-the-fly dataset generator (now using KhmerOCRSyntheticGenerator).
 3. Generate a single, fully augmented training sample.
 4. Display the generated image and its corresponding text label.
 """
@@ -38,8 +38,8 @@ else:
         """
         Initializes the dataset, generates one sample, and displays it.
         """
-        print("🚀 Starting Khmer OCR Synthetic Image Generation Test...")
-        print("="*60)
+        print("🚀 Starting Khmer OCR Synthetic Image Generation Test (with KhmerOCRSyntheticGenerator)...")
+        print("="*80)
 
         try:
             # 1. Initialize ConfigManager to load all project configurations
@@ -50,8 +50,8 @@ else:
             print("   ✅ Configurations loaded.")
 
             # 2. Initialize the On-the-fly Dataset for the 'train' split
-            #    This will set up the text renderer and data augmentation pipeline.
-            print("2. Initializing OnTheFlyDataset...")
+            #    This will now use KhmerOCRSyntheticGenerator for text rendering
+            print("2. Initializing OnTheFlyDataset with KhmerOCRSyntheticGenerator...")
             # We set a random seed for reproducibility of this test.
             # In real training, this might be omitted for more randomness.
             dataset = OnTheFlyDataset(
@@ -64,8 +64,10 @@ else:
             )
             print("   ✅ Dataset initialized.")
             print(f"   - Found {len(dataset.text_lines)} text lines.")
-            print(f"   - Using {len(dataset.text_renderer.fonts)} fonts.")
-
+            print(f"   - Using {len(dataset.text_generator.fonts)} fonts.")
+            print(f"   - Image height: {dataset.text_generator.image_height}px (variable width)")
+            print(f"   - Advanced backgrounds: {dataset.text_generator.use_advanced_backgrounds}")
+            print(f"   - Augmentation enabled: {dataset.use_augmentation}")
 
             # 3. Generate one sample
             print("3. Generating one augmented sample...")
@@ -74,7 +76,8 @@ else:
             random_index = random.randint(0, len(dataset) - 1)
             image_tensor, _, text_label = dataset[random_index]
             print("   ✅ Sample generated.")
-
+            print(f"   - Text: '{text_label}'")
+            print(f"   - Image tensor shape: {image_tensor.shape}")
 
             # 4. Convert the image tensor back to a displayable format
             print("4. Preparing image for display...")
@@ -82,16 +85,19 @@ else:
             # - Convert to a NumPy array
             # - Transpose to [H, W, C] for plotting
             # - Squeeze the channel dimension if it's grayscale (C=1)
-            # - Denormalize from [0, 1] to [0, 255]
+            # - Denormalize from [-1, 1] to [0, 255]
             image_numpy = image_tensor.numpy()
             image_numpy = np.transpose(image_numpy, (1, 2, 0))
             if image_numpy.shape[2] == 1:
                 image_numpy = image_numpy.squeeze(axis=2)
 
-            # Denormalize (assuming the tensor was normalized to [0, 1])
+            # Denormalize from [-1, 1] to [0, 1] then to [0, 255]
+            image_numpy = (image_numpy + 1.0) / 2.0  # [-1, 1] -> [0, 1]
+            image_numpy = np.clip(image_numpy, 0, 1)  # Ensure valid range
             image_numpy = (image_numpy * 255).astype(np.uint8)
             pil_image = Image.fromarray(image_numpy)
             print("   ✅ Image ready.")
+            print(f"   - Final image size: {pil_image.size}")
 
             # 5. Display the image and its label
             print("5. Displaying results...")
@@ -105,7 +111,8 @@ else:
 
             plt.figure(figsize=(15, 4))
             plt.imshow(pil_image, cmap='gray')
-            plt.title(f"Generated Text: \n{text_label}", fontproperties=khmer_font, fontsize=14, pad=20)
+            plt.title(f"Generated Text (KhmerOCRSyntheticGenerator): \n{text_label}", 
+                     fontproperties=khmer_font, fontsize=14, pad=20)
             plt.axis('off')
             
             # Save the figure to a file
@@ -120,6 +127,8 @@ else:
             print("   Please ensure all required data and font files are present.")
         except Exception as e:
             print(f"❌ An unexpected error occurred: {e}")
+            import traceback
+            print(f"   Traceback: {traceback.format_exc()}")
 
     # Run the generation and display function
     generate_and_display_sample() 

@@ -174,6 +174,24 @@ Implement dynamic image generation during training to eliminate the need for pre
 - **`test_onthefly_system.py`**: Comprehensive test suite validating on-the-fly dataset functionality, memory efficiency, reproducibility, and integration with training pipeline
 - **`
 
+## Feature: OnTheFlyDataset Integration with KhmerOCRSyntheticGenerator
+**Purpose:**  
+Replace TextRenderer with KhmerOCRSyntheticGenerator in OnTheFlyDataset to provide advanced Khmer text rendering, variable-width images, and improved background generation.
+
+**Implementation:**  
+- Modified `src/data/onthefly_dataset.py` to use KhmerOCRSyntheticGenerator instead of TextRenderer
+- Replaced TextRenderer initialization with KhmerOCRSyntheticGenerator initialization
+- Updated text rendering logic to use generator's methods:
+  - `_select_font()` for font selection
+  - `_calculate_optimal_width()` for dynamic width calculation
+  - `_render_text_image()` for advanced text rendering
+  - `_apply_augmentation()` for integrated augmentation
+- Updated debug script to reflect the changes and show integration details
+- Added comprehensive error handling and fallback mechanisms
+
+**History:**
+- Created — Integrated KhmerOCRSyntheticGenerator into OnTheFlyDataset, replacing TextRenderer for improved Khmer text rendering with variable-width images, advanced backgrounds, and better font handling. This provides more realistic training data with proper subscript support and dynamic image sizing.
+
 ## Feature: Font Size Consistency and Text Cropping Fix
 **Purpose:**  
 Fix inconsistent font size calculations across different text rendering methods and prevent text cropping in generated images.
