@@ -39,13 +39,15 @@ class Trainer:
         device: torch.device,
         log_dir: str = "logs",
         checkpoint_dir: str = "models/checkpoints",
-        gdrive_backup: bool = True
+        gdrive_backup: bool = True,
+        gradient_accumulation_steps: int = 1
     ):
         self.model = model
         self.config = config_manager
         self.train_dataloader = train_dataloader
         self.val_dataloader = val_dataloader
         self.device = device
+        self.gradient_accumulation_steps = gradient_accumulation_steps
         
         # Move model to device
         self.model.to(device)
@@ -81,6 +83,14 @@ class Trainer:
             'learning_rate': []
         }
         
+        # Log gradient accumulation info
+        if self.gradient_accumulation_steps > 1:
+            effective_batch_size = len(train_dataloader.dataset) // len(train_dataloader) * gradient_accumulation_steps
+            self.logger.info(f"Gradient accumulation enabled:")
+            self.logger.info(f"  Hardware batch size: {len(train_dataloader.dataset) // len(train_dataloader)}")
+            self.logger.info(f"  Accumulation steps: {gradient_accumulation_steps}")
+            self.logger.info(f"  Effective batch size: {effective_batch_size}")
+        
         # Check for Google Drive backup status
         gdrive_info = self.checkpoint_manager.get_gdrive_info()
         if gdrive_info.get("enabled"):
@@ -110,32 +120,37 @@ class Trainer:
         logger = logging.getLogger("KhmerOCRTrainer")
         logger.setLevel(logging.INFO)
         
-        # Create file handler
-        os.makedirs("logs", exist_ok=True)
-        log_file = f"logs/training_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
-        file_handler = logging.FileHandler(log_file)
-        file_handler.setLevel(logging.INFO)
+        # Prevent propagation to avoid duplicate messages from root logger
+        logger.propagate = False
         
-        # Create console handler
-        console_handler = logging.StreamHandler()
-        console_handler.setLevel(logging.INFO)
-        
-        # Create formatter
-        formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        )
-        file_handler.setFormatter(formatter)
-        console_handler.setFormatter(formatter)
-        
-        # Add handlers to logger
-        logger.addHandler(file_handler)
-        logger.addHandler(console_handler)
+        # Only add handlers if they don't already exist
+        if not logger.handlers:
+            # Create file handler
+            os.makedirs("logs", exist_ok=True)
+            log_file = f"logs/training_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+            file_handler = logging.FileHandler(log_file)
+            file_handler.setLevel(logging.INFO)
+            
+            # Create console handler
+            console_handler = logging.StreamHandler()
+            console_handler.setLevel(logging.INFO)
+            
+            # Create formatter
+            formatter = logging.Formatter(
+                '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            )
+            file_handler.setFormatter(formatter)
+            console_handler.setFormatter(formatter)
+            
+            # Add handlers to logger
+            logger.addHandler(file_handler)
+            logger.addHandler(console_handler)
         
         return logger
     
     def train_epoch(self) -> Dict[str, float]:
         """
-        Train model for one epoch with teacher forcing.
+        Train model for one epoch with teacher forcing and gradient accumulation.
         
         Returns:
             Dict containing training metrics for the epoch
@@ -146,14 +161,19 @@ class Trainer:
         
         epoch_start_time = time.time()
         
+        # Initialize gradient accumulation
+        accumulated_loss = 0.0
+        accumulation_step = 0
+        
         for batch_idx, batch in enumerate(self.train_dataloader):
             # Move batch to device
             images = batch['images'].to(self.device)  # [B, 1, H, W]
             targets = batch['targets'].to(self.device)  # [B, max_seq_len]
             target_lengths = batch['target_lengths'].to(self.device)  # [B]
             
-            # Zero gradients
-            self.optimizer.zero_grad()
+            # Zero gradients only at the start of accumulation cycle
+            if accumulation_step == 0:
+                self.optimizer.zero_grad()
             
             # Forward pass with teacher forcing (ratio = 1.0 as per PRD)
             batch_size = images.size(0)
@@ -200,36 +220,53 @@ class Trainer:
                 next_input = targets[:, t:t+1]  # [B, 1]
                 decoder_input = torch.cat([decoder_input, next_input], dim=1)
             
-            # Average loss over sequence length
+            # Average loss over sequence length and scale by accumulation steps
             if total_predictions > 0:
                 batch_loss = batch_loss / max_seq_len
+                # Scale loss by accumulation steps for proper gradient magnitude
+                batch_loss = batch_loss / self.gradient_accumulation_steps
             
-            # Backward pass
+            # Backward pass (accumulate gradients)
             batch_loss.backward()
             
-            # Gradient clipping as per PRD specifications
-            torch.nn.utils.clip_grad_norm_(
-                self.model.parameters(), 
-                self.config.training_config.gradient_clip
-            )
+            # Update accumulation tracking
+            accumulated_loss += batch_loss.item()
+            accumulation_step += 1
             
-            # Update parameters
-            self.optimizer.step()
-            
-            # Update metrics
-            total_loss += batch_loss.item()
-            self.global_step += 1
-            
-            # Log batch progress
-            if batch_idx % 100 == 0:
-                progress = 100.0 * batch_idx / num_batches
-                self.logger.info(
-                    f"Epoch {self.current_epoch}, Batch {batch_idx}/{num_batches} "
-                    f"({progress:.1f}%), Loss: {batch_loss.item():.4f}"
+            # Update parameters only when accumulation is complete
+            if accumulation_step == self.gradient_accumulation_steps or batch_idx == num_batches - 1:
+                # Gradient clipping as per PRD specifications
+                torch.nn.utils.clip_grad_norm_(
+                    self.model.parameters(), 
+                    self.config.training_config.gradient_clip
                 )
                 
-                # Log to TensorBoard
-                self.writer.add_scalar('Loss/Train_Batch', batch_loss.item(), self.global_step)
+                # Update parameters
+                self.optimizer.step()
+                
+                # Reset accumulation
+                accumulation_step = 0
+                
+                # Update global step (one step per weight update, not per batch)
+                self.global_step += 1
+            
+            # Update total loss (unscaled for proper averaging)
+            total_loss += batch_loss.item() * self.gradient_accumulation_steps
+            
+            # Log batch progress (every 100 batches or at accumulation boundaries)
+            if batch_idx % 100 == 0 or accumulation_step == 0:
+                progress = 100.0 * batch_idx / num_batches
+                # Show the actual accumulated loss for logging clarity
+                display_loss = accumulated_loss if accumulation_step == 0 else accumulated_loss
+                self.logger.info(
+                    f"Epoch {self.current_epoch}, Batch {batch_idx}/{num_batches} "
+                    f"({progress:.1f}%), Loss: {display_loss:.4f}"
+                )
+                
+                # Log to TensorBoard (only when we complete an accumulation cycle)
+                if accumulation_step == 0:
+                    self.writer.add_scalar('Loss/Train_Batch', accumulated_loss, self.global_step)
+                    accumulated_loss = 0.0  # Reset for next accumulation cycle
         
         # Calculate epoch metrics
         avg_loss = total_loss / num_batches

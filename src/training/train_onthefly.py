@@ -333,6 +333,11 @@ def main():
         logger.info(f"  Gradient clip: {config.training_config.gradient_clip}")
         logger.info(f"  Training samples per epoch: {args.train_samples_per_epoch}")
         
+        # Get gradient accumulation steps from config (default to 1 if not present)
+        gradient_accumulation_steps = getattr(config.training_config, 'gradient_accumulation_steps', 1)
+        if gradient_accumulation_steps > 1:
+            logger.info(f"  Gradient accumulation steps: {gradient_accumulation_steps}")
+        
         # Create directories
         os.makedirs(args.checkpoint_dir, exist_ok=True)
         os.makedirs(args.log_dir, exist_ok=True)
@@ -370,7 +375,8 @@ def main():
             device=device,
             log_dir=args.log_dir,
             checkpoint_dir=args.checkpoint_dir,
-            gdrive_backup=True  # Enable Google Drive backup for Colab training
+            gdrive_backup=True,  # Enable Google Drive backup for Colab training
+            gradient_accumulation_steps=gradient_accumulation_steps
         )
         
         if args.validate_only:

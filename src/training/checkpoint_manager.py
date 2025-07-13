@@ -118,8 +118,12 @@ class CheckpointManager:
                 # Backup best model to Google Drive
                 if self.gdrive_backup and self.gdrive_best_model_path:
                     try:
-                        shutil.copy2(checkpoint_path, self.gdrive_best_model_path)
-                        self.logger.info(f"Backed up best model to Google Drive: {self.gdrive_best_model_path}")
+                        # Check if source and destination are the same file
+                        if checkpoint_path.resolve() != self.gdrive_best_model_path.resolve():
+                            shutil.copy2(checkpoint_path, self.gdrive_best_model_path)
+                            self.logger.info(f"Backed up best model to Google Drive: {self.gdrive_best_model_path}")
+                        else:
+                            self.logger.debug(f"Skipping best model backup - already in Google Drive location")
                         
                         # Save training history alongside best model
                         self._save_training_history_to_gdrive(checkpoint_data)
@@ -132,8 +136,12 @@ class CheckpointManager:
                 (epoch % 10 == 0 or is_best or epoch < 5)):
                 try:
                     gdrive_checkpoint_path = self.gdrive_dir / "models" / filename
-                    shutil.copy2(checkpoint_path, gdrive_checkpoint_path)
-                    self.logger.info(f"Backed up checkpoint to Google Drive: {gdrive_checkpoint_path}")
+                    # Check if source and destination are the same file
+                    if checkpoint_path.resolve() != gdrive_checkpoint_path.resolve():
+                        shutil.copy2(checkpoint_path, gdrive_checkpoint_path)
+                        self.logger.info(f"Backed up checkpoint to Google Drive: {gdrive_checkpoint_path}")
+                    else:
+                        self.logger.debug(f"Skipping backup - checkpoint already in Google Drive location")
                 except Exception as e:
                     self.logger.warning(f"Failed to backup checkpoint to Google Drive: {e}")
             

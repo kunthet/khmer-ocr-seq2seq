@@ -1,0 +1,1283 @@
+🚀 Starting Khmer OCR Training...
+⚠️ HarfBuzz not available - falling back to enhanced PIL rendering
+✅ Advanced Khmer text renderer available
+2025-07-12 19:06:25.226113: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1752347185.245209   12186 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1752347185.251038   12186 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-07-12 19:06:28,804 - KhmerOCROnTheFlyTraining - INFO - ======================================================================
+2025-07-12 19:06:28,804 - KhmerOCROnTheFlyTraining - INFO - Khmer OCR Seq2Seq On-the-Fly Training
+2025-07-12 19:06:28,804 - KhmerOCROnTheFlyTraining - INFO - ======================================================================
+2025-07-12 19:06:28,810 - KhmerOCROnTheFlyTraining - INFO - Using device: cuda
+2025-07-12 19:06:28,828 - KhmerOCROnTheFlyTraining - INFO - GPU: Tesla T4
+2025-07-12 19:06:28,828 - KhmerOCROnTheFlyTraining - INFO - GPU Memory: 14.7 GB
+2025-07-12 19:06:28,828 - KhmerOCROnTheFlyTraining - INFO - Found fixed validation set at: data/validation_fixed
+2025-07-12 19:06:28,828 - KhmerOCROnTheFlyTraining - INFO - Loading configuration from: configs/train_config.yaml
+2025-07-12 19:06:28,834 - KhmerOCROnTheFlyTraining - INFO - Training Configuration:
+2025-07-12 19:06:28,834 - KhmerOCROnTheFlyTraining - INFO -   Epochs: 200
+2025-07-12 19:06:28,834 - KhmerOCROnTheFlyTraining - INFO -   Learning rate: 1e-06
+2025-07-12 19:06:28,834 - KhmerOCROnTheFlyTraining - INFO -   Optimizer: adam
+2025-07-12 19:06:28,834 - KhmerOCROnTheFlyTraining - INFO -   Teacher forcing ratio: 1.0
+2025-07-12 19:06:28,834 - KhmerOCROnTheFlyTraining - INFO -   Gradient clip: 5.0
+2025-07-12 19:06:28,834 - KhmerOCROnTheFlyTraining - INFO -   Training samples per epoch: 10000
+2025-07-12 19:06:28,836 - root - INFO - Creating Khmer OCR Seq2Seq model...
+2025-07-12 19:06:29,112 - root - INFO - Model created successfully
+2025-07-12 19:06:29,113 - root - INFO - Total parameters: 16,327,989
+2025-07-12 19:06:29,113 - root - INFO - Trainable parameters: 16,327,989
+2025-07-12 19:06:29,113 - KhmerOCROnTheFlyTraining - INFO - Using specified batch size: 32
+2025-07-12 19:06:29,113 - root - INFO - Creating datasets...
+2025-07-12 19:06:29,113 - src.data.onthefly_dataset - INFO - Found 2 training files: ['train_0.txt', 'train_1.txt']
+2025-07-12 19:06:29,289 - src.data.onthefly_dataset - INFO - Loaded 147195 lines from train_0.txt
+2025-07-12 19:06:29,485 - src.data.onthefly_dataset - INFO - Loaded 166118 lines from train_1.txt
+2025-07-12 19:06:29,601 - src.data.onthefly_dataset - INFO - Loaded 313313 text lines for train split
+✅ Advanced Khmer text renderer initialized
+Loaded font: KhmerOSmuollight from fonts/KhmerOSmuollight.ttf
+Loaded font: KhmerOSbokor from fonts/KhmerOSbokor.ttf
+Loaded font: KhmerOSfasthand from fonts/KhmerOSfasthand.ttf
+Loaded font: KhmerOS from fonts/KhmerOS.ttf
+Loaded font: KhmerOSbattambang from fonts/KhmerOSbattambang.ttf
+Loaded font: KhmerOSmuol from fonts/KhmerOSmuol.ttf
+Loaded font: KhmerOSmetalchrieng from fonts/KhmerOSmetalchrieng.ttf
+Loaded font: KhmerOSsiemreap from fonts/KhmerOSsiemreap.ttf
+2025-07-12 19:06:29,624 - src.data.onthefly_dataset - INFO - Initialized on-the-fly train dataset:
+2025-07-12 19:06:29,624 - src.data.onthefly_dataset - INFO -   Text lines: 313313
+2025-07-12 19:06:29,624 - src.data.onthefly_dataset - INFO -   Samples per epoch: 10000
+2025-07-12 19:06:29,624 - src.data.onthefly_dataset - INFO -   Augmentation: enabled
+2025-07-12 19:06:29,624 - src.data.onthefly_dataset - INFO -   Fonts: 8
+2025-07-12 19:06:29,624 - root - INFO - Loading fixed validation set from data/validation_fixed
+2025-07-12 19:06:29,666 - src.data.synthetic_dataset - INFO - Loaded 6400 samples from metadata
+2025-07-12 19:06:29,666 - src.data.synthetic_dataset - INFO - Loaded 6400 samples for val split from data/validation_fixed
+2025-07-12 19:06:29,666 - root - INFO - Created train dataloader: 313 batches (10000 samples)
+2025-07-12 19:06:29,667 - root - INFO - Created val dataloader: 200 batches (6400 samples)
+2025-07-12 19:06:29,667 - KhmerOCROnTheFlyTraining - INFO - Initializing trainer...
+2025-07-12 19:06:30,844 - CheckpointManager - INFO - Google Drive backup enabled: /content/drive/MyDrive/KhmerOCR_Checkpoints
+2025-07-12 19:06:30,851 - KhmerOCRTrainer - INFO - Google Drive backup: ✅ Ready
+2025-07-12 19:06:30,851 - KhmerOCRTrainer - INFO - Google Drive backup: ✅ Ready
+2025-07-12 19:06:30,851 - KhmerOCRTrainer - INFO - Google Drive dir: /content/drive/MyDrive/KhmerOCR_Checkpoints
+2025-07-12 19:06:30,851 - KhmerOCRTrainer - INFO - Google Drive dir: /content/drive/MyDrive/KhmerOCR_Checkpoints
+2025-07-12 19:06:30,853 - KhmerOCROnTheFlyTraining - INFO - Starting on-the-fly training...
+2025-07-12 19:06:30,853 - KhmerOCROnTheFlyTraining - INFO - Training Method: On-the-fly image generation
+2025-07-12 19:06:30,853 - KhmerOCROnTheFlyTraining - INFO - Training Samples: 10000 per epoch (unlimited variety)
+2025-07-12 19:06:30,853 - KhmerOCROnTheFlyTraining - INFO - Validation Samples: 6400 (fixed set)
+2025-07-12 19:06:30,853 - KhmerOCROnTheFlyTraining - INFO - Target: <=1.0% CER (Character Error Rate)
+2025-07-12 19:06:30,853 - KhmerOCRTrainer - INFO - Loading checkpoint from /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_007.pth
+2025-07-12 19:06:30,853 - KhmerOCRTrainer - INFO - Loading checkpoint from /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_007.pth
+2025-07-12 19:06:31,057 - CheckpointManager - INFO - Loaded checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_007.pth
+2025-07-12 19:06:31,112 - KhmerOCRTrainer - INFO - Resumed from epoch 8
+2025-07-12 19:06:31,112 - KhmerOCRTrainer - INFO - Resumed from epoch 8
+2025-07-12 19:06:31,113 - KhmerOCRTrainer - INFO - Best CER so far: 113.94%
+2025-07-12 19:06:31,113 - KhmerOCRTrainer - INFO - Best CER so far: 113.94%
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - Starting training...
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - Starting training...
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - Training configuration:
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - Training configuration:
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Epochs: 200
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Epochs: 200
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Batch size: 32
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Batch size: 32
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Learning rate: 1e-06
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Learning rate: 1e-06
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Teacher forcing ratio: 1.0
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Teacher forcing ratio: 1.0
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Device: cuda
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO -   Device: cuda
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - Epoch 9/200
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - Epoch 9/200
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:06:31,120 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:06:34,689 - KhmerOCRTrainer - INFO - Epoch 8, Batch 0/313 (0.0%), Loss: 3.6998
+2025-07-12 19:06:34,689 - KhmerOCRTrainer - INFO - Epoch 8, Batch 0/313 (0.0%), Loss: 3.6998
+2025-07-12 19:09:55,745 - KhmerOCRTrainer - INFO - Epoch 8, Batch 100/313 (31.9%), Loss: 3.6947
+2025-07-12 19:09:55,745 - KhmerOCRTrainer - INFO - Epoch 8, Batch 100/313 (31.9%), Loss: 3.6947
+2025-07-12 19:13:18,815 - KhmerOCRTrainer - INFO - Epoch 8, Batch 200/313 (63.9%), Loss: 3.6431
+2025-07-12 19:13:18,815 - KhmerOCRTrainer - INFO - Epoch 8, Batch 200/313 (63.9%), Loss: 3.6431
+2025-07-12 19:16:43,465 - KhmerOCRTrainer - INFO - Epoch 8, Batch 300/313 (95.8%), Loss: 3.6983
+2025-07-12 19:16:43,465 - KhmerOCRTrainer - INFO - Epoch 8, Batch 300/313 (95.8%), Loss: 3.6983
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 19:18:44,530 - KhmerOCRTrainer - INFO - 
+Epoch 9 Results:
+2025-07-12 19:18:44,530 - KhmerOCRTrainer - INFO - 
+Epoch 9 Results:
+2025-07-12 19:18:44,531 - KhmerOCRTrainer - INFO -   Train Loss: 3.6855
+2025-07-12 19:18:44,531 - KhmerOCRTrainer - INFO -   Train Loss: 3.6855
+2025-07-12 19:18:44,531 - KhmerOCRTrainer - INFO -   Val Loss: 3.6965
+2025-07-12 19:18:44,531 - KhmerOCRTrainer - INFO -   Val Loss: 3.6965
+2025-07-12 19:18:44,531 - KhmerOCRTrainer - INFO -   Val CER: 117.39%
+2025-07-12 19:18:44,531 - KhmerOCRTrainer - INFO -   Val CER: 117.39%
+2025-07-12 19:18:44,531 - KhmerOCRTrainer - INFO -   Epoch Time: 636.00s
+2025-07-12 19:18:44,531 - KhmerOCRTrainer - INFO -   Epoch Time: 636.00s
+2025-07-12 19:18:44,965 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_008.pth
+2025-07-12 19:18:44,967 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:18:44,967 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:18:44,967 - KhmerOCRTrainer - INFO - Epoch 10/200
+2025-07-12 19:18:44,967 - KhmerOCRTrainer - INFO - Epoch 10/200
+2025-07-12 19:18:44,967 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:18:44,967 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:18:47,809 - KhmerOCRTrainer - INFO - Epoch 9, Batch 0/313 (0.0%), Loss: 3.6951
+2025-07-12 19:18:47,809 - KhmerOCRTrainer - INFO - Epoch 9, Batch 0/313 (0.0%), Loss: 3.6951
+2025-07-12 19:22:12,105 - KhmerOCRTrainer - INFO - Epoch 9, Batch 100/313 (31.9%), Loss: 3.6678
+2025-07-12 19:22:12,105 - KhmerOCRTrainer - INFO - Epoch 9, Batch 100/313 (31.9%), Loss: 3.6678
+2025-07-12 19:25:36,375 - KhmerOCRTrainer - INFO - Epoch 9, Batch 200/313 (63.9%), Loss: 3.7302
+2025-07-12 19:25:36,375 - KhmerOCRTrainer - INFO - Epoch 9, Batch 200/313 (63.9%), Loss: 3.7302
+2025-07-12 19:29:00,147 - KhmerOCRTrainer - INFO - Epoch 9, Batch 300/313 (95.8%), Loss: 3.6687
+2025-07-12 19:29:00,147 - KhmerOCRTrainer - INFO - Epoch 9, Batch 300/313 (95.8%), Loss: 3.6687
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO - 
+Epoch 10 Results:
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO - 
+Epoch 10 Results:
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO -   Train Loss: 3.6836
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO -   Train Loss: 3.6836
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO -   Val Loss: 3.6960
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO -   Val Loss: 3.6960
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO -   Val CER: 117.06%
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO -   Val CER: 117.06%
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO -   Epoch Time: 638.93s
+2025-07-12 19:31:01,020 - KhmerOCRTrainer - INFO -   Epoch Time: 638.93s
+2025-07-12 19:31:01,447 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_009.pth
+2025-07-12 19:31:01,449 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:31:01,449 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:31:01,449 - KhmerOCRTrainer - INFO - Epoch 11/200
+2025-07-12 19:31:01,449 - KhmerOCRTrainer - INFO - Epoch 11/200
+2025-07-12 19:31:01,449 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:31:01,449 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:31:04,194 - KhmerOCRTrainer - INFO - Epoch 10, Batch 0/313 (0.0%), Loss: 3.7018
+2025-07-12 19:31:04,194 - KhmerOCRTrainer - INFO - Epoch 10, Batch 0/313 (0.0%), Loss: 3.7018
+2025-07-12 19:34:29,747 - KhmerOCRTrainer - INFO - Epoch 10, Batch 100/313 (31.9%), Loss: 3.6935
+2025-07-12 19:34:29,747 - KhmerOCRTrainer - INFO - Epoch 10, Batch 100/313 (31.9%), Loss: 3.6935
+2025-07-12 19:37:54,396 - KhmerOCRTrainer - INFO - Epoch 10, Batch 200/313 (63.9%), Loss: 3.6218
+2025-07-12 19:37:54,396 - KhmerOCRTrainer - INFO - Epoch 10, Batch 200/313 (63.9%), Loss: 3.6218
+2025-07-12 19:41:18,259 - KhmerOCRTrainer - INFO - Epoch 10, Batch 300/313 (95.8%), Loss: 3.6940
+2025-07-12 19:41:18,259 - KhmerOCRTrainer - INFO - Epoch 10, Batch 300/313 (95.8%), Loss: 3.6940
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO - 
+Epoch 11 Results:
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO - 
+Epoch 11 Results:
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO -   Train Loss: 3.6797
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO -   Train Loss: 3.6797
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO -   Val Loss: 3.6948
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO -   Val Loss: 3.6948
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO -   Val CER: 113.97%
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO -   Val CER: 113.97%
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO -   Epoch Time: 640.34s
+2025-07-12 19:43:18,924 - KhmerOCRTrainer - INFO -   Epoch Time: 640.34s
+2025-07-12 19:43:19,342 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_010.pth
+2025-07-12 19:43:19,361 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_010.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_010.pth') are the same file
+2025-07-12 19:43:19,363 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:43:19,363 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:43:19,363 - KhmerOCRTrainer - INFO - Epoch 12/200
+2025-07-12 19:43:19,363 - KhmerOCRTrainer - INFO - Epoch 12/200
+2025-07-12 19:43:19,363 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:43:19,363 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:43:22,128 - KhmerOCRTrainer - INFO - Epoch 11, Batch 0/313 (0.0%), Loss: 3.6851
+2025-07-12 19:43:22,128 - KhmerOCRTrainer - INFO - Epoch 11, Batch 0/313 (0.0%), Loss: 3.6851
+2025-07-12 19:46:45,621 - KhmerOCRTrainer - INFO - Epoch 11, Batch 100/313 (31.9%), Loss: 3.6698
+2025-07-12 19:46:45,621 - KhmerOCRTrainer - INFO - Epoch 11, Batch 100/313 (31.9%), Loss: 3.6698
+2025-07-12 19:50:08,374 - KhmerOCRTrainer - INFO - Epoch 11, Batch 200/313 (63.9%), Loss: 3.6895
+2025-07-12 19:50:08,374 - KhmerOCRTrainer - INFO - Epoch 11, Batch 200/313 (63.9%), Loss: 3.6895
+2025-07-12 19:53:31,676 - KhmerOCRTrainer - INFO - Epoch 11, Batch 300/313 (95.8%), Loss: 3.6857
+2025-07-12 19:53:31,676 - KhmerOCRTrainer - INFO - Epoch 11, Batch 300/313 (95.8%), Loss: 3.6857
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO - 
+Epoch 12 Results:
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO - 
+Epoch 12 Results:
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO -   Train Loss: 3.6794
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO -   Train Loss: 3.6794
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO -   Val Loss: 3.6951
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO -   Val Loss: 3.6951
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO -   Val CER: 114.76%
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO -   Val CER: 114.76%
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO -   Epoch Time: 636.11s
+2025-07-12 19:55:32,570 - KhmerOCRTrainer - INFO -   Epoch Time: 636.11s
+2025-07-12 19:55:32,988 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_011.pth
+2025-07-12 19:55:32,990 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:55:32,990 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 19:55:32,990 - KhmerOCRTrainer - INFO - Epoch 13/200
+2025-07-12 19:55:32,990 - KhmerOCRTrainer - INFO - Epoch 13/200
+2025-07-12 19:55:32,990 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:55:32,990 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 19:55:35,686 - KhmerOCRTrainer - INFO - Epoch 12, Batch 0/313 (0.0%), Loss: 3.6401
+2025-07-12 19:55:35,686 - KhmerOCRTrainer - INFO - Epoch 12, Batch 0/313 (0.0%), Loss: 3.6401
+2025-07-12 19:58:59,040 - KhmerOCRTrainer - INFO - Epoch 12, Batch 100/313 (31.9%), Loss: 3.6617
+2025-07-12 19:58:59,040 - KhmerOCRTrainer - INFO - Epoch 12, Batch 100/313 (31.9%), Loss: 3.6617
+2025-07-12 20:02:22,669 - KhmerOCRTrainer - INFO - Epoch 12, Batch 200/313 (63.9%), Loss: 3.7033
+2025-07-12 20:02:22,669 - KhmerOCRTrainer - INFO - Epoch 12, Batch 200/313 (63.9%), Loss: 3.7033
+2025-07-12 20:05:46,085 - KhmerOCRTrainer - INFO - Epoch 12, Batch 300/313 (95.8%), Loss: 3.6456
+2025-07-12 20:05:46,085 - KhmerOCRTrainer - INFO - Epoch 12, Batch 300/313 (95.8%), Loss: 3.6456
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 20:07:46,918 - KhmerOCRTrainer - INFO - 
+Epoch 13 Results:
+2025-07-12 20:07:46,918 - KhmerOCRTrainer - INFO - 
+Epoch 13 Results:
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   Train Loss: 3.6735
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   Train Loss: 3.6735
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   Val Loss: 3.6942
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   Val Loss: 3.6942
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   Val CER: 113.53%
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   Val CER: 113.53%
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   Epoch Time: 636.81s
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   Epoch Time: 636.81s
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   New best CER: 113.53%
+2025-07-12 20:07:46,919 - KhmerOCRTrainer - INFO -   New best CER: 113.53%
+2025-07-12 20:07:47,318 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_012.pth
+2025-07-12 20:07:47,977 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 20:07:48,608 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 20:07:48,614 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 20:07:49,494 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_012.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_012.pth') are the same file
+2025-07-12 20:07:49,500 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_007.pth
+2025-07-12 20:07:49,500 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:07:49,500 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:07:49,500 - KhmerOCRTrainer - INFO - Epoch 14/200
+2025-07-12 20:07:49,500 - KhmerOCRTrainer - INFO - Epoch 14/200
+2025-07-12 20:07:49,501 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:07:49,501 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:07:52,319 - KhmerOCRTrainer - INFO - Epoch 13, Batch 0/313 (0.0%), Loss: 3.6331
+2025-07-12 20:07:52,319 - KhmerOCRTrainer - INFO - Epoch 13, Batch 0/313 (0.0%), Loss: 3.6331
+2025-07-12 20:11:15,030 - KhmerOCRTrainer - INFO - Epoch 13, Batch 100/313 (31.9%), Loss: 3.7332
+2025-07-12 20:11:15,030 - KhmerOCRTrainer - INFO - Epoch 13, Batch 100/313 (31.9%), Loss: 3.7332
+2025-07-12 20:14:39,351 - KhmerOCRTrainer - INFO - Epoch 13, Batch 200/313 (63.9%), Loss: 3.7101
+2025-07-12 20:14:39,351 - KhmerOCRTrainer - INFO - Epoch 13, Batch 200/313 (63.9%), Loss: 3.7101
+2025-07-12 20:18:01,795 - KhmerOCRTrainer - INFO - Epoch 13, Batch 300/313 (95.8%), Loss: 3.6426
+2025-07-12 20:18:01,795 - KhmerOCRTrainer - INFO - Epoch 13, Batch 300/313 (95.8%), Loss: 3.6426
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 20:20:02,531 - KhmerOCRTrainer - INFO - 
+Epoch 14 Results:
+2025-07-12 20:20:02,531 - KhmerOCRTrainer - INFO - 
+Epoch 14 Results:
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   Train Loss: 3.6709
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   Train Loss: 3.6709
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   Val Loss: 3.6938
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   Val Loss: 3.6938
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   Val CER: 113.11%
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   Val CER: 113.11%
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   Epoch Time: 635.83s
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   Epoch Time: 635.83s
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   New best CER: 113.11%
+2025-07-12 20:20:02,532 - KhmerOCRTrainer - INFO -   New best CER: 113.11%
+2025-07-12 20:20:02,950 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_013.pth
+2025-07-12 20:20:03,642 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 20:20:04,237 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 20:20:04,241 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 20:20:04,242 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_013.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_013.pth') are the same file
+2025-07-12 20:20:04,263 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_008.pth
+2025-07-12 20:20:04,263 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:20:04,263 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:20:04,263 - KhmerOCRTrainer - INFO - Epoch 15/200
+2025-07-12 20:20:04,263 - KhmerOCRTrainer - INFO - Epoch 15/200
+2025-07-12 20:20:04,263 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:20:04,263 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:20:07,093 - KhmerOCRTrainer - INFO - Epoch 14, Batch 0/313 (0.0%), Loss: 3.6512
+2025-07-12 20:20:07,093 - KhmerOCRTrainer - INFO - Epoch 14, Batch 0/313 (0.0%), Loss: 3.6512
+2025-07-12 20:23:31,832 - KhmerOCRTrainer - INFO - Epoch 14, Batch 100/313 (31.9%), Loss: 3.6485
+2025-07-12 20:23:31,832 - KhmerOCRTrainer - INFO - Epoch 14, Batch 100/313 (31.9%), Loss: 3.6485
+2025-07-12 20:26:56,887 - KhmerOCRTrainer - INFO - Epoch 14, Batch 200/313 (63.9%), Loss: 3.6467
+2025-07-12 20:26:56,887 - KhmerOCRTrainer - INFO - Epoch 14, Batch 200/313 (63.9%), Loss: 3.6467
+2025-07-12 20:30:20,867 - KhmerOCRTrainer - INFO - Epoch 14, Batch 300/313 (95.8%), Loss: 3.6739
+2025-07-12 20:30:20,867 - KhmerOCRTrainer - INFO - Epoch 14, Batch 300/313 (95.8%), Loss: 3.6739
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO - 
+Epoch 15 Results:
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO - 
+Epoch 15 Results:
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO -   Train Loss: 3.6683
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO -   Train Loss: 3.6683
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO -   Val Loss: 3.6945
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO -   Val Loss: 3.6945
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO -   Val CER: 114.69%
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO -   Val CER: 114.69%
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO -   Epoch Time: 640.13s
+2025-07-12 20:32:22,162 - KhmerOCRTrainer - INFO -   Epoch Time: 640.13s
+2025-07-12 20:32:22,606 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_014.pth
+2025-07-12 20:32:22,626 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_009.pth
+2025-07-12 20:32:22,626 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:32:22,626 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:32:22,626 - KhmerOCRTrainer - INFO - Epoch 16/200
+2025-07-12 20:32:22,626 - KhmerOCRTrainer - INFO - Epoch 16/200
+2025-07-12 20:32:22,626 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:32:22,626 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:32:25,962 - KhmerOCRTrainer - INFO - Epoch 15, Batch 0/313 (0.0%), Loss: 3.6698
+2025-07-12 20:32:25,962 - KhmerOCRTrainer - INFO - Epoch 15, Batch 0/313 (0.0%), Loss: 3.6698
+2025-07-12 20:35:50,128 - KhmerOCRTrainer - INFO - Epoch 15, Batch 100/313 (31.9%), Loss: 3.6670
+2025-07-12 20:35:50,128 - KhmerOCRTrainer - INFO - Epoch 15, Batch 100/313 (31.9%), Loss: 3.6670
+2025-07-12 20:39:13,743 - KhmerOCRTrainer - INFO - Epoch 15, Batch 200/313 (63.9%), Loss: 3.7193
+2025-07-12 20:39:13,743 - KhmerOCRTrainer - INFO - Epoch 15, Batch 200/313 (63.9%), Loss: 3.7193
+2025-07-12 20:42:38,375 - KhmerOCRTrainer - INFO - Epoch 15, Batch 300/313 (95.8%), Loss: 3.6371
+2025-07-12 20:42:38,375 - KhmerOCRTrainer - INFO - Epoch 15, Batch 300/313 (95.8%), Loss: 3.6371
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO - 
+Epoch 16 Results:
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO - 
+Epoch 16 Results:
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO -   Train Loss: 3.6656
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO -   Train Loss: 3.6656
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO -   Val Loss: 3.6937
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO -   Val Loss: 3.6937
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO -   Val CER: 114.67%
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO -   Val CER: 114.67%
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO -   Epoch Time: 639.38s
+2025-07-12 20:44:39,329 - KhmerOCRTrainer - INFO -   Epoch Time: 639.38s
+2025-07-12 20:44:39,752 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_015.pth
+2025-07-12 20:44:39,755 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_010.pth
+2025-07-12 20:44:39,755 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:44:39,755 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:44:39,756 - KhmerOCRTrainer - INFO - Epoch 17/200
+2025-07-12 20:44:39,756 - KhmerOCRTrainer - INFO - Epoch 17/200
+2025-07-12 20:44:39,756 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:44:39,756 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:44:42,469 - KhmerOCRTrainer - INFO - Epoch 16, Batch 0/313 (0.0%), Loss: 3.6698
+2025-07-12 20:44:42,469 - KhmerOCRTrainer - INFO - Epoch 16, Batch 0/313 (0.0%), Loss: 3.6698
+2025-07-12 20:48:06,929 - KhmerOCRTrainer - INFO - Epoch 16, Batch 100/313 (31.9%), Loss: 3.6618
+2025-07-12 20:48:06,929 - KhmerOCRTrainer - INFO - Epoch 16, Batch 100/313 (31.9%), Loss: 3.6618
+2025-07-12 20:51:31,493 - KhmerOCRTrainer - INFO - Epoch 16, Batch 200/313 (63.9%), Loss: 3.6875
+2025-07-12 20:51:31,493 - KhmerOCRTrainer - INFO - Epoch 16, Batch 200/313 (63.9%), Loss: 3.6875
+2025-07-12 20:54:55,745 - KhmerOCRTrainer - INFO - Epoch 16, Batch 300/313 (95.8%), Loss: 3.6576
+2025-07-12 20:54:55,745 - KhmerOCRTrainer - INFO - Epoch 16, Batch 300/313 (95.8%), Loss: 3.6576
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO - 
+Epoch 17 Results:
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO - 
+Epoch 17 Results:
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO -   Train Loss: 3.6626
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO -   Train Loss: 3.6626
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO -   Val Loss: 3.6937
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO -   Val Loss: 3.6937
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO -   Val CER: 113.20%
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO -   Val CER: 113.20%
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO -   Epoch Time: 639.43s
+2025-07-12 20:56:56,463 - KhmerOCRTrainer - INFO -   Epoch Time: 639.43s
+2025-07-12 20:56:56,863 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_016.pth
+2025-07-12 20:56:56,883 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_011.pth
+2025-07-12 20:56:56,883 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:56:56,883 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 20:56:56,883 - KhmerOCRTrainer - INFO - Epoch 18/200
+2025-07-12 20:56:56,883 - KhmerOCRTrainer - INFO - Epoch 18/200
+2025-07-12 20:56:56,884 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:56:56,884 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 20:56:59,591 - KhmerOCRTrainer - INFO - Epoch 17, Batch 0/313 (0.0%), Loss: 3.6808
+2025-07-12 20:56:59,591 - KhmerOCRTrainer - INFO - Epoch 17, Batch 0/313 (0.0%), Loss: 3.6808
+2025-07-12 21:00:24,202 - KhmerOCRTrainer - INFO - Epoch 17, Batch 100/313 (31.9%), Loss: 3.6530
+2025-07-12 21:00:24,202 - KhmerOCRTrainer - INFO - Epoch 17, Batch 100/313 (31.9%), Loss: 3.6530
+2025-07-12 21:03:47,680 - KhmerOCRTrainer - INFO - Epoch 17, Batch 200/313 (63.9%), Loss: 3.6710
+2025-07-12 21:03:47,680 - KhmerOCRTrainer - INFO - Epoch 17, Batch 200/313 (63.9%), Loss: 3.6710
+2025-07-12 21:07:11,987 - KhmerOCRTrainer - INFO - Epoch 17, Batch 300/313 (95.8%), Loss: 3.6738
+2025-07-12 21:07:11,987 - KhmerOCRTrainer - INFO - Epoch 17, Batch 300/313 (95.8%), Loss: 3.6738
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO - 
+Epoch 18 Results:
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO - 
+Epoch 18 Results:
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   Train Loss: 3.6602
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   Train Loss: 3.6602
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   Val Loss: 3.6935
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   Val Loss: 3.6935
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   Val CER: 112.90%
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   Val CER: 112.90%
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   Epoch Time: 638.49s
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   Epoch Time: 638.49s
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   New best CER: 112.90%
+2025-07-12 21:09:12,608 - KhmerOCRTrainer - INFO -   New best CER: 112.90%
+2025-07-12 21:09:13,024 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_017.pth
+2025-07-12 21:09:13,685 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 21:09:14,302 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 21:09:14,307 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 21:09:14,308 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_017.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_017.pth') are the same file
+2025-07-12 21:09:14,327 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_012.pth
+2025-07-12 21:09:14,327 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:09:14,327 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:09:14,327 - KhmerOCRTrainer - INFO - Epoch 19/200
+2025-07-12 21:09:14,327 - KhmerOCRTrainer - INFO - Epoch 19/200
+2025-07-12 21:09:14,327 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:09:14,327 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:09:17,014 - KhmerOCRTrainer - INFO - Epoch 18, Batch 0/313 (0.0%), Loss: 3.6351
+2025-07-12 21:09:17,014 - KhmerOCRTrainer - INFO - Epoch 18, Batch 0/313 (0.0%), Loss: 3.6351
+2025-07-12 21:12:40,471 - KhmerOCRTrainer - INFO - Epoch 18, Batch 100/313 (31.9%), Loss: 3.6479
+2025-07-12 21:12:40,471 - KhmerOCRTrainer - INFO - Epoch 18, Batch 100/313 (31.9%), Loss: 3.6479
+2025-07-12 21:16:04,938 - KhmerOCRTrainer - INFO - Epoch 18, Batch 200/313 (63.9%), Loss: 3.6214
+2025-07-12 21:16:04,938 - KhmerOCRTrainer - INFO - Epoch 18, Batch 200/313 (63.9%), Loss: 3.6214
+2025-07-12 21:19:28,623 - KhmerOCRTrainer - INFO - Epoch 18, Batch 300/313 (95.8%), Loss: 3.7297
+2025-07-12 21:19:28,623 - KhmerOCRTrainer - INFO - Epoch 18, Batch 300/313 (95.8%), Loss: 3.7297
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO - 
+Epoch 19 Results:
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO - 
+Epoch 19 Results:
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO -   Train Loss: 3.6543
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO -   Train Loss: 3.6543
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO -   Val Loss: 3.6945
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO -   Val Loss: 3.6945
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO -   Val CER: 113.88%
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO -   Val CER: 113.88%
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO -   Epoch Time: 637.90s
+2025-07-12 21:21:29,853 - KhmerOCRTrainer - INFO -   Epoch Time: 637.90s
+2025-07-12 21:21:30,297 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_018.pth
+2025-07-12 21:21:30,337 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_013.pth
+2025-07-12 21:21:30,337 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:21:30,337 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:21:30,337 - KhmerOCRTrainer - INFO - Epoch 20/200
+2025-07-12 21:21:30,337 - KhmerOCRTrainer - INFO - Epoch 20/200
+2025-07-12 21:21:30,337 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:21:30,337 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:21:33,108 - KhmerOCRTrainer - INFO - Epoch 19, Batch 0/313 (0.0%), Loss: 3.6585
+2025-07-12 21:21:33,108 - KhmerOCRTrainer - INFO - Epoch 19, Batch 0/313 (0.0%), Loss: 3.6585
+2025-07-12 21:24:54,917 - KhmerOCRTrainer - INFO - Epoch 19, Batch 100/313 (31.9%), Loss: 3.6914
+2025-07-12 21:24:54,917 - KhmerOCRTrainer - INFO - Epoch 19, Batch 100/313 (31.9%), Loss: 3.6914
+2025-07-12 21:28:17,761 - KhmerOCRTrainer - INFO - Epoch 19, Batch 200/313 (63.9%), Loss: 3.6613
+2025-07-12 21:28:17,761 - KhmerOCRTrainer - INFO - Epoch 19, Batch 200/313 (63.9%), Loss: 3.6613
+2025-07-12 21:31:39,857 - KhmerOCRTrainer - INFO - Epoch 19, Batch 300/313 (95.8%), Loss: 3.6384
+2025-07-12 21:31:39,857 - KhmerOCRTrainer - INFO - Epoch 19, Batch 300/313 (95.8%), Loss: 3.6384
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 21:33:39,094 - KhmerOCRTrainer - INFO - 
+Epoch 20 Results:
+2025-07-12 21:33:39,094 - KhmerOCRTrainer - INFO - 
+Epoch 20 Results:
+2025-07-12 21:33:39,094 - KhmerOCRTrainer - INFO -   Train Loss: 3.6537
+2025-07-12 21:33:39,094 - KhmerOCRTrainer - INFO -   Train Loss: 3.6537
+2025-07-12 21:33:39,095 - KhmerOCRTrainer - INFO -   Val Loss: 3.6951
+2025-07-12 21:33:39,095 - KhmerOCRTrainer - INFO -   Val Loss: 3.6951
+2025-07-12 21:33:39,095 - KhmerOCRTrainer - INFO -   Val CER: 112.81%
+2025-07-12 21:33:39,095 - KhmerOCRTrainer - INFO -   Val CER: 112.81%
+2025-07-12 21:33:39,095 - KhmerOCRTrainer - INFO -   Epoch Time: 633.04s
+2025-07-12 21:33:39,095 - KhmerOCRTrainer - INFO -   Epoch Time: 633.04s
+2025-07-12 21:33:39,095 - KhmerOCRTrainer - INFO -   New best CER: 112.81%
+2025-07-12 21:33:39,095 - KhmerOCRTrainer - INFO -   New best CER: 112.81%
+2025-07-12 21:33:39,529 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_019.pth
+2025-07-12 21:33:40,199 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 21:33:40,826 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 21:33:40,830 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 21:33:40,831 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_019.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_019.pth') are the same file
+2025-07-12 21:33:40,851 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_014.pth
+2025-07-12 21:33:40,851 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:33:40,851 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:33:40,851 - KhmerOCRTrainer - INFO - Epoch 21/200
+2025-07-12 21:33:40,851 - KhmerOCRTrainer - INFO - Epoch 21/200
+2025-07-12 21:33:40,851 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:33:40,851 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:33:43,541 - KhmerOCRTrainer - INFO - Epoch 20, Batch 0/313 (0.0%), Loss: 3.6395
+2025-07-12 21:33:43,541 - KhmerOCRTrainer - INFO - Epoch 20, Batch 0/313 (0.0%), Loss: 3.6395
+2025-07-12 21:37:05,611 - KhmerOCRTrainer - INFO - Epoch 20, Batch 100/313 (31.9%), Loss: 3.7064
+2025-07-12 21:37:05,611 - KhmerOCRTrainer - INFO - Epoch 20, Batch 100/313 (31.9%), Loss: 3.7064
+2025-07-12 21:40:26,708 - KhmerOCRTrainer - INFO - Epoch 20, Batch 200/313 (63.9%), Loss: 3.5982
+2025-07-12 21:40:26,708 - KhmerOCRTrainer - INFO - Epoch 20, Batch 200/313 (63.9%), Loss: 3.5982
+2025-07-12 21:43:47,795 - KhmerOCRTrainer - INFO - Epoch 20, Batch 300/313 (95.8%), Loss: 3.6746
+2025-07-12 21:43:47,795 - KhmerOCRTrainer - INFO - Epoch 20, Batch 300/313 (95.8%), Loss: 3.6746
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO - 
+Epoch 21 Results:
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO - 
+Epoch 21 Results:
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO -   Train Loss: 3.6490
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO -   Train Loss: 3.6490
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO -   Val Loss: 3.6948
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO -   Val Loss: 3.6948
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO -   Val CER: 112.94%
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO -   Val CER: 112.94%
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO -   Epoch Time: 630.07s
+2025-07-12 21:45:47,067 - KhmerOCRTrainer - INFO -   Epoch Time: 630.07s
+2025-07-12 21:45:47,489 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_020.pth
+2025-07-12 21:45:47,490 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_020.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_020.pth') are the same file
+2025-07-12 21:45:47,509 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_015.pth
+2025-07-12 21:45:47,509 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:45:47,509 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:45:47,509 - KhmerOCRTrainer - INFO - Epoch 22/200
+2025-07-12 21:45:47,509 - KhmerOCRTrainer - INFO - Epoch 22/200
+2025-07-12 21:45:47,509 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:45:47,509 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:45:50,616 - KhmerOCRTrainer - INFO - Epoch 21, Batch 0/313 (0.0%), Loss: 3.6213
+2025-07-12 21:45:50,616 - KhmerOCRTrainer - INFO - Epoch 21, Batch 0/313 (0.0%), Loss: 3.6213
+2025-07-12 21:49:12,298 - KhmerOCRTrainer - INFO - Epoch 21, Batch 100/313 (31.9%), Loss: 3.6680
+2025-07-12 21:49:12,298 - KhmerOCRTrainer - INFO - Epoch 21, Batch 100/313 (31.9%), Loss: 3.6680
+2025-07-12 21:52:34,009 - KhmerOCRTrainer - INFO - Epoch 21, Batch 200/313 (63.9%), Loss: 3.6416
+2025-07-12 21:52:34,009 - KhmerOCRTrainer - INFO - Epoch 21, Batch 200/313 (63.9%), Loss: 3.6416
+2025-07-12 21:55:54,702 - KhmerOCRTrainer - INFO - Epoch 21, Batch 300/313 (95.8%), Loss: 3.6931
+2025-07-12 21:55:54,702 - KhmerOCRTrainer - INFO - Epoch 21, Batch 300/313 (95.8%), Loss: 3.6931
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO - 
+Epoch 22 Results:
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO - 
+Epoch 22 Results:
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   Train Loss: 3.6456
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   Train Loss: 3.6456
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   Val Loss: 3.6951
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   Val Loss: 3.6951
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   Val CER: 112.62%
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   Val CER: 112.62%
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   Epoch Time: 630.78s
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   Epoch Time: 630.78s
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   New best CER: 112.62%
+2025-07-12 21:57:53,990 - KhmerOCRTrainer - INFO -   New best CER: 112.62%
+2025-07-12 21:57:54,405 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_021.pth
+2025-07-12 21:57:55,075 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 21:57:56,216 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 21:57:56,220 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 21:57:56,222 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_021.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_021.pth') are the same file
+2025-07-12 21:57:56,243 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_016.pth
+2025-07-12 21:57:56,243 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:57:56,243 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 21:57:56,243 - KhmerOCRTrainer - INFO - Epoch 23/200
+2025-07-12 21:57:56,243 - KhmerOCRTrainer - INFO - Epoch 23/200
+2025-07-12 21:57:56,243 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:57:56,243 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 21:57:58,962 - KhmerOCRTrainer - INFO - Epoch 22, Batch 0/313 (0.0%), Loss: 3.6570
+2025-07-12 21:57:58,962 - KhmerOCRTrainer - INFO - Epoch 22, Batch 0/313 (0.0%), Loss: 3.6570
+2025-07-12 22:01:21,733 - KhmerOCRTrainer - INFO - Epoch 22, Batch 100/313 (31.9%), Loss: 3.6337
+2025-07-12 22:01:21,733 - KhmerOCRTrainer - INFO - Epoch 22, Batch 100/313 (31.9%), Loss: 3.6337
+2025-07-12 22:04:42,559 - KhmerOCRTrainer - INFO - Epoch 22, Batch 200/313 (63.9%), Loss: 3.6282
+2025-07-12 22:04:42,559 - KhmerOCRTrainer - INFO - Epoch 22, Batch 200/313 (63.9%), Loss: 3.6282
+2025-07-12 22:08:05,172 - KhmerOCRTrainer - INFO - Epoch 22, Batch 300/313 (95.8%), Loss: 3.6578
+2025-07-12 22:08:05,172 - KhmerOCRTrainer - INFO - Epoch 22, Batch 300/313 (95.8%), Loss: 3.6578
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO - 
+Epoch 23 Results:
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO - 
+Epoch 23 Results:
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   Train Loss: 3.6412
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   Train Loss: 3.6412
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   Val Loss: 3.6955
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   Val Loss: 3.6955
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   Val CER: 110.48%
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   Val CER: 110.48%
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   Epoch Time: 632.51s
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   Epoch Time: 632.51s
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   New best CER: 110.48%
+2025-07-12 22:10:04,426 - KhmerOCRTrainer - INFO -   New best CER: 110.48%
+2025-07-12 22:10:04,832 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_022.pth
+2025-07-12 22:10:05,480 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 22:10:06,100 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 22:10:06,104 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 22:10:06,106 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_022.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_022.pth') are the same file
+2025-07-12 22:10:06,128 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_017.pth
+2025-07-12 22:10:06,128 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:10:06,128 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:10:06,128 - KhmerOCRTrainer - INFO - Epoch 24/200
+2025-07-12 22:10:06,128 - KhmerOCRTrainer - INFO - Epoch 24/200
+2025-07-12 22:10:06,128 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:10:06,128 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:10:08,976 - KhmerOCRTrainer - INFO - Epoch 23, Batch 0/313 (0.0%), Loss: 3.6323
+2025-07-12 22:10:08,976 - KhmerOCRTrainer - INFO - Epoch 23, Batch 0/313 (0.0%), Loss: 3.6323
+2025-07-12 22:13:29,085 - KhmerOCRTrainer - INFO - Epoch 23, Batch 100/313 (31.9%), Loss: 3.6207
+2025-07-12 22:13:29,085 - KhmerOCRTrainer - INFO - Epoch 23, Batch 100/313 (31.9%), Loss: 3.6207
+2025-07-12 22:16:50,519 - KhmerOCRTrainer - INFO - Epoch 23, Batch 200/313 (63.9%), Loss: 3.6647
+2025-07-12 22:16:50,519 - KhmerOCRTrainer - INFO - Epoch 23, Batch 200/313 (63.9%), Loss: 3.6647
+2025-07-12 22:20:10,577 - KhmerOCRTrainer - INFO - Epoch 23, Batch 300/313 (95.8%), Loss: 3.6450
+2025-07-12 22:20:10,577 - KhmerOCRTrainer - INFO - Epoch 23, Batch 300/313 (95.8%), Loss: 3.6450
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO - 
+Epoch 24 Results:
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO - 
+Epoch 24 Results:
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO -   Train Loss: 3.6369
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO -   Train Loss: 3.6369
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO -   Val Loss: 3.6946
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO -   Val Loss: 3.6946
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO -   Val CER: 110.61%
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO -   Val CER: 110.61%
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO -   Epoch Time: 627.38s
+2025-07-12 22:22:09,303 - KhmerOCRTrainer - INFO -   Epoch Time: 627.38s
+2025-07-12 22:22:09,724 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_023.pth
+2025-07-12 22:22:09,728 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_018.pth
+2025-07-12 22:22:09,728 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:22:09,728 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:22:09,728 - KhmerOCRTrainer - INFO - Epoch 25/200
+2025-07-12 22:22:09,728 - KhmerOCRTrainer - INFO - Epoch 25/200
+2025-07-12 22:22:09,728 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:22:09,728 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:22:12,413 - KhmerOCRTrainer - INFO - Epoch 24, Batch 0/313 (0.0%), Loss: 3.6505
+2025-07-12 22:22:12,413 - KhmerOCRTrainer - INFO - Epoch 24, Batch 0/313 (0.0%), Loss: 3.6505
+2025-07-12 22:25:33,861 - KhmerOCRTrainer - INFO - Epoch 24, Batch 100/313 (31.9%), Loss: 3.6073
+2025-07-12 22:25:33,861 - KhmerOCRTrainer - INFO - Epoch 24, Batch 100/313 (31.9%), Loss: 3.6073
+2025-07-12 22:28:55,934 - KhmerOCRTrainer - INFO - Epoch 24, Batch 200/313 (63.9%), Loss: 3.6351
+2025-07-12 22:28:55,934 - KhmerOCRTrainer - INFO - Epoch 24, Batch 200/313 (63.9%), Loss: 3.6351
+2025-07-12 22:32:18,643 - KhmerOCRTrainer - INFO - Epoch 24, Batch 300/313 (95.8%), Loss: 3.6344
+2025-07-12 22:32:18,643 - KhmerOCRTrainer - INFO - Epoch 24, Batch 300/313 (95.8%), Loss: 3.6344
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 22:34:17,316 - KhmerOCRTrainer - INFO - 
+Epoch 25 Results:
+2025-07-12 22:34:17,316 - KhmerOCRTrainer - INFO - 
+Epoch 25 Results:
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   Train Loss: 3.6336
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   Train Loss: 3.6336
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   Val Loss: 3.6940
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   Val Loss: 3.6940
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   Val CER: 109.78%
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   Val CER: 109.78%
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   Epoch Time: 632.21s
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   Epoch Time: 632.21s
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   New best CER: 109.78%
+2025-07-12 22:34:17,317 - KhmerOCRTrainer - INFO -   New best CER: 109.78%
+2025-07-12 22:34:17,742 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_024.pth
+2025-07-12 22:34:18,412 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 22:34:19,060 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 22:34:19,064 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 22:34:19,065 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_024.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_024.pth') are the same file
+2025-07-12 22:34:19,086 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_019.pth
+2025-07-12 22:34:19,086 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:34:19,086 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:34:19,086 - KhmerOCRTrainer - INFO - Epoch 26/200
+2025-07-12 22:34:19,086 - KhmerOCRTrainer - INFO - Epoch 26/200
+2025-07-12 22:34:19,086 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:34:19,086 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:34:21,884 - KhmerOCRTrainer - INFO - Epoch 25, Batch 0/313 (0.0%), Loss: 3.6097
+2025-07-12 22:34:21,884 - KhmerOCRTrainer - INFO - Epoch 25, Batch 0/313 (0.0%), Loss: 3.6097
+2025-07-12 22:37:43,076 - KhmerOCRTrainer - INFO - Epoch 25, Batch 100/313 (31.9%), Loss: 3.6409
+2025-07-12 22:37:43,076 - KhmerOCRTrainer - INFO - Epoch 25, Batch 100/313 (31.9%), Loss: 3.6409
+2025-07-12 22:41:04,095 - KhmerOCRTrainer - INFO - Epoch 25, Batch 200/313 (63.9%), Loss: 3.6475
+2025-07-12 22:41:04,095 - KhmerOCRTrainer - INFO - Epoch 25, Batch 200/313 (63.9%), Loss: 3.6475
+2025-07-12 22:44:25,779 - KhmerOCRTrainer - INFO - Epoch 25, Batch 300/313 (95.8%), Loss: 3.6508
+2025-07-12 22:44:25,779 - KhmerOCRTrainer - INFO - Epoch 25, Batch 300/313 (95.8%), Loss: 3.6508
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 22:46:25,121 - KhmerOCRTrainer - INFO - 
+Epoch 26 Results:
+2025-07-12 22:46:25,121 - KhmerOCRTrainer - INFO - 
+Epoch 26 Results:
+2025-07-12 22:46:25,121 - KhmerOCRTrainer - INFO -   Train Loss: 3.6287
+2025-07-12 22:46:25,121 - KhmerOCRTrainer - INFO -   Train Loss: 3.6287
+2025-07-12 22:46:25,121 - KhmerOCRTrainer - INFO -   Val Loss: 3.6941
+2025-07-12 22:46:25,121 - KhmerOCRTrainer - INFO -   Val Loss: 3.6941
+2025-07-12 22:46:25,121 - KhmerOCRTrainer - INFO -   Val CER: 108.28%
+2025-07-12 22:46:25,121 - KhmerOCRTrainer - INFO -   Val CER: 108.28%
+2025-07-12 22:46:25,122 - KhmerOCRTrainer - INFO -   Epoch Time: 630.10s
+2025-07-12 22:46:25,122 - KhmerOCRTrainer - INFO -   Epoch Time: 630.10s
+2025-07-12 22:46:25,122 - KhmerOCRTrainer - INFO -   New best CER: 108.28%
+2025-07-12 22:46:25,122 - KhmerOCRTrainer - INFO -   New best CER: 108.28%
+2025-07-12 22:46:25,540 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_025.pth
+2025-07-12 22:46:26,206 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 22:46:26,834 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 22:46:26,839 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 22:46:26,840 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_025.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_025.pth') are the same file
+2025-07-12 22:46:26,871 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_020.pth
+2025-07-12 22:46:26,872 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:46:26,872 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:46:26,872 - KhmerOCRTrainer - INFO - Epoch 27/200
+2025-07-12 22:46:26,872 - KhmerOCRTrainer - INFO - Epoch 27/200
+2025-07-12 22:46:26,872 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:46:26,872 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:46:29,644 - KhmerOCRTrainer - INFO - Epoch 26, Batch 0/313 (0.0%), Loss: 3.6329
+2025-07-12 22:46:29,644 - KhmerOCRTrainer - INFO - Epoch 26, Batch 0/313 (0.0%), Loss: 3.6329
+2025-07-12 22:49:51,266 - KhmerOCRTrainer - INFO - Epoch 26, Batch 100/313 (31.9%), Loss: 3.6607
+2025-07-12 22:49:51,266 - KhmerOCRTrainer - INFO - Epoch 26, Batch 100/313 (31.9%), Loss: 3.6607
+2025-07-12 22:53:12,290 - KhmerOCRTrainer - INFO - Epoch 26, Batch 200/313 (63.9%), Loss: 3.6160
+2025-07-12 22:53:12,290 - KhmerOCRTrainer - INFO - Epoch 26, Batch 200/313 (63.9%), Loss: 3.6160
+2025-07-12 22:56:34,805 - KhmerOCRTrainer - INFO - Epoch 26, Batch 300/313 (95.8%), Loss: 3.6667
+2025-07-12 22:56:34,805 - KhmerOCRTrainer - INFO - Epoch 26, Batch 300/313 (95.8%), Loss: 3.6667
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 22:58:33,373 - KhmerOCRTrainer - INFO - 
+Epoch 27 Results:
+2025-07-12 22:58:33,373 - KhmerOCRTrainer - INFO - 
+Epoch 27 Results:
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   Train Loss: 3.6249
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   Train Loss: 3.6249
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   Val Loss: 3.6952
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   Val Loss: 3.6952
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   Val CER: 107.90%
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   Val CER: 107.90%
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   Epoch Time: 630.61s
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   Epoch Time: 630.61s
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   New best CER: 107.90%
+2025-07-12 22:58:33,374 - KhmerOCRTrainer - INFO -   New best CER: 107.90%
+2025-07-12 22:58:33,792 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_026.pth
+2025-07-12 22:58:34,472 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 22:58:35,137 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 22:58:35,141 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 22:58:35,142 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_026.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_026.pth') are the same file
+2025-07-12 22:58:35,163 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_021.pth
+2025-07-12 22:58:35,163 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:58:35,163 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 22:58:35,163 - KhmerOCRTrainer - INFO - Epoch 28/200
+2025-07-12 22:58:35,163 - KhmerOCRTrainer - INFO - Epoch 28/200
+2025-07-12 22:58:35,163 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:58:35,163 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 22:58:37,964 - KhmerOCRTrainer - INFO - Epoch 27, Batch 0/313 (0.0%), Loss: 3.6147
+2025-07-12 22:58:37,964 - KhmerOCRTrainer - INFO - Epoch 27, Batch 0/313 (0.0%), Loss: 3.6147
+2025-07-12 23:02:03,073 - KhmerOCRTrainer - INFO - Epoch 27, Batch 100/313 (31.9%), Loss: 3.6637
+2025-07-12 23:02:03,073 - KhmerOCRTrainer - INFO - Epoch 27, Batch 100/313 (31.9%), Loss: 3.6637
+2025-07-12 23:05:27,209 - KhmerOCRTrainer - INFO - Epoch 27, Batch 200/313 (63.9%), Loss: 3.5883
+2025-07-12 23:05:27,209 - KhmerOCRTrainer - INFO - Epoch 27, Batch 200/313 (63.9%), Loss: 3.5883
+2025-07-12 23:08:49,134 - KhmerOCRTrainer - INFO - Epoch 27, Batch 300/313 (95.8%), Loss: 3.5938
+2025-07-12 23:08:49,134 - KhmerOCRTrainer - INFO - Epoch 27, Batch 300/313 (95.8%), Loss: 3.5938
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 23:10:49,824 - KhmerOCRTrainer - INFO - 
+Epoch 28 Results:
+2025-07-12 23:10:49,824 - KhmerOCRTrainer - INFO - 
+Epoch 28 Results:
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   Train Loss: 3.6192
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   Train Loss: 3.6192
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   Val Loss: 3.6952
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   Val Loss: 3.6952
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   Val CER: 107.62%
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   Val CER: 107.62%
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   Epoch Time: 637.24s
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   Epoch Time: 637.24s
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   New best CER: 107.62%
+2025-07-12 23:10:49,825 - KhmerOCRTrainer - INFO -   New best CER: 107.62%
+2025-07-12 23:10:50,246 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_027.pth
+2025-07-12 23:10:50,944 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 23:10:51,636 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-12 23:10:51,640 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-12 23:10:51,641 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_027.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_027.pth') are the same file
+2025-07-12 23:10:51,661 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_022.pth
+2025-07-12 23:10:51,661 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:10:51,661 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:10:51,661 - KhmerOCRTrainer - INFO - Epoch 29/200
+2025-07-12 23:10:51,661 - KhmerOCRTrainer - INFO - Epoch 29/200
+2025-07-12 23:10:51,661 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:10:51,661 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:10:54,462 - KhmerOCRTrainer - INFO - Epoch 28, Batch 0/313 (0.0%), Loss: 3.6161
+2025-07-12 23:10:54,462 - KhmerOCRTrainer - INFO - Epoch 28, Batch 0/313 (0.0%), Loss: 3.6161
+2025-07-12 23:14:19,454 - KhmerOCRTrainer - INFO - Epoch 28, Batch 100/313 (31.9%), Loss: 3.5938
+2025-07-12 23:14:19,454 - KhmerOCRTrainer - INFO - Epoch 28, Batch 100/313 (31.9%), Loss: 3.5938
+2025-07-12 23:17:44,657 - KhmerOCRTrainer - INFO - Epoch 28, Batch 200/313 (63.9%), Loss: 3.6096
+2025-07-12 23:17:44,657 - KhmerOCRTrainer - INFO - Epoch 28, Batch 200/313 (63.9%), Loss: 3.6096
+2025-07-12 23:21:08,032 - KhmerOCRTrainer - INFO - Epoch 28, Batch 300/313 (95.8%), Loss: 3.6283
+2025-07-12 23:21:08,032 - KhmerOCRTrainer - INFO - Epoch 28, Batch 300/313 (95.8%), Loss: 3.6283
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO - 
+Epoch 29 Results:
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO - 
+Epoch 29 Results:
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO -   Train Loss: 3.6140
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO -   Train Loss: 3.6140
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO -   Val Loss: 3.6967
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO -   Val Loss: 3.6967
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO -   Val CER: 108.47%
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO -   Val CER: 108.47%
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO -   Epoch Time: 640.22s
+2025-07-12 23:23:09,013 - KhmerOCRTrainer - INFO -   Epoch Time: 640.22s
+2025-07-12 23:23:09,423 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_028.pth
+2025-07-12 23:23:09,444 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_023.pth
+2025-07-12 23:23:09,445 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:23:09,445 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:23:09,445 - KhmerOCRTrainer - INFO - Epoch 30/200
+2025-07-12 23:23:09,445 - KhmerOCRTrainer - INFO - Epoch 30/200
+2025-07-12 23:23:09,445 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:23:09,445 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:23:12,219 - KhmerOCRTrainer - INFO - Epoch 29, Batch 0/313 (0.0%), Loss: 3.6521
+2025-07-12 23:23:12,219 - KhmerOCRTrainer - INFO - Epoch 29, Batch 0/313 (0.0%), Loss: 3.6521
+2025-07-12 23:26:35,482 - KhmerOCRTrainer - INFO - Epoch 29, Batch 100/313 (31.9%), Loss: 3.5969
+2025-07-12 23:26:35,482 - KhmerOCRTrainer - INFO - Epoch 29, Batch 100/313 (31.9%), Loss: 3.5969
+2025-07-12 23:29:59,784 - KhmerOCRTrainer - INFO - Epoch 29, Batch 200/313 (63.9%), Loss: 3.6114
+2025-07-12 23:29:59,784 - KhmerOCRTrainer - INFO - Epoch 29, Batch 200/313 (63.9%), Loss: 3.6114
+2025-07-12 23:33:23,869 - KhmerOCRTrainer - INFO - Epoch 29, Batch 300/313 (95.8%), Loss: 3.5464
+2025-07-12 23:33:23,869 - KhmerOCRTrainer - INFO - Epoch 29, Batch 300/313 (95.8%), Loss: 3.5464
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO - 
+Epoch 30 Results:
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO - 
+Epoch 30 Results:
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO -   Train Loss: 3.6062
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO -   Train Loss: 3.6062
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO -   Val Loss: 3.6981
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO -   Val Loss: 3.6981
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO -   Val CER: 107.77%
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO -   Val CER: 107.77%
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO -   Epoch Time: 638.48s
+2025-07-12 23:35:25,085 - KhmerOCRTrainer - INFO -   Epoch Time: 638.48s
+2025-07-12 23:35:25,495 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_029.pth
+2025-07-12 23:35:25,516 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_024.pth
+2025-07-12 23:35:25,516 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:35:25,516 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:35:25,516 - KhmerOCRTrainer - INFO - Epoch 31/200
+2025-07-12 23:35:25,516 - KhmerOCRTrainer - INFO - Epoch 31/200
+2025-07-12 23:35:25,516 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:35:25,516 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:35:28,270 - KhmerOCRTrainer - INFO - Epoch 30, Batch 0/313 (0.0%), Loss: 3.6128
+2025-07-12 23:35:28,270 - KhmerOCRTrainer - INFO - Epoch 30, Batch 0/313 (0.0%), Loss: 3.6128
+2025-07-12 23:38:53,920 - KhmerOCRTrainer - INFO - Epoch 30, Batch 100/313 (31.9%), Loss: 3.5986
+2025-07-12 23:38:53,920 - KhmerOCRTrainer - INFO - Epoch 30, Batch 100/313 (31.9%), Loss: 3.5986
+2025-07-12 23:42:16,870 - KhmerOCRTrainer - INFO - Epoch 30, Batch 200/313 (63.9%), Loss: 3.5905
+2025-07-12 23:42:16,870 - KhmerOCRTrainer - INFO - Epoch 30, Batch 200/313 (63.9%), Loss: 3.5905
+2025-07-12 23:45:40,752 - KhmerOCRTrainer - INFO - Epoch 30, Batch 300/313 (95.8%), Loss: 3.5888
+2025-07-12 23:45:40,752 - KhmerOCRTrainer - INFO - Epoch 30, Batch 300/313 (95.8%), Loss: 3.5888
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 23:47:41,465 - KhmerOCRTrainer - INFO - 
+Epoch 31 Results:
+2025-07-12 23:47:41,465 - KhmerOCRTrainer - INFO - 
+Epoch 31 Results:
+2025-07-12 23:47:41,465 - KhmerOCRTrainer - INFO -   Train Loss: 3.5999
+2025-07-12 23:47:41,465 - KhmerOCRTrainer - INFO -   Train Loss: 3.5999
+2025-07-12 23:47:41,465 - KhmerOCRTrainer - INFO -   Val Loss: 3.6996
+2025-07-12 23:47:41,465 - KhmerOCRTrainer - INFO -   Val Loss: 3.6996
+2025-07-12 23:47:41,465 - KhmerOCRTrainer - INFO -   Val CER: 108.15%
+2025-07-12 23:47:41,465 - KhmerOCRTrainer - INFO -   Val CER: 108.15%
+2025-07-12 23:47:41,466 - KhmerOCRTrainer - INFO -   Epoch Time: 638.81s
+2025-07-12 23:47:41,466 - KhmerOCRTrainer - INFO -   Epoch Time: 638.81s
+2025-07-12 23:47:41,883 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_030.pth
+2025-07-12 23:47:41,885 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_030.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_030.pth') are the same file
+2025-07-12 23:47:41,906 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_025.pth
+2025-07-12 23:47:41,906 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:47:41,906 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:47:41,906 - KhmerOCRTrainer - INFO - Epoch 32/200
+2025-07-12 23:47:41,906 - KhmerOCRTrainer - INFO - Epoch 32/200
+2025-07-12 23:47:41,906 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:47:41,906 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:47:44,538 - KhmerOCRTrainer - INFO - Epoch 31, Batch 0/313 (0.0%), Loss: 3.6109
+2025-07-12 23:47:44,538 - KhmerOCRTrainer - INFO - Epoch 31, Batch 0/313 (0.0%), Loss: 3.6109
+2025-07-12 23:51:08,322 - KhmerOCRTrainer - INFO - Epoch 31, Batch 100/313 (31.9%), Loss: 3.5590
+2025-07-12 23:51:08,322 - KhmerOCRTrainer - INFO - Epoch 31, Batch 100/313 (31.9%), Loss: 3.5590
+2025-07-12 23:54:32,712 - KhmerOCRTrainer - INFO - Epoch 31, Batch 200/313 (63.9%), Loss: 3.6133
+2025-07-12 23:54:32,712 - KhmerOCRTrainer - INFO - Epoch 31, Batch 200/313 (63.9%), Loss: 3.6133
+2025-07-12 23:57:56,838 - KhmerOCRTrainer - INFO - Epoch 31, Batch 300/313 (95.8%), Loss: 3.5710
+2025-07-12 23:57:56,838 - KhmerOCRTrainer - INFO - Epoch 31, Batch 300/313 (95.8%), Loss: 3.5710
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-12 23:59:57,509 - KhmerOCRTrainer - INFO - 
+Epoch 32 Results:
+2025-07-12 23:59:57,509 - KhmerOCRTrainer - INFO - 
+Epoch 32 Results:
+2025-07-12 23:59:57,509 - KhmerOCRTrainer - INFO -   Train Loss: 3.5945
+2025-07-12 23:59:57,509 - KhmerOCRTrainer - INFO -   Train Loss: 3.5945
+2025-07-12 23:59:57,509 - KhmerOCRTrainer - INFO -   Val Loss: 3.7021
+2025-07-12 23:59:57,509 - KhmerOCRTrainer - INFO -   Val Loss: 3.7021
+2025-07-12 23:59:57,510 - KhmerOCRTrainer - INFO -   Val CER: 108.02%
+2025-07-12 23:59:57,510 - KhmerOCRTrainer - INFO -   Val CER: 108.02%
+2025-07-12 23:59:57,510 - KhmerOCRTrainer - INFO -   Epoch Time: 638.51s
+2025-07-12 23:59:57,510 - KhmerOCRTrainer - INFO -   Epoch Time: 638.51s
+2025-07-12 23:59:57,918 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_031.pth
+2025-07-12 23:59:57,938 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_026.pth
+2025-07-12 23:59:57,938 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:59:57,938 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-12 23:59:57,939 - KhmerOCRTrainer - INFO - Epoch 33/200
+2025-07-12 23:59:57,939 - KhmerOCRTrainer - INFO - Epoch 33/200
+2025-07-12 23:59:57,939 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-12 23:59:57,939 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:00:00,553 - KhmerOCRTrainer - INFO - Epoch 32, Batch 0/313 (0.0%), Loss: 3.5921
+2025-07-13 00:00:00,553 - KhmerOCRTrainer - INFO - Epoch 32, Batch 0/313 (0.0%), Loss: 3.5921
+2025-07-13 00:03:24,064 - KhmerOCRTrainer - INFO - Epoch 32, Batch 100/313 (31.9%), Loss: 3.6042
+2025-07-13 00:03:24,064 - KhmerOCRTrainer - INFO - Epoch 32, Batch 100/313 (31.9%), Loss: 3.6042
+2025-07-13 00:06:47,951 - KhmerOCRTrainer - INFO - Epoch 32, Batch 200/313 (63.9%), Loss: 3.5449
+2025-07-13 00:06:47,951 - KhmerOCRTrainer - INFO - Epoch 32, Batch 200/313 (63.9%), Loss: 3.5449
+2025-07-13 00:10:12,622 - KhmerOCRTrainer - INFO - Epoch 32, Batch 300/313 (95.8%), Loss: 3.5946
+2025-07-13 00:10:12,622 - KhmerOCRTrainer - INFO - Epoch 32, Batch 300/313 (95.8%), Loss: 3.5946
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO - 
+Epoch 33 Results:
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO - 
+Epoch 33 Results:
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO -   Train Loss: 3.5860
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO -   Train Loss: 3.5860
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO -   Val Loss: 3.7052
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO -   Val Loss: 3.7052
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO -   Val CER: 107.35%
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO -   Val CER: 107.35%
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO -   Epoch Time: 638.33s
+2025-07-13 00:12:13,292 - KhmerOCRTrainer - INFO -   Epoch Time: 638.33s
+2025-07-13 00:12:13,293 - KhmerOCRTrainer - INFO -   New best CER: 107.35%
+2025-07-13 00:12:13,293 - KhmerOCRTrainer - INFO -   New best CER: 107.35%
+2025-07-13 00:12:13,717 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_032.pth
+2025-07-13 00:12:14,371 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-13 00:12:14,972 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-13 00:12:14,976 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-13 00:12:14,977 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_032.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_032.pth') are the same file
+2025-07-13 00:12:14,999 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_027.pth
+2025-07-13 00:12:14,999 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 00:12:14,999 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 00:12:14,999 - KhmerOCRTrainer - INFO - Epoch 34/200
+2025-07-13 00:12:14,999 - KhmerOCRTrainer - INFO - Epoch 34/200
+2025-07-13 00:12:14,999 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:12:14,999 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:12:17,805 - KhmerOCRTrainer - INFO - Epoch 33, Batch 0/313 (0.0%), Loss: 3.6242
+2025-07-13 00:12:17,805 - KhmerOCRTrainer - INFO - Epoch 33, Batch 0/313 (0.0%), Loss: 3.6242
+2025-07-13 00:15:42,427 - KhmerOCRTrainer - INFO - Epoch 33, Batch 100/313 (31.9%), Loss: 3.5931
+2025-07-13 00:15:42,427 - KhmerOCRTrainer - INFO - Epoch 33, Batch 100/313 (31.9%), Loss: 3.5931
+2025-07-13 00:19:06,264 - KhmerOCRTrainer - INFO - Epoch 33, Batch 200/313 (63.9%), Loss: 3.6163
+2025-07-13 00:19:06,264 - KhmerOCRTrainer - INFO - Epoch 33, Batch 200/313 (63.9%), Loss: 3.6163
+2025-07-13 00:22:30,478 - KhmerOCRTrainer - INFO - Epoch 33, Batch 300/313 (95.8%), Loss: 3.5563
+2025-07-13 00:22:30,478 - KhmerOCRTrainer - INFO - Epoch 33, Batch 300/313 (95.8%), Loss: 3.5563
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 00:24:31,061 - KhmerOCRTrainer - INFO - 
+Epoch 34 Results:
+2025-07-13 00:24:31,061 - KhmerOCRTrainer - INFO - 
+Epoch 34 Results:
+2025-07-13 00:24:31,061 - KhmerOCRTrainer - INFO -   Train Loss: 3.5778
+2025-07-13 00:24:31,061 - KhmerOCRTrainer - INFO -   Train Loss: 3.5778
+2025-07-13 00:24:31,062 - KhmerOCRTrainer - INFO -   Val Loss: 3.7088
+2025-07-13 00:24:31,062 - KhmerOCRTrainer - INFO -   Val Loss: 3.7088
+2025-07-13 00:24:31,062 - KhmerOCRTrainer - INFO -   Val CER: 107.72%
+2025-07-13 00:24:31,062 - KhmerOCRTrainer - INFO -   Val CER: 107.72%
+2025-07-13 00:24:31,062 - KhmerOCRTrainer - INFO -   Epoch Time: 638.85s
+2025-07-13 00:24:31,062 - KhmerOCRTrainer - INFO -   Epoch Time: 638.85s
+2025-07-13 00:24:31,500 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_033.pth
+2025-07-13 00:24:31,522 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_028.pth
+2025-07-13 00:24:31,523 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 00:24:31,523 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 00:24:31,523 - KhmerOCRTrainer - INFO - Epoch 35/200
+2025-07-13 00:24:31,523 - KhmerOCRTrainer - INFO - Epoch 35/200
+2025-07-13 00:24:31,523 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:24:31,523 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:24:34,329 - KhmerOCRTrainer - INFO - Epoch 34, Batch 0/313 (0.0%), Loss: 3.6027
+2025-07-13 00:24:34,329 - KhmerOCRTrainer - INFO - Epoch 34, Batch 0/313 (0.0%), Loss: 3.6027
+2025-07-13 00:27:59,496 - KhmerOCRTrainer - INFO - Epoch 34, Batch 100/313 (31.9%), Loss: 3.5863
+2025-07-13 00:27:59,496 - KhmerOCRTrainer - INFO - Epoch 34, Batch 100/313 (31.9%), Loss: 3.5863
+2025-07-13 00:31:24,228 - KhmerOCRTrainer - INFO - Epoch 34, Batch 200/313 (63.9%), Loss: 3.5668
+2025-07-13 00:31:24,228 - KhmerOCRTrainer - INFO - Epoch 34, Batch 200/313 (63.9%), Loss: 3.5668
+2025-07-13 00:34:49,178 - KhmerOCRTrainer - INFO - Epoch 34, Batch 300/313 (95.8%), Loss: 3.5406
+2025-07-13 00:34:49,178 - KhmerOCRTrainer - INFO - Epoch 34, Batch 300/313 (95.8%), Loss: 3.5406
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 00:36:49,638 - KhmerOCRTrainer - INFO - 
+Epoch 35 Results:
+2025-07-13 00:36:49,638 - KhmerOCRTrainer - INFO - 
+Epoch 35 Results:
+2025-07-13 00:36:49,638 - KhmerOCRTrainer - INFO -   Train Loss: 3.5700
+2025-07-13 00:36:49,638 - KhmerOCRTrainer - INFO -   Train Loss: 3.5700
+2025-07-13 00:36:49,639 - KhmerOCRTrainer - INFO -   Val Loss: 3.7126
+2025-07-13 00:36:49,639 - KhmerOCRTrainer - INFO -   Val Loss: 3.7126
+2025-07-13 00:36:49,639 - KhmerOCRTrainer - INFO -   Val CER: 107.71%
+2025-07-13 00:36:49,639 - KhmerOCRTrainer - INFO -   Val CER: 107.71%
+2025-07-13 00:36:49,639 - KhmerOCRTrainer - INFO -   Epoch Time: 640.90s
+2025-07-13 00:36:49,639 - KhmerOCRTrainer - INFO -   Epoch Time: 640.90s
+2025-07-13 00:36:50,052 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_034.pth
+2025-07-13 00:36:50,096 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_029.pth
+2025-07-13 00:36:50,097 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 00:36:50,097 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 00:36:50,097 - KhmerOCRTrainer - INFO - Epoch 36/200
+2025-07-13 00:36:50,097 - KhmerOCRTrainer - INFO - Epoch 36/200
+2025-07-13 00:36:50,097 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:36:50,097 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:36:52,877 - KhmerOCRTrainer - INFO - Epoch 35, Batch 0/313 (0.0%), Loss: 3.5474
+2025-07-13 00:36:52,877 - KhmerOCRTrainer - INFO - Epoch 35, Batch 0/313 (0.0%), Loss: 3.5474
+2025-07-13 00:40:17,783 - KhmerOCRTrainer - INFO - Epoch 35, Batch 100/313 (31.9%), Loss: 3.5313
+2025-07-13 00:40:17,783 - KhmerOCRTrainer - INFO - Epoch 35, Batch 100/313 (31.9%), Loss: 3.5313
+2025-07-13 00:43:43,410 - KhmerOCRTrainer - INFO - Epoch 35, Batch 200/313 (63.9%), Loss: 3.5104
+2025-07-13 00:43:43,410 - KhmerOCRTrainer - INFO - Epoch 35, Batch 200/313 (63.9%), Loss: 3.5104
+2025-07-13 00:47:06,406 - KhmerOCRTrainer - INFO - Epoch 35, Batch 300/313 (95.8%), Loss: 3.5378
+2025-07-13 00:47:06,406 - KhmerOCRTrainer - INFO - Epoch 35, Batch 300/313 (95.8%), Loss: 3.5378
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO - 
+Epoch 36 Results:
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO - 
+Epoch 36 Results:
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO -   Train Loss: 3.5598
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO -   Train Loss: 3.5598
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO -   Val Loss: 3.7180
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO -   Val Loss: 3.7180
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO -   Val CER: 108.87%
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO -   Val CER: 108.87%
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO -   Epoch Time: 640.47s
+2025-07-13 00:49:07,949 - KhmerOCRTrainer - INFO -   Epoch Time: 640.47s
+2025-07-13 00:49:08,415 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_035.pth
+2025-07-13 00:49:08,467 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_030.pth
+2025-07-13 00:49:08,467 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 00:49:08,467 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 00:49:08,467 - KhmerOCRTrainer - INFO - Epoch 37/200
+2025-07-13 00:49:08,467 - KhmerOCRTrainer - INFO - Epoch 37/200
+2025-07-13 00:49:08,467 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:49:08,467 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 00:49:11,394 - KhmerOCRTrainer - INFO - Epoch 36, Batch 0/313 (0.0%), Loss: 3.5655
+2025-07-13 00:49:11,394 - KhmerOCRTrainer - INFO - Epoch 36, Batch 0/313 (0.0%), Loss: 3.5655
+2025-07-13 00:52:36,249 - KhmerOCRTrainer - INFO - Epoch 36, Batch 100/313 (31.9%), Loss: 3.5502
+2025-07-13 00:52:36,249 - KhmerOCRTrainer - INFO - Epoch 36, Batch 100/313 (31.9%), Loss: 3.5502
+2025-07-13 00:56:00,283 - KhmerOCRTrainer - INFO - Epoch 36, Batch 200/313 (63.9%), Loss: 3.5805
+2025-07-13 00:56:00,283 - KhmerOCRTrainer - INFO - Epoch 36, Batch 200/313 (63.9%), Loss: 3.5805
+2025-07-13 00:59:25,496 - KhmerOCRTrainer - INFO - Epoch 36, Batch 300/313 (95.8%), Loss: 3.5348
+2025-07-13 00:59:25,496 - KhmerOCRTrainer - INFO - Epoch 36, Batch 300/313 (95.8%), Loss: 3.5348
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO - 
+Epoch 37 Results:
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO - 
+Epoch 37 Results:
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO -   Train Loss: 3.5544
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO -   Train Loss: 3.5544
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO -   Val Loss: 3.7232
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO -   Val Loss: 3.7232
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO -   Val CER: 109.51%
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO -   Val CER: 109.51%
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO -   Epoch Time: 640.64s
+2025-07-13 01:01:26,412 - KhmerOCRTrainer - INFO -   Epoch Time: 640.64s
+2025-07-13 01:01:26,840 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_036.pth
+2025-07-13 01:01:26,863 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_031.pth
+2025-07-13 01:01:26,863 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:01:26,863 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:01:26,863 - KhmerOCRTrainer - INFO - Epoch 38/200
+2025-07-13 01:01:26,863 - KhmerOCRTrainer - INFO - Epoch 38/200
+2025-07-13 01:01:26,863 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:01:26,863 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:01:29,642 - KhmerOCRTrainer - INFO - Epoch 37, Batch 0/313 (0.0%), Loss: 3.5296
+2025-07-13 01:01:29,642 - KhmerOCRTrainer - INFO - Epoch 37, Batch 0/313 (0.0%), Loss: 3.5296
+2025-07-13 01:04:53,600 - KhmerOCRTrainer - INFO - Epoch 37, Batch 100/313 (31.9%), Loss: 3.5683
+2025-07-13 01:04:53,600 - KhmerOCRTrainer - INFO - Epoch 37, Batch 100/313 (31.9%), Loss: 3.5683
+2025-07-13 01:08:16,728 - KhmerOCRTrainer - INFO - Epoch 37, Batch 200/313 (63.9%), Loss: 3.5397
+2025-07-13 01:08:16,728 - KhmerOCRTrainer - INFO - Epoch 37, Batch 200/313 (63.9%), Loss: 3.5397
+2025-07-13 01:11:40,514 - KhmerOCRTrainer - INFO - Epoch 37, Batch 300/313 (95.8%), Loss: 3.5527
+2025-07-13 01:11:40,514 - KhmerOCRTrainer - INFO - Epoch 37, Batch 300/313 (95.8%), Loss: 3.5527
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO - 
+Epoch 38 Results:
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO - 
+Epoch 38 Results:
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO -   Train Loss: 3.5436
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO -   Train Loss: 3.5436
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO -   Val Loss: 3.7314
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO -   Val Loss: 3.7314
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO -   Val CER: 109.20%
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO -   Val CER: 109.20%
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO -   Epoch Time: 637.15s
+2025-07-13 01:13:41,238 - KhmerOCRTrainer - INFO -   Epoch Time: 637.15s
+2025-07-13 01:13:41,663 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_037.pth
+2025-07-13 01:13:41,684 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_032.pth
+2025-07-13 01:13:41,684 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:13:41,684 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:13:41,684 - KhmerOCRTrainer - INFO - Epoch 39/200
+2025-07-13 01:13:41,684 - KhmerOCRTrainer - INFO - Epoch 39/200
+2025-07-13 01:13:41,684 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:13:41,684 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:13:44,578 - KhmerOCRTrainer - INFO - Epoch 38, Batch 0/313 (0.0%), Loss: 3.5555
+2025-07-13 01:13:44,578 - KhmerOCRTrainer - INFO - Epoch 38, Batch 0/313 (0.0%), Loss: 3.5555
+2025-07-13 01:17:08,185 - KhmerOCRTrainer - INFO - Epoch 38, Batch 100/313 (31.9%), Loss: 3.5084
+2025-07-13 01:17:08,185 - KhmerOCRTrainer - INFO - Epoch 38, Batch 100/313 (31.9%), Loss: 3.5084
+2025-07-13 01:20:33,662 - KhmerOCRTrainer - INFO - Epoch 38, Batch 200/313 (63.9%), Loss: 3.4721
+2025-07-13 01:20:33,662 - KhmerOCRTrainer - INFO - Epoch 38, Batch 200/313 (63.9%), Loss: 3.4721
+2025-07-13 01:23:57,664 - KhmerOCRTrainer - INFO - Epoch 38, Batch 300/313 (95.8%), Loss: 3.5695
+2025-07-13 01:23:57,664 - KhmerOCRTrainer - INFO - Epoch 38, Batch 300/313 (95.8%), Loss: 3.5695
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 01:25:59,602 - KhmerOCRTrainer - INFO - 
+Epoch 39 Results:
+2025-07-13 01:25:59,602 - KhmerOCRTrainer - INFO - 
+Epoch 39 Results:
+2025-07-13 01:25:59,603 - KhmerOCRTrainer - INFO -   Train Loss: 3.5305
+2025-07-13 01:25:59,603 - KhmerOCRTrainer - INFO -   Train Loss: 3.5305
+2025-07-13 01:25:59,603 - KhmerOCRTrainer - INFO -   Val Loss: 3.7397
+2025-07-13 01:25:59,603 - KhmerOCRTrainer - INFO -   Val Loss: 3.7397
+2025-07-13 01:25:59,603 - KhmerOCRTrainer - INFO -   Val CER: 110.37%
+2025-07-13 01:25:59,603 - KhmerOCRTrainer - INFO -   Val CER: 110.37%
+2025-07-13 01:25:59,603 - KhmerOCRTrainer - INFO -   Epoch Time: 639.98s
+2025-07-13 01:25:59,603 - KhmerOCRTrainer - INFO -   Epoch Time: 639.98s
+2025-07-13 01:26:00,035 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_038.pth
+2025-07-13 01:26:00,077 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_033.pth
+2025-07-13 01:26:00,077 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:26:00,077 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:26:00,077 - KhmerOCRTrainer - INFO - Epoch 40/200
+2025-07-13 01:26:00,077 - KhmerOCRTrainer - INFO - Epoch 40/200
+2025-07-13 01:26:00,077 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:26:00,077 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:26:03,084 - KhmerOCRTrainer - INFO - Epoch 39, Batch 0/313 (0.0%), Loss: 3.5528
+2025-07-13 01:26:03,084 - KhmerOCRTrainer - INFO - Epoch 39, Batch 0/313 (0.0%), Loss: 3.5528
+2025-07-13 01:29:27,564 - KhmerOCRTrainer - INFO - Epoch 39, Batch 100/313 (31.9%), Loss: 3.5162
+2025-07-13 01:29:27,564 - KhmerOCRTrainer - INFO - Epoch 39, Batch 100/313 (31.9%), Loss: 3.5162
+2025-07-13 01:32:52,096 - KhmerOCRTrainer - INFO - Epoch 39, Batch 200/313 (63.9%), Loss: 3.5337
+2025-07-13 01:32:52,096 - KhmerOCRTrainer - INFO - Epoch 39, Batch 200/313 (63.9%), Loss: 3.5337
+2025-07-13 01:36:17,361 - KhmerOCRTrainer - INFO - Epoch 39, Batch 300/313 (95.8%), Loss: 3.5319
+2025-07-13 01:36:17,361 - KhmerOCRTrainer - INFO - Epoch 39, Batch 300/313 (95.8%), Loss: 3.5319
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 01:38:18,690 - KhmerOCRTrainer - INFO - 
+Epoch 40 Results:
+2025-07-13 01:38:18,690 - KhmerOCRTrainer - INFO - 
+Epoch 40 Results:
+2025-07-13 01:38:18,691 - KhmerOCRTrainer - INFO -   Train Loss: 3.5218
+2025-07-13 01:38:18,691 - KhmerOCRTrainer - INFO -   Train Loss: 3.5218
+2025-07-13 01:38:18,691 - KhmerOCRTrainer - INFO -   Val Loss: 3.7501
+2025-07-13 01:38:18,691 - KhmerOCRTrainer - INFO -   Val Loss: 3.7501
+2025-07-13 01:38:18,691 - KhmerOCRTrainer - INFO -   Val CER: 110.77%
+2025-07-13 01:38:18,691 - KhmerOCRTrainer - INFO -   Val CER: 110.77%
+2025-07-13 01:38:18,691 - KhmerOCRTrainer - INFO -   Epoch Time: 640.72s
+2025-07-13 01:38:18,691 - KhmerOCRTrainer - INFO -   Epoch Time: 640.72s
+2025-07-13 01:38:19,128 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_039.pth
+2025-07-13 01:38:19,153 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_034.pth
+2025-07-13 01:38:19,153 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:38:19,153 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:38:19,153 - KhmerOCRTrainer - INFO - Epoch 41/200
+2025-07-13 01:38:19,153 - KhmerOCRTrainer - INFO - Epoch 41/200
+2025-07-13 01:38:19,153 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:38:19,153 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:38:21,914 - KhmerOCRTrainer - INFO - Epoch 40, Batch 0/313 (0.0%), Loss: 3.5484
+2025-07-13 01:38:21,914 - KhmerOCRTrainer - INFO - Epoch 40, Batch 0/313 (0.0%), Loss: 3.5484
+2025-07-13 01:41:46,932 - KhmerOCRTrainer - INFO - Epoch 40, Batch 100/313 (31.9%), Loss: 3.5191
+2025-07-13 01:41:46,932 - KhmerOCRTrainer - INFO - Epoch 40, Batch 100/313 (31.9%), Loss: 3.5191
+2025-07-13 01:45:12,452 - KhmerOCRTrainer - INFO - Epoch 40, Batch 200/313 (63.9%), Loss: 3.5005
+2025-07-13 01:45:12,452 - KhmerOCRTrainer - INFO - Epoch 40, Batch 200/313 (63.9%), Loss: 3.5005
+2025-07-13 01:48:37,791 - KhmerOCRTrainer - INFO - Epoch 40, Batch 300/313 (95.8%), Loss: 3.5124
+2025-07-13 01:48:37,791 - KhmerOCRTrainer - INFO - Epoch 40, Batch 300/313 (95.8%), Loss: 3.5124
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-13 01:50:39,259 - KhmerOCRTrainer - INFO - 
+Epoch 41 Results:
+2025-07-13 01:50:39,259 - KhmerOCRTrainer - INFO - 
+Epoch 41 Results:
+2025-07-13 01:50:39,259 - KhmerOCRTrainer - INFO -   Train Loss: 3.5106
+2025-07-13 01:50:39,259 - KhmerOCRTrainer - INFO -   Train Loss: 3.5106
+2025-07-13 01:50:39,260 - KhmerOCRTrainer - INFO -   Val Loss: 3.7626
+2025-07-13 01:50:39,260 - KhmerOCRTrainer - INFO -   Val Loss: 3.7626
+2025-07-13 01:50:39,260 - KhmerOCRTrainer - INFO -   Val CER: 110.98%
+2025-07-13 01:50:39,260 - KhmerOCRTrainer - INFO -   Val CER: 110.98%
+2025-07-13 01:50:39,260 - KhmerOCRTrainer - INFO -   Epoch Time: 642.27s
+2025-07-13 01:50:39,260 - KhmerOCRTrainer - INFO -   Epoch Time: 642.27s
+2025-07-13 01:50:39,699 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_040.pth
+2025-07-13 01:50:39,701 - CheckpointManager - WARNING - Failed to backup checkpoint to Google Drive: PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_040.pth') and PosixPath('/content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_040.pth') are the same file
+2025-07-13 01:50:39,705 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_035.pth
+2025-07-13 01:50:39,705 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:50:39,705 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-13 01:50:39,705 - KhmerOCRTrainer - INFO - Epoch 42/200
+2025-07-13 01:50:39,705 - KhmerOCRTrainer - INFO - Epoch 42/200
+2025-07-13 01:50:39,705 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:50:39,705 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-13 01:50:42,555 - KhmerOCRTrainer - INFO - Epoch 41, Batch 0/313 (0.0%), Loss: 3.5390
+2025-07-13 01:50:42,555 - KhmerOCRTrainer - INFO - Epoch 41, Batch 0/313 (0.0%), Loss: 3.5390
+2025-07-13 01:54:08,028 - KhmerOCRTrainer - INFO - Epoch 41, Batch 100/313 (31.9%), Loss: 3.4881
+2025-07-13 01:54:08,028 - KhmerOCRTrainer - INFO - Epoch 41, Batch 100/313 (31.9%), Loss: 3.4881
