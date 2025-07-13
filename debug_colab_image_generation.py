@@ -107,7 +107,9 @@ else:
             plt.imshow(pil_image, cmap='gray')
             plt.title(f"Generated Text: \n{text_label}", fontproperties=khmer_font, fontsize=14, pad=20)
             plt.axis('off')
-            plt.show()
+            plt.savefig('debug_sample_output.png', dpi=150, bbox_inches='tight')
+            print("   ✅ Sample saved as 'debug_sample_output.png'")
+            plt.close()
 
         except FileNotFoundError as e:
             print(f"❌ File Not Found Error: {e}")

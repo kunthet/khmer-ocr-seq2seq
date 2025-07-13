@@ -173,3 +173,19 @@ Implement dynamic image generation during training to eliminate the need for pre
 - **`src/training/train_onthefly.py`**: New training script that uses on-the-fly generation for training data and pre-generated fixed validation set for evaluation
 - **`test_onthefly_system.py`**: Comprehensive test suite validating on-the-fly dataset functionality, memory efficiency, reproducibility, and integration with training pipeline
 - **`
+
+## Feature: Font Size Consistency and Text Cropping Fix
+**Purpose:**  
+Fix inconsistent font size calculations across different text rendering methods and prevent text cropping in generated images.
+
+**Implementation:**  
+- Standardized font size calculation to 50% of image height (16px for 32px height) across all rendering methods
+- Updated 4 locations in `src/data/text_renderer.py`:
+  - `render_text_advanced_khmer()` method (line 359)
+  - `_render_text_with_background_advanced()` method (line 481)
+  - `_load_pil_fonts()` method (lines 151 and 177)
+- Added explanatory comments for padding values (50px for basic rendering, 60px for background rendering)
+- Fixed comment inconsistencies (updated "80% of height" to "50% of height")
+
+**History:**
+- Created — Fixed font size inconsistency where some methods used 80% of height while others used 50%, causing varying text sizes in generated images. Added proper padding comments to explain cropping prevention measures.

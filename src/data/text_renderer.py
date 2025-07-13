@@ -62,6 +62,7 @@ class TextRenderer:
         """
         self.image_height = image_height
         self.use_tesseract = use_tesseract
+        self.font_size_factor = 0.5
         
         # Default Khmer fonts from fonts/ directory
         if fonts is None:
@@ -149,7 +150,7 @@ class TextRenderer:
             if os.path.exists(font_path):
                 try:
                     # Calculate font size for target height
-                    font_size = int(self.image_height * 0.8)  # 80% of height
+                    font_size = int(self.image_height * self.font_size_factor)  # 50% of height
                     font = ImageFont.truetype(font_path, font_size)
                     font_name = os.path.basename(font_path).replace('.ttf', '')
                     self.pil_fonts.append((font_name, font))
@@ -175,7 +176,7 @@ class TextRenderer:
                             font_file = os.path.join(base_path, font_name + ext)
                             if os.path.exists(font_file):
                                 try:
-                                    font_size = int(self.image_height * 0.8)
+                                    font_size = int(self.image_height * self.font_size_factor)
                                     font = ImageFont.truetype(font_file, font_size)
                                     self.pil_fonts.append((font_name, font))
                                     font_loaded = True
@@ -357,7 +358,7 @@ class TextRenderer:
             font_path = self.fonts[0] if self.fonts else "fonts/KhmerOS.ttf"
         
         # Calculate appropriate font size for target height
-        font_size = int(self.image_height * 0.5)  # 80% of height
+        font_size = int(self.image_height * self.font_size_factor)  # 50% of height
         
         # Create a temporary image to measure text dimensions
         temp_image = Image.new('L', (1000, self.image_height), 255)
@@ -367,6 +368,7 @@ class TextRenderer:
         try:
             temp_font = ImageFont.truetype(font_path, font_size)
             bbox = temp_draw.textbbox((0, 0), normalized_text, font=temp_font)
+            # Add padding to prevent text cropping
             estimated_width = bbox[2] - bbox[0] + 50
         except:
             # Fallback width estimation
@@ -479,7 +481,7 @@ class TextRenderer:
             font_path = self.fonts[0] if self.fonts else "fonts/KhmerOS.ttf"
         
         # Calculate appropriate font size
-        font_size = int(self.image_height * 0.8)
+        font_size = int(self.image_height * self.font_size_factor)
         
         # Estimate width needed
         try:
@@ -487,6 +489,7 @@ class TextRenderer:
             temp_image = Image.new('L', (1000, self.image_height), 255)
             temp_draw = ImageDraw.Draw(temp_image)
             bbox = temp_draw.textbbox((0, 0), text, font=temp_font)
+            # Add extra padding for background variant to prevent text cropping
             estimated_width = bbox[2] - bbox[0] + 60
         except:
             estimated_width = len(text) * font_size // 2
