@@ -4,6 +4,7 @@
 # Data
 corpus/
 validation_fixed/
+models/checkpoints/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
