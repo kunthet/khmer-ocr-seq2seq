@@ -160,7 +160,7 @@ Integrate imported synthetic data generator modules from `src/synthetic_data_gen
 - Created — Initial implementation integrating synthetic data generator modules with Khmer OCR project architecture, supporting variable-width images with 32px height
 - Updated — Fixed text cutting issue by removing 1024px width limit in `_calculate_optimal_width()` method, allowing unlimited width to accommodate complete text sequences
 - Updated — Fixed height consistency issue in rotated images by modifying `rotate_image()` method to use `expand=True` instead of `expand=False`, and added proper height validation in `_apply_augmentation()` method
-- Updated — **ROTATION FIX**: Modified rotation augmentation to preserve content without cropping by using `expand=True` to allow canvas expansion, then shrinking the image to target height while maintaining aspect ratio. This prevents text content from being cut off during rotation augmentation.
+- Updated — **ROTATION FIX**: Modified rotation augmentation to preserve content without cropping by using `expand=True` to allow canvas expansion, then shrinking the image to target height while maintaining aspect ratio. This prevents text content from being cut off during rotation augmentation. 
 
 ## Feature: [On-the-Fly Training System]
 **Purpose:**  

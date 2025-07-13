@@ -196,12 +196,13 @@ class Trainer:
             
             # Teacher forcing: use ground truth as decoder input
             for t in range(1, max_seq_len):  # Skip SOS, predict from index 1
-                # Decode next token
-                decoder_output, decoder_hidden, attention_weights = self.model.decode_step(
-                    decoder_input[:, -1:],  # Last predicted token
-                    decoder_hidden,
-                    encoder_outputs
-                )
+                # Decode next token with memory optimization
+                with torch.cuda.device(self.device):
+                    decoder_output, decoder_hidden, attention_weights = self.model.decode_step(
+                        decoder_input[:, -1:],  # Last predicted token
+                        decoder_hidden,
+                        encoder_outputs
+                    )
                 
                 # Get targets for this time step
                 target_t = targets[:, t]  # [B]
@@ -219,6 +220,11 @@ class Trainer:
                 # Teacher forcing: use ground truth as next input
                 next_input = targets[:, t:t+1]  # [B, 1]
                 decoder_input = torch.cat([decoder_input, next_input], dim=1)
+                
+                # Clear intermediate variables in the loop to prevent memory buildup
+                del decoder_output, target_t, mask
+                if t % 10 == 0 and torch.cuda.is_available():  # Periodic cleanup
+                    torch.cuda.empty_cache()
             
             # Average loss over sequence length and scale by accumulation steps
             if total_predictions > 0:
@@ -249,9 +255,18 @@ class Trainer:
                 
                 # Update global step (one step per weight update, not per batch)
                 self.global_step += 1
+                
+                # Explicit memory cleanup after parameter updates to reduce fluctuation
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
             
             # Update total loss (unscaled for proper averaging)
             total_loss += batch_loss.item() * self.gradient_accumulation_steps
+            
+            # Clear intermediate variables to free memory
+            del batch_loss, decoder_output, attention_weights
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
             
             # Log batch progress (every 100 batches only)
             if batch_idx % 100 == 0:
