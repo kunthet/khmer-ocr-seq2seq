@@ -11,11 +11,13 @@ model:
     gru_hidden_size: 256
     gru_num_layers: 2
     bidirectional: true
+    dropout: 0.3  # Add dropout for regularization
   
   # Attention Configuration
   attention:
     type: "bahdanau"
     hidden_size: 512
+    dropout: 0.2  # Add attention dropout
     
   # Decoder Configuration
   decoder:
@@ -23,34 +25,56 @@ model:
     hidden_size: 512
     vocab_size: 117
     max_length: 256
+    dropout: 0.3  # Increase decoder dropout
 
 # Training Parameters
 training:
   epochs: 150
   batch_size: 32
-  learning_rate: 1e-6
-  optimizer: "adam"
+  learning_rate: 1e-4  # Increase learning rate significantly
+  lr_scheduler:
+    type: "cosine_annealing"
+    T_max: 50
+    eta_min: 1e-6
+  optimizer: "adamw"  # Switch to AdamW for better regularization
+  weight_decay: 1e-4  # Add weight decay
   loss_function: "cross_entropy"
-  teacher_forcing_ratio: 1.0
-  gradient_clip: 5.0
-  gradient_accumulation_steps: 1
+  teacher_forcing_ratio: 0.7  # Reduce teacher forcing to prevent exposure bias
+  teacher_forcing_decay: 0.95  # Gradually reduce teacher forcing
+  gradient_clip: 1.0  # Reduce gradient clipping
+  gradient_accumulation_steps: 2  # Increase effective batch size
   
+  # Early stopping
+  early_stopping:
+    patience: 10
+    min_delta: 0.001
+    monitor: "val_cer"
+  
+  # Learning rate warmup
+  warmup:
+    steps: 1000
+    initial_lr: 1e-6
+
 # Data Parameters
 data:
   image_height: 32
   vocab_size: 117
   augmentation:
-    probability: 0.5
+    probability: 0.7  # Increase augmentation
     gaussian_blur:
-      sigma_range: [0, 1.5]
+      sigma_range: [0, 2.0]  # Increase blur range
     morphological:
-      kernel_sizes: [2, 3]
-      operations: ["dilation", "erosion"]
+      kernel_sizes: [2, 3, 4]  # Add more kernel sizes
+      operations: ["dilation", "erosion", "opening", "closing"]
     noise:
-      blob_radius: [1, 3]
-      background_intensity: 0.1
+      blob_radius: [1, 4]  # Increase noise range
+      background_intensity: 0.15
     concatenation:
-      probability: 0.5
+      probability: 0.6  # Increase concatenation
+    rotation:
+      angle_range: [-2, 2]  # Add slight rotation
+    scaling:
+      scale_range: [0.9, 1.1]  # Add scaling
 
 # Paths Configuration
 paths:
@@ -63,8 +87,8 @@ paths:
 # Validation and Evaluation
 validation:
   val_split: 0.1
-  eval_frequency: 1000  # steps
-  save_frequency: 5000  # steps
+  eval_frequency: 500  # More frequent evaluation
+  save_frequency: 2500  # More frequent saving
   
 # Hardware Configuration
 hardware:

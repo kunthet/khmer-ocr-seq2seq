@@ -218,3 +218,56 @@ Fixed truncated configuration files (config.yaml, model_config.yaml, vocab_confi
 
 **History:**
 - Created — Complete configuration system verification with fixes for truncated YAML files, vocabulary validation, and batch size optimization for improved training convergence.
+
+# Training and Development Change Log
+
+## Feature: [Khmer OCR Synthetic Generator]
+**Purpose:**  
+Generates synthetic Khmer text images for training with various augmentations including morphological operations, Gaussian blur, background noise, and concatenation.
+
+**Implementation:**  
+Created KhmerOCRGenerator class in src/synthetic_data_generator/khmer_ocr_generator.py with comprehensive augmentation pipeline. Integrated with on-the-fly dataset generation for unlimited training variety.
+
+**History:**
+- Created — Initial implementation with morphological operations, Gaussian blur, noise generation, and concatenation augmentation. 
+- Updated — Added advanced background generation and improved text rendering quality.
+- Updated — Integrated with curriculum learning system for progressive difficulty.
+
+## Feature: [On-the-Fly Dataset Training System]
+**Purpose:**  
+Implements on-the-fly image generation during training to provide unlimited variety of training samples without requiring pre-generated datasets.
+
+**Implementation:**  
+Created OnTheFlyDataset class in src/data/onthefly_dataset.py that generates images in real-time during training. Supports text corpus loading, font management, and dynamic augmentation.
+
+**History:**
+- Created — Initial implementation with basic on-the-fly generation.
+- Updated — Added support for multiple training files and improved memory efficiency.
+- Updated — Integrated with advanced augmentation pipeline and curriculum learning.
+
+## Feature: [Advanced Training Performance Optimizations]
+**Purpose:**  
+Comprehensive performance improvements to address slow convergence, overfitting, and suboptimal learning rates identified in training logs showing CER plateauing at 87-89%.
+
+**Implementation:**  
+1. Updated configs/train_config.yaml with optimized hyperparameters:
+   - Increased learning rate from 1e-6 to 1e-4 (100x increase)
+   - Added cosine annealing LR scheduler with warmup
+   - Switched from Adam to AdamW optimizer with weight decay
+   - Reduced teacher forcing from 1.0 to 0.7 with decay
+   - Added dropout regularization (0.2-0.3) to all components
+   - Enhanced data augmentation with rotation and scaling
+   - Reduced gradient clipping from 5.0 to 1.0
+   - Added early stopping with patience monitoring
+
+2. Created train_advanced_performance.py implementing:
+   - Mixed precision training (AMP) for faster convergence
+   - Curriculum learning for progressive difficulty
+   - Advanced LR scheduling (OneCycle, CosineAnnealing)
+   - Dynamic teacher forcing decay
+   - Enhanced performance tracking and logging
+
+**History:**
+- Created — Analyzed training logs showing severe overfitting (train loss decreasing while val loss increasing from 3.92→4.91) and extremely slow convergence due to 1e-6 learning rate.
+- Implemented — Major configuration overhaul addressing learning rate, regularization, teacher forcing exposure bias, and augmentation improvements.
+- Added — Advanced training script with mixed precision, curriculum learning, and sophisticated scheduling for production-ready performance optimization.
