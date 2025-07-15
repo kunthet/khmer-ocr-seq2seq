@@ -94,7 +94,7 @@ class Trainer:
         # Check for Google Drive backup status
         gdrive_info = self.checkpoint_manager.get_gdrive_info()
         if gdrive_info.get("enabled"):
-            self.logger.info(f"Google Drive backup: {'✅ Ready' if gdrive_info.get('gdrive_accessible') else '❌ Not accessible'}")
+            self.logger.info(f"Google Drive backup: {'[READY]' if gdrive_info.get('gdrive_accessible') else '[NOT ACCESSIBLE]'}")
             if gdrive_info.get('gdrive_accessible'):
                 self.logger.info(f"Google Drive dir: {gdrive_info.get('gdrive_dir')}")
                 # Try to sync from Google Drive if no local checkpoints
@@ -103,7 +103,7 @@ class Trainer:
                     if synced:
                         self.logger.info("Synced checkpoints from Google Drive")
         else:
-            self.logger.info("Google Drive backup: ❌ Disabled")
+            self.logger.info("Google Drive backup: [DISABLED]")
     
     def _initialize_optimizer(self) -> optim.Optimizer:
         """Initialize Adam optimizer with PRD specifications."""

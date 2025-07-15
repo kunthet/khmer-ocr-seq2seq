@@ -6,6 +6,8 @@ corpus/
 validation_fixed/
 models/checkpoints/
 
+*.KT-DKT.*
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
