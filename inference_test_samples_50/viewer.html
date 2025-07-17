@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training Samples Viewer with Inference</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .sample { border: 1px solid #ccc; margin: 10px 0; padding: 10px; }
+        .sample img { max-width: 100%; border: 1px solid #ddd; }
+        .text { font-family: 'Khmer OS', Arial, sans-serif; font-size: 18px; margin: 5px 0; }
+        .ground-truth { background-color: #e8f5e8; padding: 5px; border-radius: 3px; }
+        .prediction { background-color: #f0f8ff; padding: 5px; border-radius: 3px; margin-top: 5px; }
+        .correct { border-left: 4px solid #4CAF50; }
+        .incorrect { border-left: 4px solid #f44336; }
+        .info { font-size: 12px; color: #666; }
+        .header { background: #f0f0f0; padding: 10px; margin-bottom: 20px; }
+        .accuracy { background: #fff3cd; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .metrics { display: flex; gap: 20px; }
+        .metric { text-align: center; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #2196F3; }
+        .metric-label { font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Khmer OCR Training Samples with Inference Results</h1>
+        <p>Generated samples from the training pipeline with model predictions</p>
+        <p><strong>Total samples:</strong> 50</p>
+        <p><strong>Model:</strong> models/checkpoints/full/best_model.pth</p>
+    </div>
+
+    <div class="accuracy">
+        <h2>🎯 Accuracy Results</h2>
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">6.0%</div>
+                <div class="metric-label">Exact Match<br>(3/50)</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">28.5%</div>
+                <div class="metric-label">Character-level<br>Accuracy</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0000</h3>
+        <img src="images/sample_0000.png" alt="sample_0000">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> មានខសង្កេតថា ដូច ដែលបានឃើញភស្តុតាង ការគោរពព្រះពុទ្ធសាសនាក្នុងសម័យអយុធ្យា មិនសូវជាប្រកាន់ខ្ជាប់នូវគោលធម៌ជាន់ខ្ពស់ប៉ុន្មានទេ</div>
+        <div class="text prediction"><strong>Prediction:</strong> មានខសសង្កេតថា ដូច ដែលបានឃើញកស្តុតាង ការគោរពព្រះពុទ្ធសាសនាក្ខុ</div>
+        <div class="info">
+            Length: 122 chars, 124 tokens | 
+            Size: 973x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0001</h3>
+        <img src="images/sample_0001.png" alt="sample_0001">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> វីឌីអូកមឺរ៉ា មានលក្ខណៈទំនើប មានការរចនា និងប្រើប្រាស់ជាច្រើនអ្វីទាំងអស់មិនដូចវីឌីអូកាមឺរ៉ា ឡើយ។ ពិសេសកាមឺរ៉ា ទាំងនេះប្រើប្រាស់ក្នុង ផលិតកម្មទូរទស្សន៍</div>
+        <div class="text prediction"><strong>Prediction:</strong> វើឱីអូកមីរ៉ា មានលក្ខណៈទំនើប មានការរចនា និងប្រើប្រាស់ជា</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 1314x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0002</h3>
+        <img src="images/sample_0002.png" alt="sample_0002">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> មរយៈលំហូរព័ត៌មាននិងផលិតផលប្រព័ន្ធផ្សព្វផ្សាយអន្តរជាតិបាននិងកំពុងជះឥទ្ធិពលយ៉ាងជ្រាលជ្រៅលើបទដ្ឋានសង្គមនិងការយល់ឃើញរបស់យុវជនកម្ពុជា។ ភាពយន្តបទចម្រៀងនិង</div>
+        <div class="text prediction"><strong>Prediction:</strong> មយយលំហូរពីមិនាននិងផលិតផលព្រព័ន្ធផ្សាវផ្សាយអន្តរជាតិបាននិងកំពុងជះឥទ្ធិពលយ៉ាងជ្រាលជ្រៅលើបតដ្ឋានសង្គនិងការយល់លើញរបស់យុវជនកម្ពជា។ គាតបន្តរបចម្រ</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 549x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0003</h3>
+        <img src="images/sample_0003.png" alt="sample_0003">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ត្តជាបន្តបន្ទាប់រាប់សតវត្សរ៍មកហើយ។ អក្សរខ្មែរដែលយើងប្រើប្រាស់សព្វថ្ងៃនេះមានដើមកំណើតចេញពីអក្សរព្រាហ្មណ៍នៃប្រទេសឥណ្ឌាខាងត្បូងហើយបានផ្លាស់ប្តូររូបរាងជា</div>
+        <div class="text prediction"><strong>Prediction:</strong> ត្តត្តជាបន្តបន្ទាប់រាប់សតវត្សរ៍មកហើយ។ អក្សរខ្មែរដែលយើងប្រើប្រាស់សព្វថ្ងៃ</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 1134x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0004</h3>
+        <img src="images/sample_0004.png" alt="sample_0004">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> បែននិងការធ្វើការងារជាដំណាក់កាលខ្លីៗហៅថា។ វិធីសាស្ត្រនេះអនុញ្ញាតឱ្យក្រុមការងារអាចទទួលបានមតិកែលម្អពីអតិថិជនបានលឿននិងកែតម្រូវផលិតផលរបស់ខ្លួនជាបន្តបន្ទា</div>
+        <div class="text prediction"><strong>Prediction:</strong> បែបននិងការធ្វើការងារជាដំណាក់កាលខ្លីៗហៅថា។ វិធីសាស្ត្រនេះអ</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 1320x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0005</h3>
+        <img src="images/sample_0005.png" alt="sample_0005">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ម្នាលភិក្ខុទាំងឡាយ បុគ្គលជាសម្មាសមាធិ ឈ្មោះថា បានកំចាត់បង់មិច្ឆាសមាធិចេញហើយ ម្នាលភិក្ខុទាំងឡាយ បុគ្គលជាសម្មាញាណៈ ឈ្មោះថា</div>
+        <div class="text prediction"><strong>Prediction:</strong> ម្នាលភិក្ខុទាំងឡាយ បុគ្គលជាសម្មាសមាធិ ឈ្មោះថា បានកំចា</div>
+        <div class="info">
+            Length: 120 chars, 122 tokens | 
+            Size: 1167x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0006</h3>
+        <img src="images/sample_0006.png" alt="sample_0006">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> រមែងមិនស្តាប់ មិនផ្អៀងត្រចៀកស្តាប់ មិនតាំងចិត្តប្រុងស្តាប់ ដើម្បីឲ្យដឹងច្បាស់ មានតែនាំគ្នាប្រព្រឹត្តគេចចេញ ចាកពាក្យប្រដៅរបស់គ្រូ បុរសចូលទៅរកស្ត្រី</div>
+        <div class="text prediction"><strong>Prediction:</strong> រមែងមិនស្តាប់ មិនផ្អៀងត្រចៀកស្តាប់ មិនតាំងចិត្តប្រុងស្តាប់ ដើម្បីឲ្យដឹងច្បាស មានតែនាំគ្នាប្រព្រឹត្តគេចចេញ ចាកពា</div>
+        <div class="info">
+            Length: 146 chars, 148 tokens | 
+            Size: 698x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0007</h3>
+        <img src="images/sample_0007.png" alt="sample_0007">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ដឹងថាអ្នកណាជាអ្នកប្រព្រឹត្ត ហើយមិនបានចាត់វិធានការដើម្បីពិន័យឧក្រិដ្ឋជន ឬមួយក៏ដើម្បីរកយុត្តិធម៌ជូនគ្រួសារជនរងគ្រោះអី។</div>
+        <div class="text prediction"><strong>Prediction:</strong> ដឹងថាអ្នកណាជាអ្នកប្រព្រឹត្ត ហើយមិនបានចាត់វិធានការដើម្បីពិន័យឧក្រិដ្ឋជន ឬមួយក៏ដើម្បីរកយុត្តិធម៌ជូនគ្រុ</div>
+        <div class="info">
+            Length: 116 chars, 118 tokens | 
+            Size: 622x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0008</h3>
+        <img src="images/sample_0008.png" alt="sample_0008">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ដូច្នេះនេះ យើងបានពោលហើយ ពាក្យនុ៎ះ ដែលយើងពោលហើយ ព្រោះអាស្រ័យហេតុអ្វី។ ម្នាលនាង ភិក្ខុក្នុងសាសនានេះ បានឮដំណឹងថា ភិក្ខុឈ្មោះនេះ បានធ្វើឲ្យជាក់ច្បាស់</div>
+        <div class="text prediction"><strong>Prediction:</strong> ដូច្ចេច្នេះនេះ យើងបានពោលហើយ ពាក្យនុ៎ះ ដែលយើងពោលហើយ ព្រោះអា</div>
+        <div class="info">
+            Length: 145 chars, 147 tokens | 
+            Size: 1175x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0009</h3>
+        <img src="images/sample_0009.png" alt="sample_0009">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ក្នុងយុគសម័យឌីជីថលការផ្សាយពាណិជ្ជកម្មនិងយុទ្ធសាស្ត្រទីផ្សារបានឆ្លងកាត់បរិវត្តកម្មយ៉ាងជ្រាលជ្រៅដែលតម្រូវឱ្យសហគ្រាសនានាក្នុងព្រះរាជាណាចក្រកម្ពុជាត្រូវ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ក្នុងយុគសម័យឌីជីថលការផ្សាយពាណិឫ្កកម្មនិងយុទ្ធសាស្ត្រទីផ្សារបានឆ្លងកាតបរិវត្តកម្មយា</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 914x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0010</h3>
+        <img src="images/sample_0010.png" alt="sample_0010">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ចិត្តគេត្រូវធ្វើឲ្យមានអារម្មណ៍ខ្ពស់ឯកយ៉ាងនេះ ចិត្តគេត្រូវតាំងឲ្យនឹងធឹង យ៉ាងនេះ ឯភិក្ខុនោះ លុះសម័យខាងក្រោយមក រមែងបាននូវអធិប្បញ្ញាធម្មវិបស្សនាផង</div>
+        <div class="text prediction"><strong>Prediction:</strong> ចិចិត្តគេត្រូវធ្វើឲ្យមានអារម្មណ៍ខ្ពស់ឯកយ៉ាងនេះ ចិត្តគេត្រូវ</div>
+        <div class="info">
+            Length: 142 chars, 144 tokens | 
+            Size: 1356x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0011</h3>
+        <img src="images/sample_0011.png" alt="sample_0011">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> អាស្រ័យនៅនឹងសេនាសនៈដ៏ស្ងាត់ គឺព្រៃ ម្លប់ឈើ ភ្នំ ញកភ្នំ គុហាក្នុងភ្នំ ព្រៃស្មសាន ដងព្រៃ ទីវាល គំនរចំបើង។ ពួកព្រាហ្មណ៍ និងគហបតីក្តី អ្នកនិគមក្តី</div>
+        <div class="text prediction"><strong>Prediction:</strong> អាស្រ័យនៅនឹងសេនាសនៈដ៏ស្ងាត់ គឺព្រៃ ម្លប់ឈើ ខ្នំ ញកភ្នំ គុហាក្នុងក្នំ ព្រៃស្មុសាន ដងព្រៃ ទីរាល គំនរចំបើង។ ពួកព្រាហ្មណ៍ និងគហ</div>
+        <div class="info">
+            Length: 142 chars, 144 tokens | 
+            Size: 594x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0012</h3>
+        <img src="images/sample_0012.png" alt="sample_0012">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> កសិកម្មធម្មជាតិនិងគ្មានសារធាតុគីមីកំពុងក្លាយជាវិស័យដ៏មានសក្តានុពលមួយនៅក្នុងសេដ្ឋកិច្ចកម្ពុជា។ការយល់ដឹងរបស់ប្រជាពលរដ្ឋអំពីផលប៉ះពាល់នៃសារធាតុគីមីកសិក</div>
+        <div class="text prediction"><strong>Prediction:</strong> កសសិកម្មធម្មជាតិនិងគ្មានសារធាតុគឺមីកំពុងក្លាយជាវិស័យដ៏មានសក្តានុពលមួយនៅក្នុ</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 1025x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0013</h3>
+        <img src="images/sample_0013.png" alt="sample_0013">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> [១៩៩] ពាក្យថា ដោយធម៌ណា គឺដោយវត្ថុដែលពិតប្រាកដ។ ពាក្យថា ដោយវិន័យណា គឺដាស់តឿនក្រើនរំលឹក។ ពាក្យថា ដោយពាក្យប្រៀនប្រដៅរបស់ព្រះសាស្តាណា គឺដោយញត្តិសម្បទាន</div>
+        <div class="text prediction"><strong>Prediction:</strong> [១១៩៩] ពាក្យថា ដោយធម៌ណា គឺដោយវត្ថុដែលពិតប្រាកដ។ ពាក្យថា ដោ</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 1247x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0014</h3>
+        <img src="images/sample_0014.png" alt="sample_0014">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ចប់ តចសារជាតក ទី៨។</div>
+        <div class="text prediction"><strong>Prediction:</strong> ចប់ តចសារជាតក ទីផ។</div>
+        <div class="info">
+            Length: 18 chars, 20 tokens | 
+            Size: 186x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0015</h3>
+        <img src="images/sample_0015.png" alt="sample_0015">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ត្រូវបានបញ្ជូនទៅមន្ទីរពេទ្យបង្អែក។ មន្ទីរពេទ្យបង្អែកនៅតាមខេត្តមានសមត្ថភាពខ្ពស់ជាងមណ្ឌលសុខភាព។ មន្ទីរពេទ្យទាំងនេះមានគ្រូពេទ្យឯកទេសនិងឧបករណ៍ទំនើបជាងមុ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ត្រូវូវបានបញ្ជូនទៅមន្ទីរពេទ្យបង្អែក។ មន្ទីរពេទ្យបង្អែកនៅ</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 1474x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0016</h3>
+        <img src="images/sample_0016.png" alt="sample_0016">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ពួកយួនខាងត្បូង ខាងជើង និងរ.រ.ជ.បានប្រកាសបរិហារយ៉ាងខ្លាំងក្លានូវសកម្មភាពដ៏អាក្រក់ក្រៃលែងទាំងនេះ។ ជាការសំខាន់ មិនមានពួកខ្មែរ មិនថាតែសហគមន៍ពុទ្ធសាសនាឡើ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ពួកយួនខាងត្បូង ខាងជើង និងរ ជេ បានប្រកាសបរិហារយ៉ាងខ្លាំងក្លានូវសកម្មភាពដ៏អាក្រក់ក្រៃលែងទាំងនេះ។</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 818x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample correct">
+        <h3>sample_0017</h3>
+        <img src="images/sample_0017.png" alt="sample_0017">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> បច្ចេកវិទ្យាអសនីចុម្ពិតសំរាប់សំគាល់ការងាររបស់</div>
+        <div class="text prediction"><strong>Prediction:</strong> បច្ចេកវិទ្យាអសនីចុម្ពិតសំរាប់សំគាល់ការងាររបស់</div>
+        <div class="info">
+            Length: 45 chars, 47 tokens | 
+            Size: 253x32 px |
+            Match: ✅ Correct
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0018</h3>
+        <img src="images/sample_0018.png" alt="sample_0018">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> បពិត្រព្រះមានព្រះភាគ ខ្ញុំព្រះអង្គសូមសំដែងធម៌ បពិត្រព្រះសុគត ខ្ញុំព្រះអង្គសូមសំដែងធម៌។ ព្រះមានព្រះភាគ ទ្រង់ត្រាស់ថា ម្នាលវង្គីសៈ អ្នកចូរសំដែងធម៌ចុះ។</div>
+        <div class="text prediction"><strong>Prediction:</strong> បពិត្រព្រះមានព្រះភាគ ខ្ញុំព្រះអង្គសូរសំដែងធម៌ មពិត្រព្រះសុគត ខ្ញុំព្រះអង្គសូបសំដែងធម៌។ ព្រះមានព្រះភាគ ទ្រង់</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 713x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample correct">
+        <h3>sample_0019</h3>
+        <img src="images/sample_0019.png" alt="sample_0019">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ដោយមានអតីតព្រះមហាក្ស័ត្របាវដាយជាប្រមុខ។</div>
+        <div class="text prediction"><strong>Prediction:</strong> ដោយមានអតីតព្រះមហាក្ស័ត្របាវដាយជាប្រមុខ។</div>
+        <div class="info">
+            Length: 39 chars, 41 tokens | 
+            Size: 383x32 px |
+            Match: ✅ Correct
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0020</h3>
+        <img src="images/sample_0020.png" alt="sample_0020">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> អង្គអគ្គសេនាមាត្យ ក៏យល់ព្រមតាមព្រះរាជតំរិះ។ ព្រះបាទបរមនាថ បរមបពិត្រកាលបើទ្រង់យល់ថា : អង្គអគ្គសេវកាមាត្យ ព្រមព្រៀងដូច្នេះហើយ</div>
+        <div class="text prediction"><strong>Prediction:</strong> អង្គអគ្គសេនាមាត្យ ក៏យល់ព្រមតាមព្រះរាជតំរិះ។ ព្រះបាទបរមនាថ</div>
+        <div class="info">
+            Length: 123 chars, 125 tokens | 
+            Size: 1070x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0021</h3>
+        <img src="images/sample_0021.png" alt="sample_0021">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ធ្វើឲ្យសាសនាហិណ្ឌូកម្រើកខ្លួនឡើងវិញបាននៅពេលខាងក្រោយ។</div>
+        <div class="text prediction"><strong>Prediction:</strong> ធ្វើឲ្យសាសនាហិណ្ឌកម្រើកខ្លួនឡើងវិញបាននៅពេលខាងក្រោយ។</div>
+        <div class="info">
+            Length: 52 chars, 54 tokens | 
+            Size: 498x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0022</h3>
+        <img src="images/sample_0022.png" alt="sample_0022">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ជាច្រើនបានហៅថា វីហ្គាស បួកនិងឌីវីឌី ដែលអាចរកបាន នៅពេលដែល ម៉ាក 7.បាន</div>
+        <div class="text prediction"><strong>Prediction:</strong> ក៏ចុច្រេត ១-- ហើយ ព្រោស្ត ( ក្រុង ឯងជា ( គេណាតិត្តា (ជា (- ការចាលការពេញ () (-</div>
+        <div class="info">
+            Length: 67 chars, 69 tokens | 
+            Size: 498x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0023</h3>
+        <img src="images/sample_0023.png" alt="sample_0023">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ជាសិទ្ធិសេដ្ឋកិច្ចសង្គមកិច្ចនិងវប្បធម៌។ មាត្រា៣១នៃរដ្ឋធម្មនុញ្ញបានបញ្ញត្តិយ៉ាងច្បាស់ថាព្រះរាជាណាចក្រកម្ពុជាទទួលស្គាល់និងគោរពសិទ្ធិមនុស្សដូចមានចែង</div>
+        <div class="text prediction"><strong>Prediction:</strong> ជាសិទ្ធិសេដ្ឋកិច្ចសង្គមកិច្ចនិងឲ្យធម៌។ ពាត្រាពានៃរដ្ឋធម្មនុញ្ញបានបញ្ញត្តីយ៉ាងគ្នាល់ជាព្រះរាជាណាចត្រកម្មជាទទួលស្តាល់និងគោរពស់ទ្ធិចនុស្សដូចមានផែង</div>
+        <div class="info">
+            Length: 145 chars, 147 tokens | 
+            Size: 488x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0024</h3>
+        <img src="images/sample_0024.png" alt="sample_0024">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> លោក ជុំ មួង, លោកគ្រូអាចារ្យ ហែម ចៀវ។</div>
+        <div class="text prediction"><strong>Prediction:</strong> លោក ជុំ មួង, លោកគ្រួអាចារ្យ ហែម ចៀវ។</div>
+        <div class="info">
+            Length: 36 chars, 38 tokens | 
+            Size: 220x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0025</h3>
+        <img src="images/sample_0025.png" alt="sample_0025">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ជ្រាវត្រូវកំណត់បញ្ហាឱ្យបានជាក់លាក់ដើម្បីអាចរៀបចំដំណើរការស្វែងរកចម្លើយប្រកបដោយប្រព័ន្ធ។ ជំហានដំបូងនេះមានសារៈសំខាន់ណាស់ព្រោះវាជាមូលដ្ឋានគ្រឹះសម្រាប់ដំ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ជ្រាវត្រូវកំណត់បញ្ហាឱ្យបានជាក់លាក់ដើម្បីអាចរៀបចំដំណើរការស្វែងរក</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 1174x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0026</h3>
+        <img src="images/sample_0026.png" alt="sample_0026">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> និងព្រះអាទិត្យទាំងពីរនោះតែងកំចាត់បង់នូវងងឹត ត្រាច់ទៅក្នុងអាកាស ភ្លឺក្នុងអាកាស រុងរឿងសព្វទិសទ្រព្យណាដែលមានក្នុងចន្លោះនុ៎ះ គឺកែវមុក្តា កែវមណី</div>
+        <div class="text prediction"><strong>Prediction:</strong> និងព្រះអាទិត្យទាំងពីរនោះតែងកំចាត់បង់នូវងងឹត ត្រាច់ទេ</div>
+        <div class="info">
+            Length: 139 chars, 141 tokens | 
+            Size: 1316x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0027</h3>
+        <img src="images/sample_0027.png" alt="sample_0027">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> នេះនឹងទុកកិត្តិយសឱ្យហៅថា ចៅពញា ដូចពញាអរជូននេះឱ្យគង់យសជាស្តេចតទៅទៀតមិនបានឡើយព្រោះវាកំរើកចិត្តណាស់។ ទើបទ្រង់ត្រាស់បង្គាប់តែងព្រះរាជបញ្ជាជាថ្មីថា :</div>
+        <div class="text prediction"><strong>Prediction:</strong> នេះនឹងទុកកិត្តិយសឱ្យហៅថា ចៅពញា ដូចពញាអរជូននេះេេ</div>
+        <div class="info">
+            Length: 144 chars, 146 tokens | 
+            Size: 1485x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0028</h3>
+        <img src="images/sample_0028.png" alt="sample_0028">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ជាអ្នកមិនមានសេចក្តីបៀតបៀន មានសញ្ញាមិនប្រកបដោយសេចក្តីបៀតបៀន។ បពិត្រព្រះអង្គដ៏ចម្រើន កាលបើបុគ្គលសេព នូវការបានចំពោះសញ្ញា មានសភាពយ៉ាងនេះ ពួកអកុសលធម៌</div>
+        <div class="text prediction"><strong>Prediction:</strong> ជាអារម្នកបាននាងនាមការីចំបៀតហៀន មានសាញានន្យការជាបារសេចជីចៀតហ៊ីន។ ការ</div>
+        <div class="info">
+            Length: 144 chars, 146 tokens | 
+            Size: 1116x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0029</h3>
+        <img src="images/sample_0029.png" alt="sample_0029">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> បសគ្គភូមិសាស្ត្រតាមរយៈការសាងសង់គម្រោងហេដ្ឋារចនាសម្ព័ន្ធខ្នាតមហិមាដែលគួរឱ្យស្ញប់ស្ញែង។ឧទាហរណ៍ជាក់ស្តែងរួមមានផ្លូវរូងក្រោមភ្នំដ៏វែងអន្លាយដែលកាត់ទម្លុះ</div>
+        <div class="text prediction"><strong>Prediction:</strong> បស់គគ្គភូមិសាស្ត្រតាមរយៈការសាងសង់គម្រោងហេដ្ឋារចនាសម្ព័ន្ធ</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 1277x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0030</h3>
+        <img src="images/sample_0030.png" alt="sample_0030">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ខ្ញុំកណាថ្វាយគារវកិច្ច លូនចូលទៅចាប់ពាល់ព្រះវរកាយរហូតដល់ព្រះអង្គចេញពីសមាធិ បើកព្រះនេត្រឡើង ខ្ញុំកណាបានក្រាបទូលឲ្យព្រះអង្គជ្រាបថា</div>
+        <div class="text prediction"><strong>Prediction:</strong> ខ្នុំកណាថ្វាយតារវកិច្ច លួនចូលទៅចាប់ពាល់ព្រះរកាយរហូតដល់ព្រះអង្គចេញពីសមាធិ បើកព្រះនេត្រឡើង ខ្ញុំកណាបានក្រា</div>
+        <div class="info">
+            Length: 127 chars, 129 tokens | 
+            Size: 632x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0031</h3>
+        <img src="images/sample_0031.png" alt="sample_0031">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> និយាយនឹងនាងធនញ្ជានីព្រាហ្មណី យ៉ាងនេះថា មេចង្រៃនេះ ធ្លាប់តែឯចឹងៗ ហ៊ានពោលសរសើរសមណៈត្រងោល ក្នុងទីផ្តេសផ្តាស នែមេចង្រៃ អញនឹងលើកនូវវាទៈ [អញនឹងលើកនូវវាទៈ</div>
+        <div class="text prediction"><strong>Prediction:</strong> នាំងនិយាយនិងនាង់ទេញពួរមិព្រាហ្មណ៍ យ៉ាងនេះហា មេចារដែងនេះ រួល</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 1414x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0032</h3>
+        <img src="images/sample_0032.png" alt="sample_0032">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ភ្លើងគឺលោភៈ តណ្ហានិងឧបាទាន ឲ្យអស់តែប៉ុណ្ណោះ មិនមានចិត្តប្រាថ្នា អ្វីអំពីទាននោះឡើយ គឺមានចិត្តត្រេកអរ ចំពោះតែត្រង់បាន ធ្វើទាននេះ១ ត្រេកអរចំពោះ បុគ្គល</div>
+        <div class="text prediction"><strong>Prediction:</strong> ភ្លភ្លើងគឺលោភៈ ភណ្ហានិងឧបាទាន ឲ្យអស់តែប៉ុណ្ណោះ មិនមា</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 1375x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0033</h3>
+        <img src="images/sample_0033.png" alt="sample_0033">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ឌីជីថលដែលប្រែប្រួលឥតឈប់ឈរ។ការធ្វើអន្តរកម្មភ្លាមៗនិងការផ្សព្វផ្សាយព័ត៌មានក្នុងកម្រិតសកលបានក្លាយជាបទដ្ឋានថ្មីដែលជះឥទ្ធិពលយ៉ាងជ្រាលជ្រៅដល់វកម្មនយោបាយនិ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ឌីជីថលដែលប្រែប្រួលឥតឈប់ឈរ។ការធ្វើអន្តរកម្មភ្លាម</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 1510x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0034</h3>
+        <img src="images/sample_0034.png" alt="sample_0034">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> វិជ្ជានេះមានតំលៃសំខាន់ក្រោយពីមានគ្រោះមហន្តរាយ ឧទាហរណ៍ដូចជាការបាក់ស្ពាន ក្នុងការវិភាគរកមូលហេតុដែលបណ្តាលឱយមាន។</div>
+        <div class="text prediction"><strong>Prediction:</strong> ប្រការបានប្រាប់ប្រាប់ប្រាប់ប្រាប់ប្រាប់ ប្រាប់ ប្រាប់ ប្រាប់ ប្រាប់ ប្រាប់ ប្រាប់ និង មានប្រាប់ និង មានប្រាប់ និង មានចំពីរប្រាប់ មាន</div>
+        <div class="info">
+            Length: 108 chars, 110 tokens | 
+            Size: 1021x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0035</h3>
+        <img src="images/sample_0035.png" alt="sample_0035">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ធ្វើល្អបានល្អ,ធ្វើអាក្រក់បានអាក្រក់។ ការរក្សាសីលប្រាំជាគោលការណ៍មូលដ្ឋានក្នុងការរស់នៅឲ្យមានសេចក្តីសុខ។ ព្រះធម៌របស់ព្រះសម្មាសម្ពុទ្ធអប់រំមនុស្សឲ្យចេះ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ធ្វើល្យបានល្អធ្វើអាក្រក់បានអាក្រក់។ ការរក្សាសីលប្រាំជាគោលការណ៍មូលដ្ឋានក្នុងការរស់នៅឲ្យមានសេចក្តីសុខ។ ព្រះធម៌របស់ព្រះស</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 635x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0036</h3>
+        <img src="images/sample_0036.png" alt="sample_0036">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> វិធីបង្កក់ឆ្មប ក្នុងកិច្ចសម្រាលកូន (ចុះផ្សាយក្នុងកម្ពុជសុរិយា)</div>
+        <div class="text prediction"><strong>Prediction:</strong> វិធីបង្កក់ច្មប ក្នុងកិច្ចសម្រាលកូន (ចុះផ្សាយក្នុងកម្ពុជសុរិយា)</div>
+        <div class="info">
+            Length: 62 chars, 64 tokens | 
+            Size: 325x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0037</h3>
+        <img src="images/sample_0037.png" alt="sample_0037">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ដែរ។ គុណសម្បត្តិចម្បងរបស់ពួកលោកគឺសេចក្តីក្លាហានការហ៊ានលះបង់ប្រយោជន៍ផ្ទាល់ខ្លួននិងការមានទស្សនវិស័យវែងឆ្ងាយសម្រាប់អនាគតនៃប្រជាជាតិ។ រឿងរ៉ាវរបស់មហាបុរស</div>
+        <div class="text prediction"><strong>Prediction:</strong> ដែរ។ គុណសម្បត្រិចម្បងរបស់ពួកលោកគឺសេចក្តីក្លាហានការហ៊ានលះបង់ប្របេ</div>
+        <div class="info">
+            Length: 148 chars, 150 tokens | 
+            Size: 1223x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0038</h3>
+        <img src="images/sample_0038.png" alt="sample_0038">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ចំណែកព្រះសរីរធាតុរបស់ព្រះមានព្រះភាគ មិនមានទេ ព្រះសរីរធាតុទាំងឡាយ របស់ព្រះមានព្រះភាគ យើងចែកគ្នាអស់ហើយ ចូរអ្នកទាំងឡាយ នាំយកព្រះអង្គារ (ធ្យូង) អំពីក</div>
+        <div class="text prediction"><strong>Prediction:</strong> ចំំណែកព្រះសរីរធាតុរបស់ព្រះមានព្រះភាគ មិនមានទេ ព្រះសរីរធាតុទាំងឡាយ</div>
+        <div class="info">
+            Length: 145 chars, 147 tokens | 
+            Size: 1087x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0039</h3>
+        <img src="images/sample_0039.png" alt="sample_0039">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> [អាចារ្យខ្លះថា ព្រះអង្គមានព្រះនេត្រល្អ។ អដ្ឋកថា។] ព្រះមានព្រះភាគ មានសម្បុរដូចជាមាស មានព្រះទាឋា សសុទ្ធ មានព្យាយាម ព្រោះថាមហាបុរិសលក្ខណៈទាំងអស់នោះ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ប្រាការ្យៈ ថា ព្រះអយបានព្រះនេត្រឈ។ អាតជា។] ព្រះមានព្រះភាគ មានសម្បុរដូចជាមាត មានព្រះទាថា តសុម មាន</div>
+        <div class="info">
+            Length: 144 chars, 146 tokens | 
+            Size: 739x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample correct">
+        <h3>sample_0040</h3>
+        <img src="images/sample_0040.png" alt="sample_0040">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ហៅថាកំណើតមិនទាន់ពេញរូប។</div>
+        <div class="text prediction"><strong>Prediction:</strong> ហៅថាកំណើតមិនទាន់ពេញរូប។</div>
+        <div class="info">
+            Length: 23 chars, 25 tokens | 
+            Size: 224x32 px |
+            Match: ✅ Correct
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0041</h3>
+        <img src="images/sample_0041.png" alt="sample_0041">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> គឺលើកលែងតែមានសម័យ។ ភិក្ខុនីមិនអាចទៅទទួលឱវាទឬទៅនៅរួមសង្ឃកម្មបាន ហៅថាមានជម្ងឺ។</div>
+        <div class="text prediction"><strong>Prediction:</strong> គឺលើកលែងតែមានសម័យ។ ភិក្ខុនីមិនអាចទៅទទួលឱវាទឬទៅនៅរួមសង្ឃកម្មបាន ហៅថាម</div>
+        <div class="info">
+            Length: 76 chars, 78 tokens | 
+            Size: 573x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0042</h3>
+        <img src="images/sample_0042.png" alt="sample_0042">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ភាគច្រើនរបស់ប្រទេសដែលរួមចំណែកយ៉ាងធំធេងដល់ការធ្វើពាណិជ្ជកម្មជាមួយដៃគូអន្តរជាតិ។ក្រៅពីនេះនៅមានកំពង់ផែផ្សេងៗទៀតក្នុងខេត្តកោះកុងនិងកំពតដែលបម្រើឱ្យចរាចរ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ភាគច្រើនរបស់ប្រទេសដែលរួមចំណែកយ៉ាងធំផេងដល់ការធ្វើពាណិជ្ជកម្មជាមួយដៃគូអន្តរជាតិ។ក្រៅពីនេះនៅមានកំពង់ដែផ្សេងៗទៀកក្នុងខេត្តកោ</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 641x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0043</h3>
+        <img src="images/sample_0043.png" alt="sample_0043">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> អដ្ឋិធាតុរបស់ព្រះអង្គ ព្រះបាទបក្សីចាំក្រុងជាកូនបានយកទៅតម្កល់ទុកគោរពបូជានៅក្នុង ប្រាសាទលលៃ។</div>
+        <div class="text prediction"><strong>Prediction:</strong> អដ្ឋិធាតុរបស់ព្រះអង្គ ព្រះបាទបក្សីចាំក្រុងជាកូនបានយកទៅតម្កល់ទុ</div>
+        <div class="info">
+            Length: 90 chars, 92 tokens | 
+            Size: 804x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0044</h3>
+        <img src="images/sample_0044.png" alt="sample_0044">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ស្រែកហ៊ោរកញ្ជ្រៀវយ៉ាងសប្បាយ។ បរិយាកាសពិតជាអ៊ូអរនិងរំភើបខ្លាំងណាស់។ នៅពេលមើលបាល់ទាត់យើងចូលចិត្តញ៉ាំអាហារសម្រន់ជាច្រើនមុខ។ មានដូចជាសាច់មាន់បំពងប្រហិត</div>
+        <div class="text prediction"><strong>Prediction:</strong> ស្រែែហហ៊ារកញ្ជ្រ៉ៃវយ៉ាងសប្បាយ។ បរិយាកាសពិតជាអ៊ីអរនិងរំភើ</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 1374x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0045</h3>
+        <img src="images/sample_0045.png" alt="sample_0045">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> បញ្ញាជាគ្រឿងញ៉ាំងកេរ្តិ៍ឈ្មោះ និងលាភសក្ការៈឲ្យចម្រើន នរជនប្រកបដោយបញ្ញា ក្នុងលោកនេះ សូម្បីទុក្ខ (កើតឡើង) ក៏រមែងបានសុខទាំងឡាយវិញ។ មួយទៀត បុគ្គលណាមួយ</div>
+        <div class="text prediction"><strong>Prediction:</strong> បញ្ញញ្ជាជាគ្រឿងញ៉ាំងកេរ្តីឈ្មោះ និងលាកសក្ខារៈឲ្យធម្រើន ៣រេនប្រ</div>
+        <div class="info">
+            Length: 146 chars, 148 tokens | 
+            Size: 1316x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0046</h3>
+        <img src="images/sample_0046.png" alt="sample_0046">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ប្រើបច្ចេកវិទ្យាទំនើបដើម្បីរក្សាទុកចំណេះដឹងទាំងនេះ។ យើងអាចថតរូបឬថតវីដេអូអំពីរបៀបធ្វើនិងរបៀបប្រើឧបករណ៍ទាំងនោះ។ បន្ទាប់មកយើងអាចបង្ហោះវានៅលើអ៊ីនធឺណិតឬ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ប្រើបច្ចេកវិទ្យាទំនើបដើម្បីរក្សាទុកចំណេះដឹងទាំងនេះ។ យើងអាចថតរូបឬចតីរេះអូអំពីរបៀបធ្វើនិងរបៀបប្រើនបករណ៍ទាំងនោះ។ បន្ទា</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 682x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0047</h3>
+        <img src="images/sample_0047.png" alt="sample_0047">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ស៊ីជម្រៅអំពីជីវិតការងារនិងក្តីស្រមៃត្រូវបានចែករំលែកគ្នាបង្កើតបានជាអនុស្សាវរីយ៍ដ៏មានន័យ។ក្រៅពីសកម្មភាពកីឡាទំនើបក្នុងទីក្រុងនិន្នាការនៃការកម្សាន្តបែប</div>
+        <div class="text prediction"><strong>Prediction:</strong> ស៊ីជម្រៅអំពីជីវតការងារនិងក្តីស្រមៃត្រូវបានចែករំលែកគ្នាបង្កើតបានជាអនុស្សាចរីយ៍ដ៏មានន័យ។ក្រៅពីស</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 790x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0048</h3>
+        <img src="images/sample_0048.png" alt="sample_0048">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> នៅទ្វីបអាមេរិក និងតំបន់ខ្លះ នៅអាស៊ី (ហ្វីលីពីន) និង អាហ្វ្រិក ដូច្នេះ ភាសារបស់អាណាចក្រនេះ បានជាភាសាអេស្ប៉ាញ។ នៅពេល អាណានិកគមរបស់ អាណាចក្រអេស្ប៉ាញ</div>
+        <div class="text prediction"><strong>Prediction:</strong> នៅនៅទ្វីបអាមេរិក និងតំបន់ខ្លះ នៅអាស៊ី (ហ្វីលីពីន) និង អា</div>
+        <div class="info">
+            Length: 145 chars, 147 tokens | 
+            Size: 1426x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0049</h3>
+        <img src="images/sample_0049.png" alt="sample_0049">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ព្រះពុទ្ធបានបង្រៀនឱ្យយើងចេះជ្រើសរើស ពាក្យសម្តីសម្រាប់និយាយស្តីឱ្យដូចជាកសិករជ្រើសរើសគ្រាប់ពូជសម្រាប់ ដាំដុះ សាបព្រោះយ៉ាងនោះដែរ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ព្រះពុទ្ធបានបង្រៀនឱ្យយើងចេះជ្រើសរើស ពាក្យសម្ពីសម្រាប់និយាយស្តីឱ្យដូចជាកសិករជ្រើសរើសត្រាប់ពូដសម្រាប់ នាំដុះ សាប</div>
+        <div class="info">
+            Length: 125 chars, 127 tokens | 
+            Size: 600x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+</body>
+</html>

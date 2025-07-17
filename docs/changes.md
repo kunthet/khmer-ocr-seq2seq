@@ -1,5 +1,21 @@
 # Change Log
 
+## Feature: Image Width Limitation Fix
+**Purpose:**
+Fixed critical inference limitation where images were being cropped to 512 pixels width during inference, causing predictions to be cut off for longer text sequences, despite the configuration specifying 800px maximum width.
+
+**Implementation:**
+- Updated `KhmerOCREngine` class in `src/inference/ocr_engine.py` to use configurable `max_width` instead of hardcoded 512px
+- Changed default `max_width` parameter from 512 to 800 to match configuration
+- Modified `from_checkpoint()` method to read `image_width` from config and pass it to engine initialization
+- Added `image_width` field to `DataConfig` class in `src/utils/config.py` for proper configuration access
+- Updated all inference scripts (`quick_test.py`, `src/inference/demo.py`) to use configured width
+- Updated memory estimation function in `train_onthefly.py` to reflect configurable width
+
+**History:**
+- Created — Fixed 512px hardcoded limitation, implemented configurable width system using 800px default
+- Updated — Doubled maximum width from 800px to 1600px to handle longer text sequences. Updated all components: config file, DataConfig class, KhmerOCREngine defaults, and memory estimation calculations.
+
 ## Feature: Model Configuration Loading Fix
 **Purpose:**
 Fixed critical model architecture mismatch where training scripts were creating models with default parameters instead of loading the correct configuration from YAML files, causing checkpoint loading failures.
@@ -20,6 +36,32 @@ Fixed critical model architecture mismatch where training scripts were creating 
 - Updated — Provided corrected Colab training configuration with proper parameter naming that matches current ConfigManager structure.
 - Updated — Fixed KhmerOCREngine.from_checkpoint() to use ConfigManager for model creation before loading state_dict, preventing size mismatch errors during checkpoint loading.
 - Updated — Fixed benchmark mode in inference_test.py to properly unpack 3 values (image_tensor, target_tensor, text) from SyntheticImageDataset instead of expecting only 2 values.
+- Created — Training sample inspection script (inspect_training_samples.py) to generate and save sample images from the training pipeline for manual verification of image generation quality.
+
+## Feature: [Training Sample Inspector with Inference Results]
+**Purpose:**  
+Enhanced the existing training sample inspector to include model inference results and accuracy calculation. This allows for comprehensive evaluation of model performance on synthetically generated training data.
+
+**Implementation:**  
+- Modified `inspect_training_samples.py` to load the OCR engine from checkpoint
+- Added inference functionality using `KhmerOCREngine.recognize()` method
+- Implemented accuracy calculation with both exact match and character-level metrics
+- Enhanced HTML viewer with:
+  - Prominent accuracy metrics display (exact match % and character-level %)
+  - Color-coded visual comparison (green for ground truth, blue for predictions)
+  - Red/green borders indicating correct/incorrect predictions
+  - Visual status indicators (✅❌) for each sample
+- Added detailed accuracy reporting in metadata file and console output
+- Used best model checkpoint at `models/checkpoints/full/best_model.pth`
+
+**Testing Results:**
+- Tested with 50 synthetic samples from training pipeline
+- Achieved 6.00% exact match accuracy (3/50 samples)
+- Achieved 28.51% character-level accuracy
+- Successfully generated comprehensive HTML report with side-by-side comparisons
+
+**History:**
+- Created — Enhanced inspect_training_samples.py with OCR inference, accuracy calculation, and improved HTML visualization for training sample verification.
 
 ## Feature: [Core] EOS Generation Fix via Curriculum Learning
 **Purpose:**

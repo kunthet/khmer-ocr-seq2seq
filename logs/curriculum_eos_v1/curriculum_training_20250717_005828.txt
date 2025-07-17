@@ -1,0 +1,502 @@
+2025-07-17 00:58:28,857 - CurriculumTrainer - INFO - 📝 Training log: logs/curriculum_eos_v1\curriculum_training_20250717_005828.log
+2025-07-17 00:58:28,857 - CurriculumTrainer - INFO - 🎓 Curriculum EOS Training Started
+2025-07-17 00:58:28,857 - CurriculumTrainer - INFO - Arguments: {'resume': None, 'auto_resume': False, 'num_epochs': 26, 'batch_size': 32, 'log_dir': 'logs/curriculum_eos_v1', 'checkpoint_dir': 'models/checkpoints/curriculum_eos_v1'}
+2025-07-17 00:58:30,808 - src.data.onthefly_dataset - INFO - Found 2 training files: ['train_0.txt', 'train_1.txt']
+2025-07-17 00:58:31,062 - src.data.onthefly_dataset - INFO - Loaded 147195 lines from train_0.txt
+2025-07-17 00:58:31,389 - src.data.onthefly_dataset - INFO - Loaded 166118 lines from train_1.txt
+2025-07-17 00:58:31,662 - src.data.onthefly_dataset - INFO - Loaded 313313 text lines for train split
+2025-07-17 00:58:31,673 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded working fonts: ['KhmerOS', 'KhmerOSbattambang', 'KhmerOSbokor', 'KhmerOSfasthand', 'KhmerOSmetalchrieng', 'KhmerOSmuol', 'KhmerOSmuollight', 'KhmerOSsiemreap']
+2025-07-17 00:58:31,674 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Khmer OCR Synthetic Generator initialized
+2025-07-17 00:58:31,675 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Image height: 32px (variable width)
+2025-07-17 00:58:31,675 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded 8 fonts
+2025-07-17 00:58:31,675 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Advanced backgrounds: True
+2025-07-17 00:58:31,675 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Training augmentation: True
+2025-07-17 00:58:31,675 - src.data.onthefly_dataset - INFO - Initialized on-the-fly train dataset:
+2025-07-17 00:58:31,676 - src.data.onthefly_dataset - INFO -   Text lines: 313313
+2025-07-17 00:58:31,676 - src.data.onthefly_dataset - INFO -   Samples per epoch: 10000
+2025-07-17 00:58:31,676 - src.data.onthefly_dataset - INFO -   Augmentation: enabled
+2025-07-17 00:58:31,676 - src.data.onthefly_dataset - INFO -   Fonts: 8
+2025-07-17 00:58:31,677 - src.data.onthefly_dataset - INFO - Found 2 training files: ['train_0.txt', 'train_1.txt']
+2025-07-17 00:58:31,941 - src.data.onthefly_dataset - INFO - Loaded 147195 lines from train_0.txt
+2025-07-17 00:58:32,282 - src.data.onthefly_dataset - INFO - Loaded 166118 lines from train_1.txt
+2025-07-17 00:58:32,564 - src.data.onthefly_dataset - INFO - Loaded 313313 text lines for train split
+2025-07-17 00:58:32,568 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded working fonts: ['KhmerOS', 'KhmerOSbattambang', 'KhmerOSbokor', 'KhmerOSfasthand', 'KhmerOSmetalchrieng', 'KhmerOSmuol', 'KhmerOSmuollight', 'KhmerOSsiemreap']
+2025-07-17 00:58:32,569 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Khmer OCR Synthetic Generator initialized
+2025-07-17 00:58:32,569 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Image height: 32px (variable width)
+2025-07-17 00:58:32,570 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded 8 fonts
+2025-07-17 00:58:32,570 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Advanced backgrounds: True
+2025-07-17 00:58:32,570 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Training augmentation: True
+2025-07-17 00:58:32,570 - src.data.onthefly_dataset - INFO - Initialized on-the-fly train dataset:
+2025-07-17 00:58:32,571 - src.data.onthefly_dataset - INFO -   Text lines: 313313
+2025-07-17 00:58:32,571 - src.data.onthefly_dataset - INFO -   Samples per epoch: 10000
+2025-07-17 00:58:32,571 - src.data.onthefly_dataset - INFO -   Augmentation: enabled
+2025-07-17 00:58:32,572 - src.data.onthefly_dataset - INFO -   Fonts: 8
+2025-07-17 00:58:32,572 - CheckpointManager - INFO - Google Drive backup enabled: \content\drive\MyDrive\KhmerOCR_Checkpoints
+2025-07-17 00:58:32,591 - CurriculumTrainer - INFO - 🎓 CURRICULUM LEARNING FOR EOS GENERATION
+2025-07-17 00:58:32,592 - CurriculumTrainer - INFO - Model parameters: 19,268,164
+2025-07-17 00:58:32,592 - CurriculumTrainer - INFO - Device: cuda
+2025-07-17 00:58:32,592 - CurriculumTrainer - INFO - 🔄 Phase 1/5
+2025-07-17 00:58:32,593 - CurriculumTrainer - INFO - 🔄 Starting Phase 1
+2025-07-17 00:58:32,608 - CurriculumTrainer - INFO - 🔄 Starting Epoch 1/26 (Phase 1: Phase 1: Short sequences)
+2025-07-17 00:58:32,608 - CurriculumTrainer - INFO - 📊 Max Length: 10 | Adaptive EOS Weight: 30.00
+2025-07-17 00:58:33,720 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 19.2623 | EOS: 0.0%
+2025-07-17 00:58:48,062 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 3.8324 | EOS: 100.0%
+2025-07-17 00:59:00,943 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 3.4570 | EOS: 100.0%
+2025-07-17 00:59:15,212 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 3.5690 | EOS: 100.0%
+2025-07-17 00:59:29,028 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 3.6451 | EOS: 100.0%
+2025-07-17 00:59:43,323 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 3.2320 | EOS: 100.0%
+2025-07-17 00:59:57,511 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 2.9757 | EOS: 100.0%
+2025-07-17 01:01:24,687 - CurriculumTrainer - INFO - Epoch 1/26 | Time: 172.1s | Max Length: 10
+2025-07-17 01:01:24,687 - CurriculumTrainer - INFO - Train - Loss: 3.8100 | EOS: 98.9% | Complete: 95.1%
+2025-07-17 01:01:24,687 - CurriculumTrainer - INFO - Val   - Loss: 6.1358 | EOS: 44.5% | Complete: 47.4%
+2025-07-17 01:01:24,687 - CurriculumTrainer - INFO - Adaptive EOS Weight: 30.00
+2025-07-17 01:01:24,687 - CurriculumTrainer - INFO - ✅ New best EOS rate: 44.5%
+2025-07-17 01:01:25,117 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_001.pth
+2025-07-17 01:01:25,232 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 01:01:25,357 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 01:01:25,358 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 01:01:25,481 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_001.pth
+2025-07-17 01:01:25,482 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_001.pth
+2025-07-17 01:01:25,483 - CurriculumTrainer - INFO - 🔄 Starting Epoch 2/26 (Phase 1: Phase 1: Short sequences)
+2025-07-17 01:01:25,483 - CurriculumTrainer - INFO - 📊 Max Length: 10 | Adaptive EOS Weight: 30.00
+2025-07-17 01:01:25,910 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 3.1760 | EOS: 100.0%
+2025-07-17 01:01:39,709 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 3.3116 | EOS: 96.9%
+2025-07-17 01:01:53,488 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 3.7799 | EOS: 90.6%
+2025-07-17 01:02:07,081 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 3.4306 | EOS: 100.0%
+2025-07-17 01:02:20,788 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 3.2728 | EOS: 100.0%
+2025-07-17 01:02:35,027 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 3.0463 | EOS: 100.0%
+2025-07-17 01:02:48,487 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 3.0818 | EOS: 100.0%
+2025-07-17 01:04:16,229 - CurriculumTrainer - INFO - Epoch 2/26 | Time: 170.7s | Max Length: 10
+2025-07-17 01:04:16,230 - CurriculumTrainer - INFO - Train - Loss: 3.3855 | EOS: 96.7% | Complete: 77.8%
+2025-07-17 01:04:16,230 - CurriculumTrainer - INFO - Val   - Loss: 6.7259 | EOS: 37.4% | Complete: 14.8%
+2025-07-17 01:04:16,230 - CurriculumTrainer - INFO - Adaptive EOS Weight: 30.00
+2025-07-17 01:04:16,609 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_002.pth
+2025-07-17 01:04:16,723 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_002.pth
+2025-07-17 01:04:16,724 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_002.pth
+2025-07-17 01:04:16,724 - CurriculumTrainer - INFO - 🔄 Starting Epoch 3/26 (Phase 1: Phase 1: Short sequences)
+2025-07-17 01:04:16,724 - CurriculumTrainer - INFO - 📊 Max Length: 10 | Adaptive EOS Weight: 30.00
+2025-07-17 01:04:17,149 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 2.8959 | EOS: 100.0%
+2025-07-17 01:04:31,359 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 2.7001 | EOS: 100.0%
+2025-07-17 01:04:45,171 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 3.0735 | EOS: 100.0%
+2025-07-17 01:04:58,474 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 2.7114 | EOS: 100.0%
+2025-07-17 01:05:12,356 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 3.8897 | EOS: 78.1%
+2025-07-17 01:05:26,355 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 2.5673 | EOS: 100.0%
+2025-07-17 01:05:39,486 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 2.8341 | EOS: 100.0%
+2025-07-17 01:07:09,789 - CurriculumTrainer - INFO - Epoch 3/26 | Time: 173.1s | Max Length: 10
+2025-07-17 01:07:09,789 - CurriculumTrainer - INFO - Train - Loss: 3.0586 | EOS: 96.6% | Complete: 72.8%
+2025-07-17 01:07:09,789 - CurriculumTrainer - INFO - Val   - Loss: 6.7836 | EOS: 49.2% | Complete: 18.8%
+2025-07-17 01:07:09,789 - CurriculumTrainer - INFO - Adaptive EOS Weight: 30.00
+2025-07-17 01:07:09,789 - CurriculumTrainer - INFO - ✅ New best EOS rate: 49.2%
+2025-07-17 01:07:10,186 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_003.pth
+2025-07-17 01:07:10,337 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 01:07:10,488 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 01:07:10,488 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 01:07:10,605 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_003.pth
+2025-07-17 01:07:10,606 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_003.pth
+2025-07-17 01:07:10,607 - CurriculumTrainer - INFO - 🔄 Starting Epoch 4/26 (Phase 1: Phase 1: Short sequences)
+2025-07-17 01:07:10,607 - CurriculumTrainer - INFO - 📊 Max Length: 10 | Adaptive EOS Weight: 30.00
+2025-07-17 01:07:11,113 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 2.7150 | EOS: 100.0%
+2025-07-17 01:07:24,612 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 2.7777 | EOS: 96.9%
+2025-07-17 01:07:39,109 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 2.5102 | EOS: 100.0%
+2025-07-17 01:07:53,540 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 2.3971 | EOS: 100.0%
+2025-07-17 01:08:07,488 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 2.6984 | EOS: 100.0%
+2025-07-17 01:08:23,184 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 2.4301 | EOS: 100.0%
+2025-07-17 01:08:39,589 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 2.3684 | EOS: 100.0%
+2025-07-17 01:10:09,389 - CurriculumTrainer - INFO - Epoch 4/26 | Time: 178.8s | Max Length: 10
+2025-07-17 01:10:09,389 - CurriculumTrainer - INFO - Train - Loss: 2.6985 | EOS: 96.7% | Complete: 69.1%
+2025-07-17 01:10:09,389 - CurriculumTrainer - INFO - Val   - Loss: 4.8232 | EOS: 62.4% | Complete: 31.6%
+2025-07-17 01:10:09,389 - CurriculumTrainer - INFO - Adaptive EOS Weight: 30.00
+2025-07-17 01:10:09,389 - CurriculumTrainer - INFO - ✅ New best EOS rate: 62.4%
+2025-07-17 01:10:09,733 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_004.pth
+2025-07-17 01:10:09,862 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 01:10:10,004 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 01:10:10,005 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 01:10:10,145 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_004.pth
+2025-07-17 01:10:10,146 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_004.pth
+2025-07-17 01:10:10,146 - CurriculumTrainer - INFO - 🔄 Phase 2/5
+2025-07-17 01:10:10,147 - CurriculumTrainer - INFO - 🔄 Starting Phase 2
+2025-07-17 01:10:10,159 - CurriculumTrainer - INFO - 🔄 Starting Epoch 5/26 (Phase 2: Phase 2: Slightly longer)
+2025-07-17 01:10:10,159 - CurriculumTrainer - INFO - 📊 Max Length: 15 | Adaptive EOS Weight: 20.00
+2025-07-17 01:10:10,609 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 5.1063 | EOS: 100.0%
+2025-07-17 01:10:29,853 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 2.9102 | EOS: 100.0%
+2025-07-17 01:10:47,910 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 2.5353 | EOS: 100.0%
+2025-07-17 01:11:05,905 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 2.4743 | EOS: 100.0%
+2025-07-17 01:11:24,988 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 3.3726 | EOS: 59.4%
+2025-07-17 01:11:43,409 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 2.4794 | EOS: 100.0%
+2025-07-17 01:12:01,562 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 3.0292 | EOS: 59.4%
+2025-07-17 01:13:59,738 - CurriculumTrainer - INFO - Epoch 5/26 | Time: 229.6s | Max Length: 15
+2025-07-17 01:13:59,738 - CurriculumTrainer - INFO - Train - Loss: 2.6328 | EOS: 96.5% | Complete: 74.3%
+2025-07-17 01:13:59,738 - CurriculumTrainer - INFO - Val   - Loss: 4.2451 | EOS: 61.0% | Complete: 40.7%
+2025-07-17 01:13:59,738 - CurriculumTrainer - INFO - Adaptive EOS Weight: 20.00
+2025-07-17 01:14:00,159 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_005.pth
+2025-07-17 01:14:00,160 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_005.pth
+2025-07-17 01:14:00,160 - CurriculumTrainer - INFO - 🔄 Starting Epoch 6/26 (Phase 2: Phase 2: Slightly longer)
+2025-07-17 01:14:00,160 - CurriculumTrainer - INFO - 📊 Max Length: 15 | Adaptive EOS Weight: 20.00
+2025-07-17 01:14:00,756 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 2.4375 | EOS: 100.0%
+2025-07-17 01:14:19,089 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 2.3963 | EOS: 93.8%
+2025-07-17 01:14:37,344 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 2.3254 | EOS: 84.4%
+2025-07-17 01:14:55,583 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 1.7936 | EOS: 100.0%
+2025-07-17 01:15:14,823 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 1.7822 | EOS: 100.0%
+2025-07-17 01:15:33,974 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 1.8884 | EOS: 100.0%
+2025-07-17 01:15:53,839 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 1.9221 | EOS: 96.9%
+2025-07-17 01:17:50,149 - CurriculumTrainer - INFO - Epoch 6/26 | Time: 230.0s | Max Length: 15
+2025-07-17 01:17:50,150 - CurriculumTrainer - INFO - Train - Loss: 2.0426 | EOS: 97.4% | Complete: 66.3%
+2025-07-17 01:17:50,150 - CurriculumTrainer - INFO - Val   - Loss: 3.4912 | EOS: 59.4% | Complete: 35.3%
+2025-07-17 01:17:50,150 - CurriculumTrainer - INFO - Adaptive EOS Weight: 20.00
+2025-07-17 01:17:50,539 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_006.pth
+2025-07-17 01:17:50,561 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_001.pth
+2025-07-17 01:17:50,562 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_006.pth
+2025-07-17 01:17:50,562 - CurriculumTrainer - INFO - 🔄 Starting Epoch 7/26 (Phase 2: Phase 2: Slightly longer)
+2025-07-17 01:17:50,562 - CurriculumTrainer - INFO - 📊 Max Length: 15 | Adaptive EOS Weight: 20.00
+2025-07-17 01:17:51,088 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 2.3143 | EOS: 84.4%
+2025-07-17 01:18:09,532 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 1.6531 | EOS: 100.0%
+2025-07-17 01:18:29,603 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 1.9276 | EOS: 96.9%
+2025-07-17 01:18:48,730 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 1.8112 | EOS: 100.0%
+2025-07-17 01:19:08,423 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 1.4982 | EOS: 96.9%
+2025-07-17 01:19:28,515 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 1.2316 | EOS: 100.0%
+2025-07-17 01:19:47,343 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 1.3287 | EOS: 100.0%
+2025-07-17 01:21:44,274 - CurriculumTrainer - INFO - Epoch 7/26 | Time: 233.7s | Max Length: 15
+2025-07-17 01:21:44,274 - CurriculumTrainer - INFO - Train - Loss: 1.5967 | EOS: 97.9% | Complete: 63.5%
+2025-07-17 01:21:44,274 - CurriculumTrainer - INFO - Val   - Loss: 3.2683 | EOS: 68.1% | Complete: 53.7%
+2025-07-17 01:21:44,275 - CurriculumTrainer - INFO - Adaptive EOS Weight: 20.00
+2025-07-17 01:21:44,275 - CurriculumTrainer - INFO - ✅ New best EOS rate: 68.1%
+2025-07-17 01:21:44,661 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_007.pth
+2025-07-17 01:21:44,788 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 01:21:44,937 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 01:21:44,938 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 01:21:45,082 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_007.pth
+2025-07-17 01:21:45,106 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_002.pth
+2025-07-17 01:21:45,106 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_007.pth
+2025-07-17 01:21:45,106 - CurriculumTrainer - INFO - 🔄 Starting Epoch 8/26 (Phase 2: Phase 2: Slightly longer)
+2025-07-17 01:21:45,107 - CurriculumTrainer - INFO - 📊 Max Length: 15 | Adaptive EOS Weight: 20.00
+2025-07-17 01:21:45,821 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 1.4377 | EOS: 100.0%
+2025-07-17 01:22:03,566 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 1.5116 | EOS: 100.0%
+2025-07-17 01:22:23,853 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 1.2386 | EOS: 100.0%
+2025-07-17 01:22:42,817 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 1.2154 | EOS: 100.0%
+2025-07-17 01:23:01,988 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 1.7391 | EOS: 93.8%
+2025-07-17 01:23:21,209 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 1.3180 | EOS: 96.9%
+2025-07-17 01:23:41,353 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 1.2731 | EOS: 96.9%
+2025-07-17 01:25:35,135 - CurriculumTrainer - INFO - Epoch 8/26 | Time: 230.0s | Max Length: 15
+2025-07-17 01:25:35,135 - CurriculumTrainer - INFO - Train - Loss: 1.2464 | EOS: 98.3% | Complete: 61.3%
+2025-07-17 01:25:35,136 - CurriculumTrainer - INFO - Val   - Loss: 2.7271 | EOS: 72.5% | Complete: 48.0%
+2025-07-17 01:25:35,136 - CurriculumTrainer - INFO - Adaptive EOS Weight: 20.00
+2025-07-17 01:25:35,136 - CurriculumTrainer - INFO - ✅ New best EOS rate: 72.5%
+2025-07-17 01:25:35,515 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_008.pth
+2025-07-17 01:25:35,641 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 01:25:35,759 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 01:25:35,760 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 01:25:35,909 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_008.pth
+2025-07-17 01:25:35,932 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_003.pth
+2025-07-17 01:25:35,933 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_008.pth
+2025-07-17 01:25:35,933 - CurriculumTrainer - INFO - 🔄 Phase 3/5
+2025-07-17 01:25:35,934 - CurriculumTrainer - INFO - 🔄 Starting Phase 3
+2025-07-17 01:25:35,943 - CurriculumTrainer - INFO - 🔄 Starting Epoch 9/26 (Phase 3: Phase 3: Medium sequences)
+2025-07-17 01:25:35,943 - CurriculumTrainer - INFO - 📊 Max Length: 20 | Adaptive EOS Weight: 15.00
+2025-07-17 01:25:36,480 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 3.2698 | EOS: 100.0%
+2025-07-17 01:26:00,249 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 1.0596 | EOS: 100.0%
+2025-07-17 01:26:26,935 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 1.0434 | EOS: 96.9%
+2025-07-17 01:26:50,588 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 1.0188 | EOS: 100.0%
+2025-07-17 01:27:16,279 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.8721 | EOS: 100.0%
+2025-07-17 01:27:40,264 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 1.0601 | EOS: 100.0%
+2025-07-17 01:28:05,804 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.9070 | EOS: 100.0%
+2025-07-17 01:30:43,003 - CurriculumTrainer - INFO - Epoch 9/26 | Time: 307.1s | Max Length: 20
+2025-07-17 01:30:43,003 - CurriculumTrainer - INFO - Train - Loss: 1.1235 | EOS: 97.9% | Complete: 57.3%
+2025-07-17 01:30:43,003 - CurriculumTrainer - INFO - Val   - Loss: 2.5994 | EOS: 62.0% | Complete: 35.8%
+2025-07-17 01:30:43,004 - CurriculumTrainer - INFO - Adaptive EOS Weight: 15.00
+2025-07-17 01:30:43,362 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_009.pth
+2025-07-17 01:30:43,384 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_004.pth
+2025-07-17 01:30:43,384 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_009.pth
+2025-07-17 01:30:43,385 - CurriculumTrainer - INFO - 🔄 Starting Epoch 10/26 (Phase 3: Phase 3: Medium sequences)
+2025-07-17 01:30:43,385 - CurriculumTrainer - INFO - 📊 Max Length: 20 | Adaptive EOS Weight: 15.00
+2025-07-17 01:30:44,216 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.9314 | EOS: 96.9%
+2025-07-17 01:31:09,220 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 1.0587 | EOS: 96.9%
+2025-07-17 01:31:32,088 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 1.0127 | EOS: 100.0%
+2025-07-17 01:31:58,083 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.7053 | EOS: 100.0%
+2025-07-17 01:32:21,113 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.9573 | EOS: 100.0%
+2025-07-17 01:32:44,125 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.7492 | EOS: 100.0%
+2025-07-17 01:33:06,063 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 1.0752 | EOS: 87.5%
+2025-07-17 01:35:34,049 - CurriculumTrainer - INFO - Epoch 10/26 | Time: 290.7s | Max Length: 20
+2025-07-17 01:35:34,049 - CurriculumTrainer - INFO - Train - Loss: 0.8820 | EOS: 98.4% | Complete: 56.2%
+2025-07-17 01:35:34,049 - CurriculumTrainer - INFO - Val   - Loss: 2.4021 | EOS: 62.4% | Complete: 34.1%
+2025-07-17 01:35:34,049 - CurriculumTrainer - INFO - Adaptive EOS Weight: 15.00
+2025-07-17 01:35:34,425 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_010.pth
+2025-07-17 01:35:34,531 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_010.pth
+2025-07-17 01:35:34,554 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_005.pth
+2025-07-17 01:35:34,555 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_010.pth
+2025-07-17 01:35:34,555 - CurriculumTrainer - INFO - 🔄 Starting Epoch 11/26 (Phase 3: Phase 3: Medium sequences)
+2025-07-17 01:35:34,555 - CurriculumTrainer - INFO - 📊 Max Length: 20 | Adaptive EOS Weight: 15.00
+2025-07-17 01:35:35,033 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.7406 | EOS: 100.0%
+2025-07-17 01:35:56,606 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.9079 | EOS: 100.0%
+2025-07-17 01:36:21,051 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 1.1817 | EOS: 93.8%
+2025-07-17 01:36:43,808 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.8103 | EOS: 100.0%
+2025-07-17 01:37:05,630 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.8144 | EOS: 100.0%
+2025-07-17 01:37:29,846 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.7985 | EOS: 96.9%
+2025-07-17 01:37:52,640 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.5482 | EOS: 100.0%
+2025-07-17 01:40:19,370 - CurriculumTrainer - INFO - Epoch 11/26 | Time: 284.8s | Max Length: 20
+2025-07-17 01:40:19,370 - CurriculumTrainer - INFO - Train - Loss: 0.7520 | EOS: 98.7% | Complete: 55.5%
+2025-07-17 01:40:19,370 - CurriculumTrainer - INFO - Val   - Loss: 2.1691 | EOS: 72.5% | Complete: 47.4%
+2025-07-17 01:40:19,370 - CurriculumTrainer - INFO - Adaptive EOS Weight: 15.00
+2025-07-17 01:40:19,758 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_011.pth
+2025-07-17 01:40:19,787 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_006.pth
+2025-07-17 01:40:19,788 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_011.pth
+2025-07-17 01:40:19,788 - CurriculumTrainer - INFO - 🔄 Starting Epoch 12/26 (Phase 3: Phase 3: Medium sequences)
+2025-07-17 01:40:19,788 - CurriculumTrainer - INFO - 📊 Max Length: 20 | Adaptive EOS Weight: 15.00
+2025-07-17 01:40:20,430 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.4441 | EOS: 96.9%
+2025-07-17 01:40:44,185 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.6959 | EOS: 100.0%
+2025-07-17 01:41:07,525 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.5537 | EOS: 100.0%
+2025-07-17 01:41:30,529 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.7288 | EOS: 100.0%
+2025-07-17 01:41:53,068 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.7546 | EOS: 96.9%
+2025-07-17 01:42:17,331 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.4987 | EOS: 100.0%
+2025-07-17 01:42:39,392 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.4869 | EOS: 100.0%
+2025-07-17 01:45:03,622 - CurriculumTrainer - INFO - Epoch 12/26 | Time: 283.8s | Max Length: 20
+2025-07-17 01:45:03,622 - CurriculumTrainer - INFO - Train - Loss: 0.6549 | EOS: 98.9% | Complete: 54.7%
+2025-07-17 01:45:03,622 - CurriculumTrainer - INFO - Val   - Loss: 2.1470 | EOS: 71.2% | Complete: 40.5%
+2025-07-17 01:45:03,622 - CurriculumTrainer - INFO - Adaptive EOS Weight: 15.00
+2025-07-17 01:45:03,979 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_012.pth
+2025-07-17 01:45:04,002 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_007.pth
+2025-07-17 01:45:04,003 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_012.pth
+2025-07-17 01:45:04,003 - CurriculumTrainer - INFO - 🔄 Phase 4/5
+2025-07-17 01:45:04,004 - CurriculumTrainer - INFO - 🔄 Starting Phase 4
+2025-07-17 01:45:04,016 - CurriculumTrainer - INFO - 🔄 Starting Epoch 13/26 (Phase 4: Phase 4: Extended sequences)
+2025-07-17 01:45:04,016 - CurriculumTrainer - INFO - 📊 Max Length: 30 | Adaptive EOS Weight: 10.00
+2025-07-17 01:45:04,763 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 5.1072 | EOS: 84.4%
+2025-07-17 01:45:37,908 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.6953 | EOS: 93.8%
+2025-07-17 01:46:13,164 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.7459 | EOS: 96.9%
+2025-07-17 01:46:46,155 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.6521 | EOS: 93.8%
+2025-07-17 01:47:19,374 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.6829 | EOS: 96.9%
+2025-07-17 01:47:51,634 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.5559 | EOS: 96.9%
+2025-07-17 01:48:26,717 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.4825 | EOS: 100.0%
+2025-07-17 01:51:58,865 - CurriculumTrainer - INFO - Epoch 13/26 | Time: 414.8s | Max Length: 30
+2025-07-17 01:51:58,865 - CurriculumTrainer - INFO - Train - Loss: 0.7968 | EOS: 96.4% | Complete: 52.7%
+2025-07-17 01:51:58,865 - CurriculumTrainer - INFO - Val   - Loss: 2.0905 | EOS: 65.0% | Complete: 36.0%
+2025-07-17 01:51:58,865 - CurriculumTrainer - INFO - Adaptive EOS Weight: 10.00
+2025-07-17 01:51:59,215 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_013.pth
+2025-07-17 01:51:59,248 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_008.pth
+2025-07-17 01:51:59,249 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_013.pth
+2025-07-17 01:51:59,249 - CurriculumTrainer - INFO - 🔄 Starting Epoch 14/26 (Phase 4: Phase 4: Extended sequences)
+2025-07-17 01:51:59,249 - CurriculumTrainer - INFO - 📊 Max Length: 30 | Adaptive EOS Weight: 10.00
+2025-07-17 01:51:59,794 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.5428 | EOS: 100.0%
+2025-07-17 01:52:36,723 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.8428 | EOS: 93.8%
+2025-07-17 01:53:06,914 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.5562 | EOS: 96.9%
+2025-07-17 01:53:42,162 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.6393 | EOS: 93.8%
+2025-07-17 01:54:15,758 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.4396 | EOS: 100.0%
+2025-07-17 01:54:53,592 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.5338 | EOS: 100.0%
+2025-07-17 01:55:29,984 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.5355 | EOS: 93.8%
+2025-07-17 01:58:59,727 - CurriculumTrainer - INFO - Epoch 14/26 | Time: 420.5s | Max Length: 30
+2025-07-17 01:58:59,727 - CurriculumTrainer - INFO - Train - Loss: 0.5879 | EOS: 98.4% | Complete: 52.8%
+2025-07-17 01:58:59,727 - CurriculumTrainer - INFO - Val   - Loss: 2.0580 | EOS: 62.0% | Complete: 34.2%
+2025-07-17 01:58:59,727 - CurriculumTrainer - INFO - Adaptive EOS Weight: 10.00
+2025-07-17 01:59:00,071 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_014.pth
+2025-07-17 01:59:00,106 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_009.pth
+2025-07-17 01:59:00,107 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_014.pth
+2025-07-17 01:59:00,107 - CurriculumTrainer - INFO - 🔄 Starting Epoch 15/26 (Phase 4: Phase 4: Extended sequences)
+2025-07-17 01:59:00,107 - CurriculumTrainer - INFO - 📊 Max Length: 30 | Adaptive EOS Weight: 10.00
+2025-07-17 01:59:00,664 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.5187 | EOS: 100.0%
+2025-07-17 01:59:32,895 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.5439 | EOS: 96.9%
+2025-07-17 02:00:07,338 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.4265 | EOS: 96.9%
+2025-07-17 02:00:40,083 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.4147 | EOS: 100.0%
+2025-07-17 02:01:11,950 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.6366 | EOS: 100.0%
+2025-07-17 02:01:46,041 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.5501 | EOS: 100.0%
+2025-07-17 02:02:20,906 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.4244 | EOS: 100.0%
+2025-07-17 02:05:50,443 - CurriculumTrainer - INFO - Epoch 15/26 | Time: 410.3s | Max Length: 30
+2025-07-17 02:05:50,443 - CurriculumTrainer - INFO - Train - Loss: 0.5432 | EOS: 98.3% | Complete: 52.7%
+2025-07-17 02:05:50,443 - CurriculumTrainer - INFO - Val   - Loss: 1.9756 | EOS: 67.1% | Complete: 38.1%
+2025-07-17 02:05:50,443 - CurriculumTrainer - INFO - Adaptive EOS Weight: 10.00
+2025-07-17 02:05:50,799 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_015.pth
+2025-07-17 02:05:50,822 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_010.pth
+2025-07-17 02:05:50,822 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_015.pth
+2025-07-17 02:05:50,822 - CurriculumTrainer - INFO - 🔄 Starting Epoch 16/26 (Phase 4: Phase 4: Extended sequences)
+2025-07-17 02:05:50,823 - CurriculumTrainer - INFO - 📊 Max Length: 30 | Adaptive EOS Weight: 10.00
+2025-07-17 02:05:51,364 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.4454 | EOS: 100.0%
+2025-07-17 02:06:24,597 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.8426 | EOS: 96.9%
+2025-07-17 02:06:58,498 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.4012 | EOS: 96.9%
+2025-07-17 02:07:31,242 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.4957 | EOS: 100.0%
+2025-07-17 02:08:04,508 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.6720 | EOS: 100.0%
+2025-07-17 02:08:38,321 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.3464 | EOS: 100.0%
+2025-07-17 02:09:12,497 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.2488 | EOS: 96.9%
+2025-07-17 02:12:40,976 - CurriculumTrainer - INFO - Epoch 16/26 | Time: 410.2s | Max Length: 30
+2025-07-17 02:12:40,976 - CurriculumTrainer - INFO - Train - Loss: 0.4903 | EOS: 98.7% | Complete: 52.7%
+2025-07-17 02:12:40,976 - CurriculumTrainer - INFO - Val   - Loss: 1.8370 | EOS: 70.1% | Complete: 39.9%
+2025-07-17 02:12:40,976 - CurriculumTrainer - INFO - Adaptive EOS Weight: 10.00
+2025-07-17 02:12:41,334 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_016.pth
+2025-07-17 02:12:41,368 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_011.pth
+2025-07-17 02:12:41,369 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_016.pth
+2025-07-17 02:12:41,369 - CurriculumTrainer - INFO - 🔄 Starting Epoch 17/26 (Phase 4: Phase 4: Extended sequences)
+2025-07-17 02:12:41,369 - CurriculumTrainer - INFO - 📊 Max Length: 30 | Adaptive EOS Weight: 10.00
+2025-07-17 02:12:42,274 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.4497 | EOS: 96.9%
+2025-07-17 02:13:15,940 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.4466 | EOS: 100.0%
+2025-07-17 02:13:45,378 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.3856 | EOS: 100.0%
+2025-07-17 02:14:20,084 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.3748 | EOS: 100.0%
+2025-07-17 02:14:55,148 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.6898 | EOS: 100.0%
+2025-07-17 02:15:25,899 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.2230 | EOS: 100.0%
+2025-07-17 02:15:58,988 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.3113 | EOS: 100.0%
+2025-07-17 02:19:34,649 - CurriculumTrainer - INFO - Epoch 17/26 | Time: 413.3s | Max Length: 30
+2025-07-17 02:19:34,649 - CurriculumTrainer - INFO - Train - Loss: 0.4442 | EOS: 98.8% | Complete: 52.0%
+2025-07-17 02:19:34,649 - CurriculumTrainer - INFO - Val   - Loss: 2.1180 | EOS: 62.2% | Complete: 31.7%
+2025-07-17 02:19:34,649 - CurriculumTrainer - INFO - Adaptive EOS Weight: 10.00
+2025-07-17 02:19:35,010 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_017.pth
+2025-07-17 02:19:35,032 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_012.pth
+2025-07-17 02:19:35,032 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_017.pth
+2025-07-17 02:19:35,032 - CurriculumTrainer - INFO - 🔄 Starting Epoch 18/26 (Phase 4: Phase 4: Extended sequences)
+2025-07-17 02:19:35,033 - CurriculumTrainer - INFO - 📊 Max Length: 30 | Adaptive EOS Weight: 10.00
+2025-07-17 02:19:35,638 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.4808 | EOS: 96.9%
+2025-07-17 02:20:09,830 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.4991 | EOS: 100.0%
+2025-07-17 02:20:44,515 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.2974 | EOS: 100.0%
+2025-07-17 02:21:16,226 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.4724 | EOS: 100.0%
+2025-07-17 02:21:50,233 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.5532 | EOS: 90.6%
+2025-07-17 02:22:24,187 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.3327 | EOS: 100.0%
+2025-07-17 02:22:55,976 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.6063 | EOS: 96.9%
+2025-07-17 02:26:28,362 - CurriculumTrainer - INFO - Epoch 18/26 | Time: 413.3s | Max Length: 30
+2025-07-17 02:26:28,362 - CurriculumTrainer - INFO - Train - Loss: 0.4294 | EOS: 98.8% | Complete: 52.2%
+2025-07-17 02:26:28,362 - CurriculumTrainer - INFO - Val   - Loss: 1.7290 | EOS: 68.9% | Complete: 36.2%
+2025-07-17 02:26:28,362 - CurriculumTrainer - INFO - Adaptive EOS Weight: 10.00
+2025-07-17 02:26:28,722 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_018.pth
+2025-07-17 02:26:28,751 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_013.pth
+2025-07-17 02:26:28,751 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_018.pth
+2025-07-17 02:26:28,751 - CurriculumTrainer - INFO - 🔄 Starting Epoch 19/26 (Phase 4: Phase 4: Extended sequences)
+2025-07-17 02:26:28,752 - CurriculumTrainer - INFO - 📊 Max Length: 30 | Adaptive EOS Weight: 10.00
+2025-07-17 02:26:29,318 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.4145 | EOS: 100.0%
+2025-07-17 02:27:06,371 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.4755 | EOS: 100.0%
+2025-07-17 02:27:40,855 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.6231 | EOS: 100.0%
+2025-07-17 02:28:17,100 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.4824 | EOS: 100.0%
+2025-07-17 02:28:54,154 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.3359 | EOS: 100.0%
+2025-07-17 02:29:31,557 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.4956 | EOS: 96.9%
+2025-07-17 02:30:06,422 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.3092 | EOS: 100.0%
+2025-07-17 02:34:02,088 - CurriculumTrainer - INFO - Epoch 19/26 | Time: 453.3s | Max Length: 30
+2025-07-17 02:34:02,088 - CurriculumTrainer - INFO - Train - Loss: 0.4038 | EOS: 99.0% | Complete: 52.1%
+2025-07-17 02:34:02,089 - CurriculumTrainer - INFO - Val   - Loss: 1.7328 | EOS: 73.5% | Complete: 40.3%
+2025-07-17 02:34:02,089 - CurriculumTrainer - INFO - Adaptive EOS Weight: 10.00
+2025-07-17 02:34:02,089 - CurriculumTrainer - INFO - ✅ New best EOS rate: 73.5%
+2025-07-17 02:34:02,494 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_019.pth
+2025-07-17 02:34:02,639 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 02:34:02,832 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 02:34:02,832 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 02:34:02,981 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_019.pth
+2025-07-17 02:34:03,005 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_014.pth
+2025-07-17 02:34:03,005 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_019.pth
+2025-07-17 02:34:03,006 - CurriculumTrainer - INFO - 🔄 Starting Epoch 20/26 (Phase 4: Phase 4: Extended sequences)
+2025-07-17 02:34:03,006 - CurriculumTrainer - INFO - 📊 Max Length: 30 | Adaptive EOS Weight: 10.00
+2025-07-17 02:34:03,978 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.3733 | EOS: 96.9%
+2025-07-17 02:34:43,688 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.3335 | EOS: 100.0%
+2025-07-17 02:35:23,761 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.4731 | EOS: 100.0%
+2025-07-17 02:35:55,347 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.4594 | EOS: 93.8%
+2025-07-17 02:36:28,563 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.3648 | EOS: 100.0%
+2025-07-17 02:37:02,595 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.5117 | EOS: 100.0%
+2025-07-17 02:37:36,830 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.4557 | EOS: 100.0%
+2025-07-17 02:41:14,170 - CurriculumTrainer - INFO - Epoch 20/26 | Time: 431.2s | Max Length: 30
+2025-07-17 02:41:14,170 - CurriculumTrainer - INFO - Train - Loss: 0.3852 | EOS: 99.1% | Complete: 52.1%
+2025-07-17 02:41:14,170 - CurriculumTrainer - INFO - Val   - Loss: 1.4517 | EOS: 76.8% | Complete: 41.9%
+2025-07-17 02:41:14,170 - CurriculumTrainer - INFO - Adaptive EOS Weight: 10.00
+2025-07-17 02:41:14,170 - CurriculumTrainer - INFO - ✅ New best EOS rate: 76.8%
+2025-07-17 02:41:14,528 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_020.pth
+2025-07-17 02:41:14,649 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 02:41:14,773 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 02:41:14,773 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 02:41:14,921 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_020.pth
+2025-07-17 02:41:14,943 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_015.pth
+2025-07-17 02:41:14,943 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_020.pth
+2025-07-17 02:41:14,944 - CurriculumTrainer - INFO - 🔄 Phase 5/5
+2025-07-17 02:41:14,945 - CurriculumTrainer - INFO - 🔄 Starting Phase 5
+2025-07-17 02:41:14,957 - CurriculumTrainer - INFO - 🔄 Starting Epoch 21/26 (Phase 5: Phase 5: Full sequences)
+2025-07-17 02:41:14,957 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 02:41:16,855 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 5.0601 | EOS: 71.9%
+2025-07-17 02:42:06,309 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.5905 | EOS: 96.9%
+2025-07-17 02:43:00,597 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.3834 | EOS: 100.0%
+2025-07-17 02:43:53,738 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.4292 | EOS: 100.0%
+2025-07-17 02:44:48,247 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.4762 | EOS: 93.8%
+2025-07-17 02:45:38,646 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.4442 | EOS: 100.0%
+2025-07-17 02:46:30,471 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.4727 | EOS: 100.0%
+2025-07-17 02:51:55,206 - CurriculumTrainer - INFO - Epoch 21/26 | Time: 640.2s | Max Length: 50
+2025-07-17 02:51:55,206 - CurriculumTrainer - INFO - Train - Loss: 0.6059 | EOS: 95.0% | Complete: 48.2%
+2025-07-17 02:51:55,206 - CurriculumTrainer - INFO - Val   - Loss: 2.1340 | EOS: 59.2% | Complete: 30.4%
+2025-07-17 02:51:55,206 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 02:51:55,557 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_021.pth
+2025-07-17 02:51:55,585 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_016.pth
+2025-07-17 02:51:55,585 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_021.pth
+2025-07-17 02:51:55,586 - CurriculumTrainer - INFO - 🔄 Starting Epoch 22/26 (Phase 5: Phase 5: Full sequences)
+2025-07-17 02:51:55,586 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 02:51:56,559 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.3859 | EOS: 96.9%
+2025-07-17 02:52:48,691 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.3491 | EOS: 96.9%
+2025-07-17 02:53:44,313 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.3478 | EOS: 100.0%
+2025-07-17 02:54:40,510 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.3961 | EOS: 93.8%
+2025-07-17 02:55:34,857 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.3651 | EOS: 100.0%
+2025-07-17 02:56:31,221 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.6718 | EOS: 100.0%
+2025-07-17 02:57:24,298 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.3861 | EOS: 96.9%
+2025-07-17 03:02:57,638 - CurriculumTrainer - INFO - Epoch 22/26 | Time: 662.1s | Max Length: 50
+2025-07-17 03:02:57,638 - CurriculumTrainer - INFO - Train - Loss: 0.3763 | EOS: 97.9% | Complete: 49.1%
+2025-07-17 03:02:57,638 - CurriculumTrainer - INFO - Val   - Loss: 2.1070 | EOS: 60.7% | Complete: 36.2%
+2025-07-17 03:02:57,638 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 03:02:57,985 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_022.pth
+2025-07-17 03:02:58,016 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_017.pth
+2025-07-17 03:02:58,017 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_022.pth
+2025-07-17 03:02:58,017 - CurriculumTrainer - INFO - 🔄 Starting Epoch 23/26 (Phase 5: Phase 5: Full sequences)
+2025-07-17 03:02:58,017 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 03:02:59,273 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.4636 | EOS: 100.0%
+2025-07-17 03:03:54,545 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.2871 | EOS: 100.0%
+2025-07-17 03:04:48,875 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.4247 | EOS: 96.9%
+2025-07-17 03:05:39,572 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.3285 | EOS: 100.0%
+2025-07-17 03:06:36,860 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.3047 | EOS: 100.0%
+2025-07-17 03:07:29,470 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.3093 | EOS: 100.0%
+2025-07-17 03:08:25,271 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.4240 | EOS: 93.8%
+2025-07-17 03:13:48,666 - CurriculumTrainer - INFO - Epoch 23/26 | Time: 650.6s | Max Length: 50
+2025-07-17 03:13:48,666 - CurriculumTrainer - INFO - Train - Loss: 0.3916 | EOS: 97.8% | Complete: 49.2%
+2025-07-17 03:13:48,666 - CurriculumTrainer - INFO - Val   - Loss: 2.3896 | EOS: 57.2% | Complete: 27.5%
+2025-07-17 03:13:48,666 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 03:13:49,009 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_023.pth
+2025-07-17 03:13:49,042 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_018.pth
+2025-07-17 03:13:49,043 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_023.pth
+2025-07-17 03:13:49,043 - CurriculumTrainer - INFO - 🔄 Starting Epoch 24/26 (Phase 5: Phase 5: Full sequences)
+2025-07-17 03:13:49,043 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 03:13:50,092 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.5249 | EOS: 100.0%
+2025-07-17 03:14:44,541 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.2968 | EOS: 100.0%
+2025-07-17 03:15:38,262 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.2737 | EOS: 100.0%
+2025-07-17 03:16:30,768 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.1917 | EOS: 100.0%
+2025-07-17 03:17:23,734 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.3742 | EOS: 96.9%
+2025-07-17 03:18:19,153 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.3378 | EOS: 96.9%
+2025-07-17 03:19:10,836 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.4136 | EOS: 100.0%
+2025-07-17 03:24:49,351 - CurriculumTrainer - INFO - Epoch 24/26 | Time: 660.3s | Max Length: 50
+2025-07-17 03:24:49,351 - CurriculumTrainer - INFO - Train - Loss: 0.3523 | EOS: 98.2% | Complete: 49.0%
+2025-07-17 03:24:49,351 - CurriculumTrainer - INFO - Val   - Loss: 1.7681 | EOS: 65.4% | Complete: 35.2%
+2025-07-17 03:24:49,351 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 03:24:49,662 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_024.pth
+2025-07-17 03:24:49,701 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_019.pth
+2025-07-17 03:24:49,701 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_024.pth
+2025-07-17 03:24:49,702 - CurriculumTrainer - INFO - 🔄 Starting Epoch 25/26 (Phase 5: Phase 5: Full sequences)
+2025-07-17 03:24:49,702 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 03:24:50,475 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.3657 | EOS: 84.4%
+2025-07-17 03:25:42,235 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.3294 | EOS: 100.0%
+2025-07-17 03:26:34,924 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.3309 | EOS: 100.0%
+2025-07-17 03:27:29,854 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.3673 | EOS: 100.0%
+2025-07-17 03:28:19,456 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.2486 | EOS: 100.0%
+2025-07-17 03:29:15,957 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.1912 | EOS: 96.9%
+2025-07-17 03:30:10,057 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.4595 | EOS: 100.0%
+2025-07-17 03:35:39,771 - CurriculumTrainer - INFO - Epoch 25/26 | Time: 650.1s | Max Length: 50
+2025-07-17 03:35:39,771 - CurriculumTrainer - INFO - Train - Loss: 0.3546 | EOS: 98.2% | Complete: 48.7%
+2025-07-17 03:35:39,771 - CurriculumTrainer - INFO - Val   - Loss: 1.6633 | EOS: 68.5% | Complete: 36.4%
+2025-07-17 03:35:39,787 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 03:35:40,129 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_025.pth
+2025-07-17 03:35:40,164 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_020.pth
+2025-07-17 03:35:40,165 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_025.pth
+2025-07-17 03:35:40,165 - CurriculumTrainer - INFO - 🔄 Starting Epoch 26/26 (Phase 5: Phase 5: Full sequences)
+2025-07-17 03:35:40,165 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 03:35:41,302 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.3304 | EOS: 100.0%
+2025-07-17 03:36:31,085 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.4242 | EOS: 96.9%
+2025-07-17 03:37:25,763 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.4773 | EOS: 96.9%
+2025-07-17 03:38:16,337 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.5366 | EOS: 100.0%
+2025-07-17 03:39:09,467 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.2550 | EOS: 96.9%
+2025-07-17 03:40:01,010 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.3020 | EOS: 96.9%
+2025-07-17 03:40:54,757 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.5160 | EOS: 90.6%
+2025-07-17 03:46:25,648 - CurriculumTrainer - INFO - Epoch 26/26 | Time: 645.5s | Max Length: 50
+2025-07-17 03:46:25,648 - CurriculumTrainer - INFO - Train - Loss: 0.3380 | EOS: 98.2% | Complete: 48.8%
+2025-07-17 03:46:25,648 - CurriculumTrainer - INFO - Val   - Loss: 1.5970 | EOS: 69.1% | Complete: 34.7%
+2025-07-17 03:46:25,648 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 03:46:26,021 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_026.pth
+2025-07-17 03:46:26,057 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_021.pth
+2025-07-17 03:46:26,057 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_026.pth
+2025-07-17 03:46:26,059 - CurriculumTrainer - INFO - ================================================================================
+2025-07-17 03:46:26,059 - CurriculumTrainer - INFO - CURRICULUM TRAINING COMPLETED
+2025-07-17 03:46:26,060 - CurriculumTrainer - INFO - 🏆 Overall Best EOS Rate: 76.8%
+2025-07-17 03:46:26,060 - CurriculumTrainer - INFO - 📁 Checkpoints saved to: models/checkpoints/curriculum_eos_v1
+2025-07-17 03:46:26,060 - CurriculumTrainer - INFO - ✅ Training SUCCESSFUL! EOS generation target achieved.
+2025-07-17 03:46:26,060 - CurriculumTrainer - INFO - ================================================================================
+2025-07-17 03:46:26,061 - CurriculumTrainer - INFO - ✅ Curriculum training SUCCESSFUL! EOS generation learned.

@@ -30,6 +30,13 @@
 - [x] Add beam search decoding option for improved inference quality
 - [x] Implement Character Error Rate (CER) and other evaluation metrics for model assessment
 - [x] Create inference API for single image OCR with preprocessing and postprocessing
+- [x] **Image Width Limitation Fix**: Fixed critical 512-pixel cropping limitation in inference engine
+  - ✅ Updated `KhmerOCREngine` to use configurable `max_width` instead of hardcoded 512px
+  - ✅ Modified inference engine to read `image_width` from configuration (typically 800px)
+  - ✅ Added `image_width` field to `DataConfig` class for proper configuration access
+  - ✅ Updated all inference scripts to use configured width instead of hardcoded values
+  - ✅ Enabled proper recognition of longer text sequences without truncation during inference
+  - ✅ **Enhanced to 1600px**: Doubled maximum width from 800px to 1600px for handling very long text sequences
 
 ## **Phase 6: Testing & Validation** [3-4 days] ✅ COMPLETED
 - [x] Write unit tests for data pipeline, model components, and utility functions
@@ -83,6 +90,12 @@
   - ✅ Tested configuration loading and model creation successfully
 - [x] **Generate Fixed Validation Set**: Create 6,400 fixed validation images for consistent evaluation
 - [x] **Test System**: Run comprehensive tests to validate on-the-fly training system
+- [x] **Training Sample Inspector with Inference**: Enhanced sample inspection tool for quality verification
+  - ✅ Added model inference functionality to `inspect_training_samples.py`
+  - ✅ Implemented accuracy calculation (exact match and character-level metrics)
+  - ✅ Enhanced HTML viewer with color-coded predictions and visual accuracy display
+  - ✅ Tested with 50 samples: 6.00% exact match, 28.51% character-level accuracy
+  - ✅ Provides comprehensive evaluation of model performance on synthetic training data
 - [ ] **Execute Training**: Start production training targeting ≤1.0% CER performance
 - [ ] **Monitor Progress**: Track training metrics and adjust parameters as needed
 - [ ] **Model Evaluation**: Final evaluation on test set and deployment preparation

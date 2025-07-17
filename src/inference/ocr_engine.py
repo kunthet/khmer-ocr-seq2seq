@@ -32,7 +32,7 @@ class KhmerOCREngine:
         vocab: KhmerVocab,
         device: torch.device = None,
         image_height: int = 32,
-        max_width: int = 512
+        max_width: int = 1600  # Updated from 800 to 1600 to match new config default
     ):
         """
         Initialize OCR engine.
@@ -42,7 +42,7 @@ class KhmerOCREngine:
             vocab: Vocabulary for encoding/decoding
             device: Device to run inference on
             image_height: Fixed height for input images
-            max_width: Maximum width for input images
+            max_width: Maximum width for input images (should match training config)
         """
         self.model = model
         self.vocab = vocab
@@ -431,12 +431,16 @@ class KhmerOCREngine:
                 device=device
             )
         
-        # Create engine
+        # Get max_width from config (use image_width if available, otherwise default to 800)
+        max_width = getattr(config_manager.data_config, 'image_width', 800)
+        
+        # Create engine with configured max_width
         engine = cls(
             model=model,
             vocab=config_manager.vocab,
             device=device,
-            image_height=config_manager.data_config.image_height
+            image_height=config_manager.data_config.image_height,
+            max_width=max_width  # Now uses configured width
         )
         
         return engine

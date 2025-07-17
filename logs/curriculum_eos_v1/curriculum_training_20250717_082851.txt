@@ -1,0 +1,109 @@
+2025-07-17 08:28:51,570 - CurriculumTrainer - INFO - 📝 Training log: logs/curriculum_eos_v1\curriculum_training_20250717_082851.log
+2025-07-17 08:28:51,570 - CurriculumTrainer - INFO - 🎓 Curriculum EOS Training Started
+2025-07-17 08:28:51,570 - CurriculumTrainer - INFO - Arguments: {'resume': '.\\models\\checkpoints\\curriculum_eos_v1\\checkpoint_epoch_026.pth', 'auto_resume': False, 'num_epochs': 36, 'batch_size': 32, 'log_dir': 'logs/curriculum_eos_v1', 'checkpoint_dir': 'models/checkpoints/curriculum_eos_v1'}
+2025-07-17 08:28:53,521 - src.data.onthefly_dataset - INFO - Found 2 training files: ['train_0.txt', 'train_1.txt']
+2025-07-17 08:28:53,761 - src.data.onthefly_dataset - INFO - Loaded 147195 lines from train_0.txt
+2025-07-17 08:28:54,021 - src.data.onthefly_dataset - INFO - Loaded 166118 lines from train_1.txt
+2025-07-17 08:28:54,294 - src.data.onthefly_dataset - INFO - Loaded 313313 text lines for train split
+2025-07-17 08:28:54,446 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded working fonts: ['KhmerOS', 'KhmerOSbattambang', 'KhmerOSbokor', 'KhmerOSfasthand', 'KhmerOSmetalchrieng', 'KhmerOSmuol', 'KhmerOSmuollight', 'KhmerOSsiemreap']
+2025-07-17 08:28:54,446 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Khmer OCR Synthetic Generator initialized
+2025-07-17 08:28:54,446 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Image height: 32px (variable width)
+2025-07-17 08:28:54,446 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded 8 fonts
+2025-07-17 08:28:54,446 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Advanced backgrounds: True
+2025-07-17 08:28:54,446 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Training augmentation: True
+2025-07-17 08:28:54,446 - src.data.onthefly_dataset - INFO - Initialized on-the-fly train dataset:
+2025-07-17 08:28:54,446 - src.data.onthefly_dataset - INFO -   Text lines: 313313
+2025-07-17 08:28:54,446 - src.data.onthefly_dataset - INFO -   Samples per epoch: 10000
+2025-07-17 08:28:54,446 - src.data.onthefly_dataset - INFO -   Augmentation: enabled
+2025-07-17 08:28:54,446 - src.data.onthefly_dataset - INFO -   Fonts: 8
+2025-07-17 08:28:54,446 - src.data.onthefly_dataset - INFO - Found 2 training files: ['train_0.txt', 'train_1.txt']
+2025-07-17 08:28:54,676 - src.data.onthefly_dataset - INFO - Loaded 147195 lines from train_0.txt
+2025-07-17 08:28:54,942 - src.data.onthefly_dataset - INFO - Loaded 166118 lines from train_1.txt
+2025-07-17 08:28:55,236 - src.data.onthefly_dataset - INFO - Loaded 313313 text lines for train split
+2025-07-17 08:28:55,241 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded working fonts: ['KhmerOS', 'KhmerOSbattambang', 'KhmerOSbokor', 'KhmerOSfasthand', 'KhmerOSmetalchrieng', 'KhmerOSmuol', 'KhmerOSmuollight', 'KhmerOSsiemreap']
+2025-07-17 08:28:55,241 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Khmer OCR Synthetic Generator initialized
+2025-07-17 08:28:55,241 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Image height: 32px (variable width)
+2025-07-17 08:28:55,241 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded 8 fonts
+2025-07-17 08:28:55,241 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Advanced backgrounds: True
+2025-07-17 08:28:55,241 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Training augmentation: True
+2025-07-17 08:28:55,241 - src.data.onthefly_dataset - INFO - Initialized on-the-fly train dataset:
+2025-07-17 08:28:55,241 - src.data.onthefly_dataset - INFO -   Text lines: 313313
+2025-07-17 08:28:55,241 - src.data.onthefly_dataset - INFO -   Samples per epoch: 10000
+2025-07-17 08:28:55,241 - src.data.onthefly_dataset - INFO -   Augmentation: enabled
+2025-07-17 08:28:55,241 - src.data.onthefly_dataset - INFO -   Fonts: 8
+2025-07-17 08:28:55,245 - CheckpointManager - INFO - Google Drive backup enabled: \content\drive\MyDrive\KhmerOCR_Checkpoints
+2025-07-17 08:28:55,379 - CheckpointManager - INFO - Loaded checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_026.pth
+2025-07-17 08:28:55,430 - CurriculumTrainer - INFO - 🎓 CURRICULUM LEARNING FOR EOS GENERATION
+2025-07-17 08:28:55,431 - CurriculumTrainer - INFO - Model parameters: 19,268,164
+2025-07-17 08:28:55,431 - CurriculumTrainer - INFO - Device: cuda
+2025-07-17 08:28:55,431 - CurriculumTrainer - INFO - 🔄 Phase 5/5
+2025-07-17 08:28:55,431 - CurriculumTrainer - INFO - 🔄 Resuming Phase 5 from epoch 7/16
+2025-07-17 08:28:55,442 - CurriculumTrainer - INFO - 🔄 Starting Epoch 27/36 (Phase 5: Phase 5: Full sequences)
+2025-07-17 08:28:55,443 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 08:28:57,496 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.2775 | EOS: 90.6%
+2025-07-17 08:29:56,222 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.5927 | EOS: 96.9%
+2025-07-17 08:30:47,890 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.3985 | EOS: 96.9%
+2025-07-17 08:31:41,593 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.2375 | EOS: 100.0%
+2025-07-17 08:32:33,155 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.3422 | EOS: 100.0%
+2025-07-17 08:33:25,884 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.4528 | EOS: 90.6%
+2025-07-17 08:34:15,543 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.3718 | EOS: 93.8%
+2025-07-17 08:39:38,211 - CurriculumTrainer - INFO - Epoch 27/36 | Time: 642.8s | Max Length: 50
+2025-07-17 08:39:38,211 - CurriculumTrainer - INFO - Train - Loss: 0.3316 | EOS: 98.3% | Complete: 48.2%
+2025-07-17 08:39:38,211 - CurriculumTrainer - INFO - Val   - Loss: 1.5913 | EOS: 70.3% | Complete: 36.2%
+2025-07-17 08:39:38,211 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 08:39:38,211 - CurriculumTrainer - INFO - ✅ New best EOS rate: 70.3%
+2025-07-17 08:39:38,577 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_027.pth
+2025-07-17 08:39:38,684 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 08:39:38,829 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 08:39:38,829 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 08:39:38,938 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_027.pth
+2025-07-17 08:39:38,938 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_022.pth
+2025-07-17 08:39:38,938 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_027.pth
+2025-07-17 08:39:38,938 - CurriculumTrainer - INFO - 🔄 Starting Epoch 28/36 (Phase 5: Phase 5: Full sequences)
+2025-07-17 08:39:38,938 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 08:39:39,660 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.1324 | EOS: 100.0%
+2025-07-17 08:40:33,985 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.6361 | EOS: 100.0%
+2025-07-17 08:41:28,807 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.5999 | EOS: 100.0%
+2025-07-17 08:42:22,226 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.2366 | EOS: 100.0%
+2025-07-17 08:43:13,407 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.1627 | EOS: 96.9%
+2025-07-17 08:44:04,619 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.2582 | EOS: 100.0%
+2025-07-17 08:44:58,657 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.2581 | EOS: 100.0%
+2025-07-17 08:50:00,453 - CurriculumTrainer - INFO - Epoch 28/36 | Time: 621.5s | Max Length: 50
+2025-07-17 08:50:00,453 - CurriculumTrainer - INFO - Train - Loss: 0.3274 | EOS: 98.3% | Complete: 48.2%
+2025-07-17 08:50:00,453 - CurriculumTrainer - INFO - Val   - Loss: 1.5451 | EOS: 69.1% | Complete: 35.0%
+2025-07-17 08:50:00,453 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 08:50:00,800 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_028.pth
+2025-07-17 08:50:00,801 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_023.pth
+2025-07-17 08:50:00,801 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_028.pth
+2025-07-17 08:50:00,802 - CurriculumTrainer - INFO - 🔄 Starting Epoch 29/36 (Phase 5: Phase 5: Full sequences)
+2025-07-17 08:50:00,802 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 08:50:01,949 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.5430 | EOS: 96.9%
+2025-07-17 08:50:55,526 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.3108 | EOS: 100.0%
+2025-07-17 08:51:49,785 - CurriculumTrainer - INFO -   Batch 100/313 | Loss: 0.2774 | EOS: 100.0%
+2025-07-17 08:52:44,498 - CurriculumTrainer - INFO -   Batch 150/313 | Loss: 0.3385 | EOS: 93.8%
+2025-07-17 08:53:43,100 - CurriculumTrainer - INFO -   Batch 200/313 | Loss: 0.3313 | EOS: 100.0%
+2025-07-17 08:54:35,781 - CurriculumTrainer - INFO -   Batch 250/313 | Loss: 0.3013 | EOS: 100.0%
+2025-07-17 08:55:30,866 - CurriculumTrainer - INFO -   Batch 300/313 | Loss: 0.3483 | EOS: 100.0%
+2025-07-17 09:01:00,552 - CurriculumTrainer - INFO - Epoch 29/36 | Time: 659.8s | Max Length: 50
+2025-07-17 09:01:00,552 - CurriculumTrainer - INFO - Train - Loss: 0.2893 | EOS: 98.5% | Complete: 47.8%
+2025-07-17 09:01:00,553 - CurriculumTrainer - INFO - Val   - Loss: 1.5045 | EOS: 70.5% | Complete: 35.2%
+2025-07-17 09:01:00,553 - CurriculumTrainer - INFO - Adaptive EOS Weight: 6.00
+2025-07-17 09:01:00,553 - CurriculumTrainer - INFO - ✅ New best EOS rate: 70.5%
+2025-07-17 09:01:00,922 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_029.pth
+2025-07-17 09:01:01,049 - CheckpointManager - INFO - Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+2025-07-17 09:01:01,175 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-17 09:01:01,175 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-17 09:01:01,326 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_029.pth
+2025-07-17 09:01:01,327 - CheckpointManager - INFO - Removed old checkpoint: checkpoint_epoch_024.pth
+2025-07-17 09:01:01,328 - CurriculumTrainer - INFO - 💾 Checkpoint saved: epoch_029.pth
+2025-07-17 09:01:01,328 - CurriculumTrainer - INFO - 🔄 Starting Epoch 30/36 (Phase 5: Phase 5: Full sequences)
+2025-07-17 09:01:01,328 - CurriculumTrainer - INFO - 📊 Max Length: 50 | Adaptive EOS Weight: 6.00
+2025-07-17 09:01:01,979 - CurriculumTrainer - INFO -   Batch 0/313 | Loss: 0.2684 | EOS: 100.0%
+2025-07-17 09:01:54,844 - CurriculumTrainer - INFO -   Batch 50/313 | Loss: 0.2144 | EOS: 100.0%
+2025-07-17 09:02:11,471 - CurriculumTrainer - INFO - ================================================================================
+2025-07-17 09:02:11,471 - CurriculumTrainer - INFO - CURRICULUM TRAINING COMPLETED
+2025-07-17 09:02:11,471 - CurriculumTrainer - INFO - 🏆 Overall Best EOS Rate: 70.5%
+2025-07-17 09:02:11,471 - CurriculumTrainer - INFO - 📁 Checkpoints saved to: models/checkpoints/curriculum_eos_v1
+2025-07-17 09:02:11,471 - CurriculumTrainer - INFO - ✅ Training SUCCESSFUL! EOS generation target achieved.
+2025-07-17 09:02:11,471 - CurriculumTrainer - INFO - ================================================================================
+2025-07-17 09:02:11,471 - CurriculumTrainer - INFO - ✅ Curriculum training SUCCESSFUL! EOS generation learned.

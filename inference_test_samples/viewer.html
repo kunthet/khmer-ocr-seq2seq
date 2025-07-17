@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training Samples Viewer with Inference</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .sample { border: 1px solid #ccc; margin: 10px 0; padding: 10px; }
+        .sample img { max-width: 100%; border: 1px solid #ddd; }
+        .text { font-family: 'Khmer OS', Arial, sans-serif; font-size: 18px; margin: 5px 0; }
+        .ground-truth { background-color: #e8f5e8; padding: 5px; border-radius: 3px; }
+        .prediction { background-color: #f0f8ff; padding: 5px; border-radius: 3px; margin-top: 5px; }
+        .correct { border-left: 4px solid #4CAF50; }
+        .incorrect { border-left: 4px solid #f44336; }
+        .info { font-size: 12px; color: #666; }
+        .header { background: #f0f0f0; padding: 10px; margin-bottom: 20px; }
+        .accuracy { background: #fff3cd; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .metrics { display: flex; gap: 20px; }
+        .metric { text-align: center; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #2196F3; }
+        .metric-label { font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Khmer OCR Training Samples with Inference Results</h1>
+        <p>Generated samples from the training pipeline with model predictions</p>
+        <p><strong>Total samples:</strong> 10</p>
+        <p><strong>Model:</strong> models/checkpoints/full/best_model.pth</p>
+    </div>
+
+    <div class="accuracy">
+        <h2>🎯 Accuracy Results</h2>
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">30.0%</div>
+                <div class="metric-label">Exact Match<br>(3/10)</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">40.2%</div>
+                <div class="metric-label">Character-level<br>Accuracy</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sample correct">
+        <h3>sample_0000</h3>
+        <img src="images/sample_0000.png" alt="sample_0000">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ដើម្បីស្តាប់ព្រះធម៌ទេសនា។</div>
+        <div class="text prediction"><strong>Prediction:</strong> ដើម្បីស្តាប់ព្រះធម៌ទេសនា។</div>
+        <div class="info">
+            Length: 25 chars, 27 tokens | 
+            Size: 189x32 px |
+            Match: ✅ Correct
+        </div>
+    </div>
+
+    <div class="sample correct">
+        <h3>sample_0001</h3>
+        <img src="images/sample_0001.png" alt="sample_0001">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> នេះជួយឱ្យយើងបង្កើតចំណេះដឹងថ្មីៗដោយផ្អែកលើភស្តុតាង។</div>
+        <div class="text prediction"><strong>Prediction:</strong> នេះជួយឱ្យយើងបង្កើតចំណេះដឹងថ្មីៗដោយផ្អែកលើភស្តុតាង។</div>
+        <div class="info">
+            Length: 50 chars, 52 tokens | 
+            Size: 501x32 px |
+            Match: ✅ Correct
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0002</h3>
+        <img src="images/sample_0002.png" alt="sample_0002">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> រមណីយដ្ឋានអង្គរមិនមែនគ្រាន់តែជាសំណង់ប្រាសាទថ្មដ៏ធំស្កឹមស្កៃប៉ុណ្ណោះទេប៉ុន្តែវាក៏ជាសក្ខីភាពនៃចំណេះដឹងដ៏ជ្រៅជ្រះរបស់បុព្វបុរសខ្មែរក្នុងវិស័យស្ថាបត្យក</div>
+        <div class="text prediction"><strong>Prediction:</strong> រមណីយដ្ឋានអង្គរមិនមែនគ្រាន់តែជាសំណង់ប្រាសាទថ្មដ៏ធំស្តឹមស្តែប៉ុណ្ណោះទេប៉ុន្តែវាក៏ជាសក្ខី</div>
+        <div class="info">
+            Length: 147 chars, 149 tokens | 
+            Size: 867x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0003</h3>
+        <img src="images/sample_0003.png" alt="sample_0003">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> "កាលបើមិនអាចជឿបាន រឿងស័ក្តិសិទ្ធិផ្សេងៗរបស់មហាគុរុ ផ្តើមតាំងវិមតិកង្ខាទុកជាមុនថា មិនមែនជារឿងពិត ប៉ុន្តែដើម្បីឲ្យបានភស្តុតាងបន្ថែមទៀត</div>
+        <div class="text prediction"><strong>Prediction:</strong> """កាលបើមិនអាចជឿបាន រឿងស័ក្តិសិទ្ធិផ្សេងៗរបស់មហាគុរុ ផ្តើមត</div>
+        <div class="info">
+            Length: 132 chars, 134 tokens | 
+            Size: 1129x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0004</h3>
+        <img src="images/sample_0004.png" alt="sample_0004">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ក្នុងគ្រា ព.ស ២១០០, គ.ស ១៥៥៦, ម.ស ១៤៧៨, ច.ស. ៩១៨ ឆ្នាំរោង អដ្ឋស័កនោះ ចៅអធិការវត្តព្រះពុទ្ធលាយល័ក្ខណ៍ លោកគង់ទូកសារាយអណ្តែតនោះទៅបិណ្ឌបាត្រឯនគរវត្ត</div>
+        <div class="text prediction"><strong>Prediction:</strong> ក្នុង្គងត្រា ព.ស ២១០០, គ.ស ១៥៥៦, ម.ស ១៤៧៨, ច.ស. ៩១៤ ឆ្នាំរោ</div>
+        <div class="info">
+            Length: 144 chars, 146 tokens | 
+            Size: 1229x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0005</h3>
+        <img src="images/sample_0005.png" alt="sample_0005">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> រហូតធ្វើឲ្យសាសនាគ្រិស្តផ្សព្វផ្សាយទូលំទូលាយយ៉ាងឆាប់រហ័ស។ រីឯព្រះពុទ្ធសាសនាដែធ្លាប់ជាបដិបក្សនឹងនោប៉ុណាង៉ៈ នោះ ពេល</div>
+        <div class="text prediction"><strong>Prediction:</strong> រហូតធ្វើឲ្យសាសនាគ្រិស្តផ្សព្វផ្សាយទូលំទូលាយយ៉ាងឆាប់រហ័ស។ រី</div>
+        <div class="info">
+            Length: 112 chars, 114 tokens | 
+            Size: 979x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0006</h3>
+        <img src="images/sample_0006.png" alt="sample_0006">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ទាំងសាសនារបស់ព្រះពុទ្ធ ខ្ញុំក៏បានប្រតិបត្តិហើយ។ បានឮថា ព្រះសោណាភិក្ខុនី មានអាយុ បានសម្តែងនូវគាថាទាំងនេះ ដោយប្រការដូច្នេះ។</div>
+        <div class="text prediction"><strong>Prediction:</strong> ទាំងសាសនារបស់ព្រះពុទ្ធ ខ្ញុំក៏បានប្រតិបត្តិហើយ។ បានឮថា ព្រះសោណាភិក្ខុនី មានអាយុ បានសម្តែងនូវគាថាទាំងរេ</div>
+        <div class="info">
+            Length: 121 chars, 123 tokens | 
+            Size: 626x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0007</h3>
+        <img src="images/sample_0007.png" alt="sample_0007">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> ដែលត្រូវដឹងដោយភ្នែក ថាមានពីរយ៉ាង គឺរូបគួរសេព១ មិនគួរសេព១ ដូច្នេះនុ៎ះ គឺតថាគតសំដែង សំដៅហេតុនេះឯង។បេ។ សំឡេងដែលត្រូវដឹងដោយត្រចៀក មានសភាពយ៉ាងនេះ</div>
+        <div class="text prediction"><strong>Prediction:</strong> ដែលត្រូវដឹងដោយភ្នែត ថាមានពីយ៉ាង គឺរូបចូតសេ។ មិនកួនសេ។ ដូច្នេះនុ៎ះ គឺតថាគតសំដែង សំដៅសាតុនេះឯង។ចេ។ សំឡើងដែលត្រូវឹងដោយព្រចៀត មានសមា</div>
+        <div class="info">
+            Length: 140 chars, 142 tokens | 
+            Size: 559x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+    <div class="sample correct">
+        <h3>sample_0008</h3>
+        <img src="images/sample_0008.png" alt="sample_0008">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> "អាត្មាមិនបានបំផ្លាញប្រពៃណីសតី ឬប្រពៃណីស្អីរបស់អ្នកណាទេ"</div>
+        <div class="text prediction"><strong>Prediction:</strong> "អាត្មាមិនបានបំផ្លាញប្រពៃណីសតី ឬប្រពៃណីស្អីរបស់អ្នកណាទេ"</div>
+        <div class="info">
+            Length: 56 chars, 58 tokens | 
+            Size: 506x32 px |
+            Match: ✅ Correct
+        </div>
+    </div>
+
+    <div class="sample incorrect">
+        <h3>sample_0009</h3>
+        <img src="images/sample_0009.png" alt="sample_0009">
+        <div class="text ground-truth"><strong>Ground Truth:</strong> លោកធាតុវិទូ លោកមែខ្ស-ថេហ្កម៉ាខបានផ្តល់នូវវគ្គីករណសាស្ត្រមួយអំពីពួកចក្រវាលក្រៅពីចក្រវាលដែលយើងសង្កេតឃើញធ្លាប់ស្គាល់រួចមកហើយ។</div>
+        <div class="text prediction"><strong>Prediction:</strong> លោកធាតុវទូ លោកមែខ្យ ចេហ្ម៉ាង់បានផ្តល់នូវវត្តិករណសាស្ត្រមួយអំពីពួកចត្រវាលត្រៅពឹងក្រវាលដែលយើងសង្កេតឃើញខ្លា</div>
+        <div class="info">
+            Length: 122 chars, 124 tokens | 
+            Size: 607x32 px |
+            Match: ❌ Incorrect
+        </div>
+    </div>
+
+</body>
+</html>

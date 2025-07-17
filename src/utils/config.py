@@ -49,6 +49,7 @@ class TrainingConfig:
 class DataConfig:
     """Data processing configuration."""
     image_height: int = 32
+    image_width: int = 1600  # Maximum width for images (variable width) - doubled from 800
     image_channels: int = 1
     vocab_size: int = 132
     max_sequence_length: int = 256

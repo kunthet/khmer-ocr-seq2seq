@@ -55,8 +55,9 @@ def estimate_memory_usage(model: torch.nn.Module, batch_size: int, device: torch
     model_params = sum(p.numel() * p.element_size() for p in model.parameters())
     
     # Approximate forward pass memory (rough estimate)
-    # Image tensor: batch_size * 1 * 32 * 512 (max width) * 4 bytes
-    image_memory = batch_size * 1 * 32 * 512 * 4
+    # Image tensor: batch_size * 1 * 32 * max_width * 4 bytes (max_width now configurable, typically 1600)
+    max_width = 1600  # Configurable width from config, doubled from 800
+    image_memory = batch_size * 1 * 32 * max_width * 4
     
     # Target tensor and other activations (rough estimate)
     other_memory = batch_size * 256 * 4 * 10  # approximate

@@ -1,0 +1,148 @@
+🚀 Starting Khmer OCR Training...
+Warning: Khmer normalization not available
+Warning: Khmer syllable segmentation not available
+2025-07-17 13:00:47.047540: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1752757247.070293   48496 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1752757247.076958   48496 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-07-17 13:00:50,933 - KhmerOCROnTheFlyTraining - INFO - ======================================================================
+2025-07-17 13:00:50,933 - KhmerOCROnTheFlyTraining - INFO - Khmer OCR Seq2Seq On-the-Fly Training
+2025-07-17 13:00:50,933 - KhmerOCROnTheFlyTraining - INFO - ======================================================================
+2025-07-17 13:00:50,939 - KhmerOCROnTheFlyTraining - INFO - Using device: cuda
+2025-07-17 13:00:50,958 - KhmerOCROnTheFlyTraining - INFO - GPU: NVIDIA A100-SXM4-40GB
+2025-07-17 13:00:50,959 - KhmerOCROnTheFlyTraining - INFO - GPU Memory: 39.6 GB
+2025-07-17 13:00:50,959 - KhmerOCROnTheFlyTraining - INFO - Found fixed validation set at: data/validation_fixed
+2025-07-17 13:00:50,959 - KhmerOCROnTheFlyTraining - INFO - Loading configuration from: configs/train_config.yaml
+2025-07-17 13:00:50,962 - KhmerOCROnTheFlyTraining - INFO - Training Configuration:
+2025-07-17 13:00:50,962 - KhmerOCROnTheFlyTraining - INFO -   Epochs: 150
+2025-07-17 13:00:50,962 - KhmerOCROnTheFlyTraining - INFO -   Learning rate: 1e-06
+2025-07-17 13:00:50,962 - KhmerOCROnTheFlyTraining - INFO -   Optimizer: adam
+2025-07-17 13:00:50,962 - KhmerOCROnTheFlyTraining - INFO -   Teacher forcing ratio: 1.0
+2025-07-17 13:00:50,962 - KhmerOCROnTheFlyTraining - INFO -   Gradient clip: 5.0
+2025-07-17 13:00:50,962 - KhmerOCROnTheFlyTraining - INFO -   Training samples per epoch: 128000
+2025-07-17 13:00:50,964 - root - INFO - Creating Khmer OCR Seq2Seq model...
+2025-07-17 13:00:51,350 - root - INFO - Model created successfully
+2025-07-17 13:00:51,350 - root - INFO - Total parameters: 19,268,164
+2025-07-17 13:00:51,350 - root - INFO - Trainable parameters: 19,268,164
+2025-07-17 13:00:51,350 - KhmerOCROnTheFlyTraining - INFO - Using specified batch size: 32
+2025-07-17 13:00:51,350 - root - INFO - Creating datasets...
+2025-07-17 13:00:51,350 - src.data.onthefly_dataset - INFO - Found 2 training files: ['train_0.txt', 'train_1.txt']
+2025-07-17 13:00:51,539 - src.data.onthefly_dataset - INFO - Loaded 147195 lines from train_0.txt
+2025-07-17 13:00:51,758 - src.data.onthefly_dataset - INFO - Loaded 166118 lines from train_1.txt
+2025-07-17 13:00:51,897 - src.data.onthefly_dataset - INFO - Loaded 313313 text lines for train split
+2025-07-17 13:00:51,911 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded working fonts: ['KhmerOS', 'KhmerOSmuollight', 'KhmerOSsiemreap', 'KhmerOSbokor', 'KhmerOSmuol', 'KhmerOSfasthand', 'KhmerOSmetalchrieng', 'KhmerOSbattambang']
+2025-07-17 13:00:51,912 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Khmer OCR Synthetic Generator initialized
+2025-07-17 13:00:51,912 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Image height: 32px (variable width)
+2025-07-17 13:00:51,912 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded 8 fonts
+2025-07-17 13:00:51,912 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Advanced backgrounds: True
+2025-07-17 13:00:51,912 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Training augmentation: True
+2025-07-17 13:00:51,912 - src.data.onthefly_dataset - INFO - Initialized on-the-fly train dataset:
+2025-07-17 13:00:51,912 - src.data.onthefly_dataset - INFO -   Text lines: 313313
+2025-07-17 13:00:51,912 - src.data.onthefly_dataset - INFO -   Samples per epoch: 128000
+2025-07-17 13:00:51,912 - src.data.onthefly_dataset - INFO -   Augmentation: enabled
+2025-07-17 13:00:51,912 - src.data.onthefly_dataset - INFO -   Fonts: 8
+🔄 Caching text strings for 128000 samples...
+✅ Text caching complete! 128000 texts cached.
+2025-07-17 13:00:51,932 - root - INFO - Applied CurriculumDataset wrapper with max_length=150 for training
+2025-07-17 13:00:51,932 - root - INFO - Loading fixed validation set from data/validation_fixed
+2025-07-17 13:00:51,993 - src.data.synthetic_dataset - INFO - Loaded 6400 samples from metadata
+2025-07-17 13:00:51,993 - src.data.synthetic_dataset - INFO - Loaded 6400 samples for val split from data/validation_fixed
+2025-07-17 13:00:51,993 - root - INFO - Created train dataloader: 4000 batches (128000 samples)
+2025-07-17 13:00:51,993 - root - INFO - Created val dataloader: 200 batches (6400 samples)
+2025-07-17 13:00:51,993 - KhmerOCROnTheFlyTraining - INFO - Initializing trainer...
+2025-07-17 13:00:53,174 - CheckpointManager - INFO - Google Drive backup enabled: /content/drive/MyDrive/KhmerOCR_Checkpoints
+2025-07-17 13:00:53,180 - KhmerOCRTrainer - INFO - Google Drive backup: [READY]
+2025-07-17 13:00:53,180 - KhmerOCRTrainer - INFO - Google Drive dir: /content/drive/MyDrive/KhmerOCR_Checkpoints
+2025-07-17 13:00:53,181 - KhmerOCROnTheFlyTraining - INFO - Starting on-the-fly training...
+2025-07-17 13:00:53,181 - KhmerOCROnTheFlyTraining - INFO - Training Method: On-the-fly image generation
+2025-07-17 13:00:53,181 - KhmerOCROnTheFlyTraining - INFO - Training Samples: 128000 per epoch (unlimited variety)
+2025-07-17 13:00:53,181 - KhmerOCROnTheFlyTraining - INFO - Validation Samples: 6400 (fixed set)
+2025-07-17 13:00:53,181 - KhmerOCROnTheFlyTraining - INFO - Target: <=1.0% CER (Character Error Rate)
+2025-07-17 13:00:53,181 - KhmerOCRTrainer - INFO - Loading checkpoint from /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-17 13:00:53,374 - CheckpointManager - INFO - Loaded checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-17 13:00:53,438 - KhmerOCRTrainer - INFO - Resumed from epoch 32
+2025-07-17 13:00:53,439 - KhmerOCRTrainer - INFO - Best CER so far: 0.98%
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO - Starting training...
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO - Training configuration:
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO -   Epochs: 150
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO -   Batch size: 32
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO -   Learning rate: 1e-06
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO -   Teacher forcing ratio: 1.0
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO -   Device: cuda
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO - 
+============================================================
+2025-07-17 13:00:53,441 - KhmerOCRTrainer - INFO - Epoch 33/150
+2025-07-17 13:00:53,442 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-17 13:00:56,509 - KhmerOCRTrainer - INFO - Epoch 32, Batch 0/4000 (0.0%), Loss: 0.2709
+2025-07-17 13:02:13,202 - KhmerOCRTrainer - INFO - Epoch 32, Batch 100/4000 (2.5%), Loss: 0.2447
+2025-07-17 13:03:29,356 - KhmerOCRTrainer - INFO - Epoch 32, Batch 200/4000 (5.0%), Loss: 0.2305
+2025-07-17 13:04:45,608 - KhmerOCRTrainer - INFO - Epoch 32, Batch 300/4000 (7.5%), Loss: 0.1118
+2025-07-17 13:06:02,155 - KhmerOCRTrainer - INFO - Epoch 32, Batch 400/4000 (10.0%), Loss: 0.4219
+2025-07-17 13:07:18,380 - KhmerOCRTrainer - INFO - Epoch 32, Batch 500/4000 (12.5%), Loss: 0.1808
+2025-07-17 13:08:34,450 - KhmerOCRTrainer - INFO - Epoch 32, Batch 600/4000 (15.0%), Loss: 0.0950
+2025-07-17 13:09:50,947 - KhmerOCRTrainer - INFO - Epoch 32, Batch 700/4000 (17.5%), Loss: 0.1339
+2025-07-17 13:11:07,495 - KhmerOCRTrainer - INFO - Epoch 32, Batch 800/4000 (20.0%), Loss: 0.2437
+2025-07-17 13:12:23,331 - KhmerOCRTrainer - INFO - Epoch 32, Batch 900/4000 (22.5%), Loss: 0.1861
+2025-07-17 13:13:39,623 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1000/4000 (25.0%), Loss: 0.2151
+2025-07-17 13:14:56,350 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1100/4000 (27.5%), Loss: 0.1727
+2025-07-17 13:16:12,530 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1200/4000 (30.0%), Loss: 0.1455
+2025-07-17 13:17:28,927 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1300/4000 (32.5%), Loss: 0.2059
+2025-07-17 13:18:45,036 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1400/4000 (35.0%), Loss: 0.3454
+2025-07-17 13:20:01,588 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1500/4000 (37.5%), Loss: 0.2257
+2025-07-17 13:21:17,799 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1600/4000 (40.0%), Loss: 0.2216
+2025-07-17 13:22:34,143 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1700/4000 (42.5%), Loss: 0.1028
+2025-07-17 13:23:51,055 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1800/4000 (45.0%), Loss: 0.1451
+2025-07-17 13:25:07,474 - KhmerOCRTrainer - INFO - Epoch 32, Batch 1900/4000 (47.5%), Loss: 0.2666
+2025-07-17 13:26:24,015 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2000/4000 (50.0%), Loss: 0.1306
+2025-07-17 13:27:41,380 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2100/4000 (52.5%), Loss: 0.1584
+2025-07-17 13:28:57,922 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2200/4000 (55.0%), Loss: 0.3340
+2025-07-17 13:30:14,862 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2300/4000 (57.5%), Loss: 0.2601
+2025-07-17 13:31:30,955 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2400/4000 (60.0%), Loss: 0.3039
+2025-07-17 13:32:47,166 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2500/4000 (62.5%), Loss: 0.3662
+2025-07-17 13:34:03,220 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2600/4000 (65.0%), Loss: 0.1330
+2025-07-17 13:35:19,304 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2700/4000 (67.5%), Loss: 0.1839
+2025-07-17 13:36:36,043 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2800/4000 (70.0%), Loss: 0.1573
+2025-07-17 13:37:52,911 - KhmerOCRTrainer - INFO - Epoch 32, Batch 2900/4000 (72.5%), Loss: 0.2447
+2025-07-17 13:39:09,536 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3000/4000 (75.0%), Loss: 0.1673
+2025-07-17 13:40:25,914 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3100/4000 (77.5%), Loss: 0.0895
+2025-07-17 13:41:42,417 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3200/4000 (80.0%), Loss: 0.2457
+2025-07-17 13:42:59,074 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3300/4000 (82.5%), Loss: 0.1417
+2025-07-17 13:44:16,106 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3400/4000 (85.0%), Loss: 0.1746
+2025-07-17 13:45:32,600 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3500/4000 (87.5%), Loss: 0.2925
+2025-07-17 13:46:49,170 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3600/4000 (90.0%), Loss: 0.2263
+2025-07-17 13:48:05,578 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3700/4000 (92.5%), Loss: 0.0420
+2025-07-17 13:49:21,757 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3800/4000 (95.0%), Loss: 0.1163
+2025-07-17 13:50:38,544 - KhmerOCRTrainer - INFO - Epoch 32, Batch 3900/4000 (97.5%), Loss: 0.0614
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-17 13:52:39,027 - KhmerOCRTrainer - INFO - 
+Epoch 33 Results:
+2025-07-17 13:52:39,027 - KhmerOCRTrainer - INFO -   Train Loss: 0.2209
+2025-07-17 13:52:39,027 - KhmerOCRTrainer - INFO -   Val Loss: 0.9664
+2025-07-17 13:52:39,027 - KhmerOCRTrainer - INFO -   Val CER: 0.88%
+2025-07-17 13:52:39,027 - KhmerOCRTrainer - INFO -   Epoch Time: 3060.85s
+2025-07-17 13:52:39,027 - KhmerOCRTrainer - INFO -   New best CER: 0.88%
+2025-07-17 13:52:39,523 - CheckpointManager - INFO - Saved checkpoint: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/checkpoint_epoch_032.pth
+2025-07-17 13:52:40,321 - CheckpointManager - INFO - Saved best model: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-17 13:52:41,052 - CheckpointManager - INFO - Backed up best model to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/best_model.pth
+2025-07-17 13:52:41,056 - CheckpointManager - INFO - Saved training history to Google Drive: /content/drive/MyDrive/KhmerOCR_Checkpoints/models/training_history.json
+2025-07-17 13:52:41,059 - KhmerOCRTrainer - INFO - 
+Target CER achieved: 0.88%
+2025-07-17 13:52:41,060 - KhmerOCRTrainer - INFO - Stopping training early!
+2025-07-17 13:52:41,060 - KhmerOCRTrainer - INFO - 
+Training completed!
+2025-07-17 13:52:41,060 - KhmerOCRTrainer - INFO - Total training time: 0.86 hours
+2025-07-17 13:52:41,060 - KhmerOCRTrainer - INFO - Best CER: 0.88%
+2025-07-17 13:52:41,060 - KhmerOCROnTheFlyTraining - INFO - Training completed successfully!
+2025-07-17 13:52:41,060 - KhmerOCROnTheFlyTraining - INFO - Running final validation...
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-17 13:53:25,719 - KhmerOCROnTheFlyTraining - INFO - Final Validation Results:
+2025-07-17 13:53:25,720 - KhmerOCROnTheFlyTraining - INFO -   Loss: 0.9664
+2025-07-17 13:53:25,720 - KhmerOCROnTheFlyTraining - INFO -   CER: 0.88%
+2025-07-17 13:53:25,720 - KhmerOCROnTheFlyTraining - INFO - 🎉 SUCCESS: Target CER achieved!
+✅ Training completed!

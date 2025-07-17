@@ -300,7 +300,8 @@ def main():
             engine = KhmerOCREngine(
                 model=model,
                 vocab=config.vocab,
-                device=device
+                device=device,
+                max_width=config.data_config.image_width  # Use configured width
             )
         
         # Create sample images

@@ -45,7 +45,7 @@ training:
 # Data Configuration
 data:
   image_height: 32
-  image_width: 800  # Variable width
+  image_width: 1600  # Variable width - doubled from 800 to handle longer texts
   image_channels: 1
   vocab_size: 132  # Updated from 131 to 132 tokens
   max_sequence_length: 256
