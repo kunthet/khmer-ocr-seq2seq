@@ -356,8 +356,15 @@ class KhmerTextRenderer:
         Returns:
             Tuple of (rendered_image, metadata)
         """
+        # First restore whitespace tags to actual spaces
+        try:
+            from src.khtext.subword_cluster import restore_whitespace_tags
+            text_with_spaces = restore_whitespace_tags(text)
+        except ImportError:
+            text_with_spaces = text  # Fallback if module not available
+        
         # Normalize the text first
-        normalized_text = self.normalize_khmer_text(text)
+        normalized_text = self.normalize_khmer_text(text_with_spaces)
         
         # Choose rendering method based on availability and text type
         if HARFBUZZ_AVAILABLE and self.is_khmer_text(normalized_text):

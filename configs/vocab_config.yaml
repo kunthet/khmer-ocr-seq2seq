@@ -1,58 +1,171 @@
-# Khmer Vocabulary Configuration
-# Total: 117 tokens (4 special + 113 Khmer characters)
- 
-special_tokens:
-  sos: "SOS"
-  eos: "EOS"
-  pad: "PAD"
-  unk: "UNK"
+# Khmer OCR Vocabulary Configuration
+# Updated to include all missing characters for complete Khmer support
 
-# Token indices
-special_indices:
-  sos_idx: 0
-  eos_idx: 1
-  pad_idx: 2
-  unk_idx: 3
-
-# Vocabulary categories
 vocabulary:
+  # Total vocabulary size
+  vocab_size: 132  # Updated from 131 to 132 tokens
+  
   # Special tokens (4)
-  special_count: 4
+  special_tokens:
+    - "SOS"    # Start of sequence
+    - "EOS"    # End of sequence  
+    - "PAD"    # Padding token
+    - "UNK"    # Unknown token
   
-  # Khmer numbers (10)
-  khmer_numbers: ["០", "១", "២", "៣", "៤", "៥", "៦", "៧", "៨", "៩"]
+  # Numbers (20): Khmer (10) + Arabic (10)
+  khmer_numbers:
+    - "០"
+    - "១"
+    - "២"
+    - "៣"
+    - "៤"
+    - "៥"
+    - "៦"
+    - "៧"
+    - "៨"
+    - "៩"
   
-  # Arabic numbers (10)
-  arabic_numbers: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  arabic_numbers:
+    - "0"
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+    - "8"
+    - "9"
   
-  # Consonants (33)
-  consonants: [
-    "ក", "ខ", "គ", "ឃ", "ង", "ច", "ឆ", "ជ", "ឈ", "ញ",
-    "ដ", "ឋ", "ឌ", "ឍ", "ណ", "ត", "ថ", "ទ", "ធ", "ន",
-    "ប", "ផ", "ព", "ភ", "ម", "យ", "រ", "ល", "វ", "ស",
-    "ហ", "ឡ", "អ"
-  ]
+  # Consonants (35) - Including deprecated/rare consonants
+  consonants:
+    - "ក"
+    - "ខ"
+    - "គ"
+    - "ឃ"
+    - "ង"
+    - "ច"
+    - "ឆ"
+    - "ជ"
+    - "ឈ"
+    - "ញ"
+    - "ដ"
+    - "ឋ"
+    - "ឌ"
+    - "ឍ"
+    - "ណ"
+    - "ត"
+    - "ថ"
+    - "ទ"
+    - "ធ"
+    - "ន"
+    - "ប"
+    - "ផ"
+    - "ព"
+    - "ភ"
+    - "ម"
+    - "យ"
+    - "រ"
+    - "ល"
+    - "វ"
+    - "ឝ"  # Deprecated consonant
+    - "ឞ"  # Deprecated consonant
+    - "ស"
+    - "ហ"
+    - "ឡ"
+    - "អ"
   
-  # Independent vowels (12)
-  independent_vowels: [
-    "ឥ", "ឦ", "ឧ", "ឩ", "ឪ", "ឫ", "ឬ", "ឭ", "ឮ", "ឯ", "ឰ", "ឱ"
-  ]
+  # Independent vowels (16) - All Khmer independent vowels
+  independent_vowels:
+    - "ឣ"  # Inherent vowel A
+    - "ឤ"  # Independent vowel II
+    - "ឥ"  # Independent vowel I
+    - "ឦ"  # Independent vowel II
+    - "ឧ"  # Independent vowel U
+    - "ឨ"  # Independent vowel UU
+    - "ឩ"  # Independent vowel RY
+    - "ឪ"  # Independent vowel RYY
+    - "ឫ"  # Independent vowel LY
+    - "ឬ"  # Independent vowel LYY
+    - "ឭ"  # Independent vowel E
+    - "ឮ"  # Independent vowel AI
+    - "ឯ"  # Independent vowel OO
+    - "ឰ"  # Independent vowel AU
+    - "ឱ"  # Independent vowel O
+    - "ឲ"  # Independent vowel OO (alternative)
   
   # Dependent vowels (23)
-  dependent_vowels: [
-    "ា", "ិ", "ី", "ឹ", "ឺ", "ុ", "ូ", "ួ", "ើ", "ឿ",
-    "ៀ", "េ", "ែ", "ៃ", "ោ", "ៅ", "ាំ", "ះ", "ៈ", "ំ",
-    "ុំ", "ាៈ", "េៈ"
-  ]
+  dependent_vowels:
+    - "ា"   # Vowel sign AA
+    - "ិ"   # Vowel sign I
+    - "ី"   # Vowel sign II
+    - "ឹ"   # Vowel sign Y
+    - "ឺ"   # Vowel sign YY
+    - "ុ"   # Vowel sign U
+    - "ូ"   # Vowel sign UU
+    - "ួ"   # Vowel sign UA
+    - "ើ"   # Vowel sign OE
+    - "ឿ"   # Vowel sign YA
+    - "ៀ"   # Vowel sign IE
+    - "េ"   # Vowel sign E
+    - "ែ"   # Vowel sign AE
+    - "ៃ"   # Vowel sign AI
+    - "ោ"   # Vowel sign O
+    - "ៅ"   # Vowel sign AU
+    - "ាំ"  # Vowel sign AM
+    - "ះ"   # Vowel sign AH
+    - "ៈ"   # Vowel sign YUUKALEAPINTU
+    - "ំ"   # Nikahit
+    - "ុំ"  # Vowel sign UM
+    - "ាៈ"  # Vowel sign AA + YUUKALEAPINTU
+    - "េៈ"  # Vowel sign E + YUUKALEAPINTU
   
-  # Subscript (1)
-  subscript: ["្"]
+  # Subscript diacritic (1)
+  subscript:
+    - "្"   # Coeng (subscript consonant marker)
   
-  # Diacritics (10)
-  diacritics: ["់", "៉", "៊", "័", "៏", "៌", "៍", "៎", "៑", "៓"]
+  # Other diacritics (10)
+  diacritics:
+    - "់"   # Bantoc
+    - "៉"   # Muusikatoan
+    - "៊"   # Triisap
+    - "័"   # Robat
+    - "៏"   # Ahsda
+    - "៌"   # Toandakhiat
+    - "៍"   # Niggahita
+    - "៎"   # Reahmuk
+    - "៑"   # Viriam
+    - "៓"   # Bathamasat
   
-  # Symbols (14)
-  symbols: ["(", ")", ",", ".", "៕", "។", "ៗ", "?", " ", ";", ":", "-", "!", "\""]
+  # Symbols (23) - Including punctuation and special characters
+  symbols:
+    - "("
+    - ")"
+    - ","
+    - "."
+    - "៕"   # Bariyoosan
+    - "។"   # Khan
+    - "៖"   # Camnuc Pi Kuuh
+    - "ៗ"   # Lek Too
+    - "៘"   # Beyyal
+    - "៙"   # Phnaek Muan
+    - "៚"   # Koomuut
+    - "៛"   # Riel
+    - "ៜ"   # Sen
+    - "៝"   # Atthacan
+    - "?"
+    - " "    # Space
+    - ";"
+    - ":"
+    - "-"
+    - "!"
+    - "\""
+    - "["
+    - "]"
 
-# Total vocabulary size
-total_size: 117 
+# Token mappings for quick lookup
+token_indices:
+  SOS: 0
+  EOS: 1
+  PAD: 2
+  UNK: 3 

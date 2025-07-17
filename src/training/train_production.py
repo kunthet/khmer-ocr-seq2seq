@@ -147,7 +147,7 @@ def main():
         
         # Create model
         logger.info("Creating Khmer OCR Seq2Seq model...")
-        model = KhmerOCRSeq2Seq(vocab_size=len(config.vocab))
+        model = KhmerOCRSeq2Seq(config_or_vocab_size=config)
         
         # Model info
         total_params = sum(p.numel() for p in model.parameters())

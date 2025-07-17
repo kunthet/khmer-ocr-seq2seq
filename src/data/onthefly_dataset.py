@@ -43,7 +43,7 @@ class OnTheFlyDataset(Dataset):
         config_manager: Optional[ConfigManager] = None,
         corpus_dir: str = "data/processed",
         samples_per_epoch: int = 10000,
-        augment_prob: float = 0.8,
+        augment_prob: float = 0.4,
         fonts: Optional[List[str]] = None,
         shuffle_texts: bool = True,
         random_seed: Optional[int] = None

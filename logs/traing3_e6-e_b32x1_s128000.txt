@@ -713,3 +713,15 @@ Epoch 18 Results:
 2025-07-14 00:40:57,886 - KhmerOCROnTheFlyTraining - INFO - 
 Training interrupted by user
 ✅ Training completed!
+
+
+The Bad News:
+GPU Utilization is Low: GPU usage is fluctuating wildly and is mostly below 50%. This indicates a data loading bottleneck. The CPU is struggling to generate synthetic images on-the-fly fast enough to keep the RTX 3090 fed, even with 6 worker processes.
+Character Error Rate (CER) is Catastrophic: The CER is stuck at ~116% and isn't improving. This means the model is outputting complete gibberish. A CER over 100% usually means the model's predictions are longer than the actual labels and are entirely incorrect.
+
+The Bottleneck: OnTheFlyDataset is too slow for real-time training with this powerful GPU. It's a classic I/O-bound problem where the GPU is sitting idle waiting for the CPU to prepare data.
+The Terrible CER: This is a more critical issue. When a model's loss decreases but its real-world metric (CER) is abysmal, it often points to a problem in the validation or decoding step. The model is likely learning to minimize the loss in a way that doesn't produce correct text (e.g., by outputting lots of padding or unknown tokens).
+
+You've spotted a crucial bug! My previous change was based on an incorrect assumption. The KhmerVocab.decode method in src/utils/config.py does not have the skip_special_tokens parameter I tried to use.
+This is the root cause of the 116% CER. The validation logic isn't properly stripping the special tokens (<PAD>, <UNK>, etc.) before comparing the predicted text to the target text, leading to a massive error rate.
+I will now implement the fix correctly.

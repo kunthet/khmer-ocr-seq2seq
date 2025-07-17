@@ -1,15 +1,17 @@
-# Khmer Vocabulary Configuration
-# Total: 117 tokens as specified in PRD
- 
-# Special Tokens (4)
-special_tokens:
+# Complete Khmer OCR Vocabulary - 132 tokens
+# Includes all Khmer characters for comprehensive text recognition
+
+vocab_size: 132
+
+# Complete vocabulary list in order
+vocabulary:
+  # Special tokens (4)
   - "SOS"
   - "EOS"
   - "PAD"
   - "UNK"
-
-# Khmer Numbers (10)
-khmer_numbers:
+  
+  # Khmer numbers (10)
   - "០"
   - "១"
   - "២"
@@ -20,9 +22,8 @@ khmer_numbers:
   - "៧"
   - "៨"
   - "៩"
-
-# Arabic Numbers (10)
-arabic_numbers:
+  
+  # Arabic numbers (10)
   - "0"
   - "1"
   - "2"
@@ -33,9 +34,8 @@ arabic_numbers:
   - "7"
   - "8"
   - "9"
-
-# Consonants (33)
-consonants:
+  
+  # Consonants (35)
   - "ក"
   - "ខ"
   - "គ"
@@ -65,16 +65,20 @@ consonants:
   - "រ"
   - "ល"
   - "វ"
+  - "ឝ"
+  - "ឞ"
   - "ស"
   - "ហ"
   - "ឡ"
   - "អ"
-
-# Independent Vowels (12)
-independent_vowels:
+  
+  # Independent vowels (16)
+  - "ឣ"
+  - "ឤ"
   - "ឥ"
   - "ឦ"
   - "ឧ"
+  - "ឨ"
   - "ឩ"
   - "ឪ"
   - "ឫ"
@@ -84,9 +88,9 @@ independent_vowels:
   - "ឯ"
   - "ឰ"
   - "ឱ"
-
-# Dependent Vowels (23)
-dependent_vowels:
+  - "ឲ"
+  
+  # Dependent vowels (23)
   - "ា"
   - "ិ"
   - "ី"
@@ -110,13 +114,11 @@ dependent_vowels:
   - "ុំ"
   - "ាៈ"
   - "េៈ"
-
-# Subscript (1)
-subscript:
+  
+  # Subscript (1)
   - "្"
-
-# Diacritics (10)
-diacritics:
+  
+  # Diacritics (10)
   - "់"
   - "៉"
   - "៊"
@@ -127,16 +129,22 @@ diacritics:
   - "៎"
   - "៑"
   - "៓"
-
-# Symbols (14)
-symbols:
+  
+  # Symbols (23)
   - "("
   - ")"
   - ","
   - "."
   - "៕"
   - "។"
+  - "៖"
   - "ៗ"
+  - "៘"
+  - "៙"
+  - "៚"
+  - "៛"
+  - "ៜ"
+  - "៝"
   - "?"
   - " "
   - ";"
@@ -144,16 +152,12 @@ symbols:
   - "-"
   - "!"
   - "\""
+  - "["
+  - "]"
 
-# Summary
-total_tokens: 117
-categories:
-  special_tokens: 4
-  khmer_numbers: 10
-  arabic_numbers: 10
-  consonants: 33
-  independent_vowels: 12
-  dependent_vowels: 23
-  subscript: 1
-  diacritics: 10
-  symbols: 14 
+# Special token indices
+special_indices:
+  SOS: 0
+  EOS: 1
+  PAD: 2
+  UNK: 3 

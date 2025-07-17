@@ -22,6 +22,7 @@ sys.path.append(str(project_root))
 from src.models.seq2seq import KhmerOCRSeq2Seq
 from src.data.onthefly_dataset import OnTheFlyDataset, OnTheFlyCollateFunction
 from src.data.synthetic_dataset import SyntheticImageDataset, SyntheticCollateFunction
+from src.data.curriculum_dataset import CurriculumDataset, curriculum_collate_fn
 from src.utils.config import ConfigManager
 from src.training.trainer import Trainer
 
@@ -61,6 +62,70 @@ def estimate_memory_usage(model: torch.nn.Module, batch_size: int, device: torch
     
     total_bytes = model_params + image_memory + other_memory
     return total_bytes / (1024**3)  # Convert to GB
+
+
+class CompatibleCollateFunction:
+    """
+    Collate function that adapts curriculum_collate_fn output 
+    to match trainer expectations for backward compatibility.
+    Picklable for multiprocessing.
+    """
+    
+    def __init__(self, vocab):
+        self.vocab = vocab
+        self.pad_idx = vocab.PAD_IDX
+    
+    def __call__(self, batch):
+        # Call the original curriculum collate function
+        collated = curriculum_collate_fn(batch)
+        
+        # Extract data
+        images = collated['image']  # curriculum returns 'image' (singular)
+        targets = collated['targets']
+        
+        # Calculate missing information
+        batch_size = images.shape[0]
+        image_lengths = []
+        target_lengths = []
+        texts = []
+        
+        # Calculate image lengths (width of each image before padding)
+        for i in range(batch_size):
+            img = images[i]
+            # Find actual width by checking where padding starts (assuming padding is zeros)
+            if len(img.shape) == 3:  # (C, H, W)
+                # Find rightmost non-zero column
+                non_zero_cols = torch.any(torch.any(img, dim=0), dim=0)
+                if non_zero_cols.any():
+                    width = torch.where(non_zero_cols)[0][-1].item() + 1
+                else:
+                    width = 1
+            else:
+                width = img.shape[-1]
+            image_lengths.append(width)
+        
+        # Calculate target lengths (length of each sequence before padding)
+        for target in targets:
+            # Find actual length by finding last non-PAD token
+            non_pad_mask = (target != self.pad_idx)
+            if non_pad_mask.any():
+                length = torch.where(non_pad_mask)[0][-1].item() + 1
+            else:
+                length = 1
+            target_lengths.append(length)
+        
+        # Extract texts if available in batch items
+        for item in batch:
+            texts.append(item.get('text', ''))
+        
+        # Return in format expected by trainer
+        return {
+            'images': images,  # Changed to plural to match trainer expectation
+            'targets': targets,
+            'image_lengths': torch.tensor(image_lengths),
+            'target_lengths': torch.tensor(target_lengths),
+            'texts': texts
+        }
 
 
 def calculate_batch_size(model: torch.nn.Module, device: torch.device) -> int:
@@ -105,8 +170,8 @@ def create_data_loaders(
     """
     logging.info("Creating datasets...")
     
-    # Create on-the-fly training dataset
-    train_dataset = OnTheFlyDataset(
+    # Create base on-the-fly training dataset
+    base_train_dataset = OnTheFlyDataset(
         split="train",
         config_manager=config_manager,
         corpus_dir=corpus_dir,
@@ -115,6 +180,10 @@ def create_data_loaders(
         shuffle_texts=True,
         random_seed=None  # No seed for maximum variety
     )
+    
+    # Wrap with CurriculumDataset for length control (max_length=150)
+    train_dataset = CurriculumDataset(base_train_dataset, max_length=150, config_manager=config_manager)
+    logging.info(f"Applied CurriculumDataset wrapper with max_length=150 for training")
     
     # Create fixed validation dataset
     validation_path = Path(validation_dir)
@@ -132,7 +201,7 @@ def create_data_loaders(
         # Fallback to on-the-fly validation (not recommended)
         logging.warning(f"Fixed validation set not found at {validation_dir}")
         logging.warning("Using on-the-fly validation generation (not recommended for reproducibility)")
-        val_dataset = OnTheFlyDataset(
+        base_val_dataset = OnTheFlyDataset(
             split="val",
             config_manager=config_manager,
             corpus_dir=corpus_dir,
@@ -141,10 +210,12 @@ def create_data_loaders(
             shuffle_texts=False,
             random_seed=42  # Fixed seed for validation
         )
-        val_collate_fn = OnTheFlyCollateFunction(config_manager.vocab)
+        # Wrap with CurriculumDataset for consistent length control
+        val_dataset = CurriculumDataset(base_val_dataset, max_length=150, config_manager=config_manager)
+        val_collate_fn = CompatibleCollateFunction(config_manager.vocab)
     
-    # Create collate functions
-    train_collate_fn = OnTheFlyCollateFunction(config_manager.vocab)
+    # Use compatible collate function that adapts curriculum output to trainer expectations
+    train_collate_fn = CompatibleCollateFunction(config_manager.vocab)
     
     # Create data loaders
     train_dataloader = DataLoader(
@@ -175,7 +246,8 @@ def create_model(config: ConfigManager, device: torch.device) -> KhmerOCRSeq2Seq
     """Create and initialize the model"""
     logging.info("Creating Khmer OCR Seq2Seq model...")
     
-    model = KhmerOCRSeq2Seq(vocab_size=len(config.vocab))
+    # Pass the ConfigManager object to use the correct configuration
+    model = KhmerOCRSeq2Seq(config_or_vocab_size=config)
     
     # Model info
     total_params = sum(p.numel() for p in model.parameters())

@@ -642,7 +642,7 @@ def main():
         
         # Create model
         logger.info("Creating Khmer OCR Seq2Seq model...")
-        model = KhmerOCRSeq2Seq(vocab_size=len(config.vocab))
+        model = KhmerOCRSeq2Seq(config_or_vocab_size=config)
         model = model.to(device)
         
         # Model info

@@ -406,8 +406,12 @@ class TextRenderer:
         Returns:
             PIL Image object
         """
+        # First restore whitespace tags to actual spaces
+        from src.khtext.subword_cluster import restore_whitespace_tags
+        text_with_spaces = restore_whitespace_tags(text)
+        
         # Normalize Khmer text
-        normalized_text = khnormal(text)
+        normalized_text = khnormal(text_with_spaces)
         
         # Try advanced Khmer renderer first for Khmer text
         if ADVANCED_KHMER_RENDERER_AVAILABLE and self._contains_khmer_text(normalized_text):
@@ -448,8 +452,12 @@ class TextRenderer:
         Returns:
             PIL Image object
         """
+        # First restore whitespace tags to actual spaces
+        from src.khtext.subword_cluster import restore_whitespace_tags
+        text_with_spaces = restore_whitespace_tags(text)
+        
         # Normalize Khmer text
-        normalized_text = khnormal(text)
+        normalized_text = khnormal(text_with_spaces)
         
         if use_background and hasattr(self, 'background_generator'):
             # Use advanced Khmer renderer with background if available

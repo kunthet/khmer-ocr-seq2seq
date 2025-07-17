@@ -195,8 +195,15 @@ class KhmerOCRSyntheticGenerator:
             # Load font
             font = ImageFont.truetype(font_path, size=self.font_size)
             
+            # First restore whitespace tags to actual spaces
+            try:
+                from src.khtext.subword_cluster import restore_whitespace_tags
+                text_with_spaces = restore_whitespace_tags(text)
+            except ImportError:
+                text_with_spaces = text  # Fallback if module not available
+            
             # Normalize Khmer text for proper rendering
-            normalized_text = khnormal(text)
+            normalized_text = khnormal(text_with_spaces)
             
             # Create background with proper size
             # BackgroundGenerator needs to be created with correct dimensions for each image

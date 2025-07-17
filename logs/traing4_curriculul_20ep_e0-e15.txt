@@ -1,0 +1,594 @@
+(ml311) PS D:\Dev\khm\khmer_ocr_seq2seq> python launch_production_training.py curriculum --epochs 20
+============================================================
+🇰🇭 Khmer OCR Production Training Launcher
+============================================================
+🔍 Checking System Requirements...
+✅ PyTorch: 2.5.1+cu121
+✅ CUDA Available: 1 GPU(s)
+✅ GPU: NVIDIA GeForce RTX 3090
+✅ GPU Memory: 24.0GB
+✅ Fixed validation set ready
+✅ Corpus data ready
+✅ Fonts ready: 8 TTF files
+✅ System requirements check passed!
+
+🔧 Auto-selected batch size: 32
+
+📋 Training Configuration:
+   Strategy: curriculum
+   Epochs: 20
+   Batch Size: 32
+
+🚀 Start curriculum training? (y/N): 
+Training cancelled.
+(ml311) PS D:\Dev\khm\khmer_ocr_seq2seq> python launch_production_training.py curriculum --epochs 20
+============================================================
+🇰🇭 Khmer OCR Production Training Launcher
+============================================================
+🔍 Checking System Requirements...
+✅ PyTorch: 2.5.1+cu121
+✅ CUDA Available: 1 GPU(s)
+✅ GPU: NVIDIA GeForce RTX 3090
+✅ GPU Memory: 24.0GB
+✅ Fixed validation set ready
+✅ Corpus data ready
+✅ Fonts ready: 8 TTF files
+✅ System requirements check passed!
+
+🔧 Auto-selected batch size: 32
+
+📋 Training Configuration:
+   Strategy: curriculum
+   Epochs: 20
+   Batch Size: 32
+
+🚀 Start curriculum training? (y/N): y
+
+🏁 Starting curriculum training...
+🚀 Launching Curriculum EOS Training...
+📚 Strategy: Progressive sequence length (10→50 chars)
+🎯 Goal: Fix EOS generation through curriculum learning
+📝 Command: python train_curriculum_eos_v1.py --num-epochs 20 --batch-size 32 --log-dir logs/curriculum --checkpoint-dir models/checkpoints/curriculum
+Using device: cuda
+INFO:src.data.onthefly_dataset:Found 2 training files: ['train_0.txt', 'train_1.txt']
+INFO:src.data.onthefly_dataset:Loaded 147195 lines from train_0.txt
+INFO:src.data.onthefly_dataset:Loaded 166118 lines from train_1.txt
+INFO:src.data.onthefly_dataset:Loaded 313313 text lines for train split
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Loaded working fonts: ['KhmerOS', 'KhmerOSbattambang', 'KhmerOSbokor', 'KhmerOSfasthand', 'KhmerOSmetalchrieng', 'KhmerOSmuol', 'KhmerOSmuollight', 'KhmerOSsiemreap']
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Khmer OCR Synthetic Generator initialized
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Image height: 32px (variable width)
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Loaded 8 fonts
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Advanced backgrounds: True
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Training augmentation: True
+INFO:src.data.onthefly_dataset:Initialized on-the-fly train dataset:
+INFO:src.data.onthefly_dataset:  Text lines: 313313
+INFO:src.data.onthefly_dataset:  Samples per epoch: 10000
+INFO:src.data.onthefly_dataset:  Augmentation: enabled
+INFO:src.data.onthefly_dataset:  Fonts: 8
+INFO:src.data.onthefly_dataset:Found 2 training files: ['train_0.txt', 'train_1.txt']
+INFO:src.data.onthefly_dataset:Loaded 147195 lines from train_0.txt
+INFO:src.data.onthefly_dataset:Loaded 166118 lines from train_1.txt
+INFO:src.data.onthefly_dataset:Loaded 313313 text lines for train split
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Loaded working fonts: ['KhmerOS', 'KhmerOSbattambang', 'KhmerOSbokor', 'KhmerOSfasthand', 'KhmerOSmetalchrieng', 'KhmerOSmuol', 'KhmerOSmuollight', 'KhmerOSsiemreap']
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Khmer OCR Synthetic Generator initialized
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Image height: 32px (variable width)
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Loaded 8 fonts
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Advanced backgrounds: True
+INFO:src.synthetic_data_generator.khmer_ocr_generator:Training augmentation: True
+INFO:src.data.onthefly_dataset:Initialized on-the-fly train dataset:
+INFO:src.data.onthefly_dataset:  Text lines: 313313
+INFO:src.data.onthefly_dataset:  Samples per epoch: 10000
+INFO:src.data.onthefly_dataset:  Augmentation: enabled
+INFO:src.data.onthefly_dataset:  Fonts: 8
+INFO:CheckpointManager:Google Drive backup enabled: \content\drive\MyDrive\KhmerOCR_Checkpoints
+🎓 CURRICULUM LEARNING FOR EOS GENERATION
+================================================================================
+Model parameters: 19,245,109
+Device: cuda
+
+🔄 Phase 1/5
+
+============================================================
+Phase 1: Short sequences (max_length=10)
+============================================================
+  Batch 0/313 | Loss: 19.2123 | EOS: 0.0%
+  Batch 50/313 | Loss: 4.0398 | EOS: 100.0%
+  Batch 100/313 | Loss: 3.9792 | EOS: 100.0%
+  Batch 150/313 | Loss: 4.0203 | EOS: 100.0%
+  Batch 200/313 | Loss: 3.6758 | EOS: 100.0%
+  Batch 250/313 | Loss: 3.3448 | EOS: 100.0%
+  Batch 300/313 | Loss: 3.9898 | EOS: 100.0%
+
+Epoch 1/22
+Time: 1589.5s | Max Length: 10
+Train - Loss: 4.0786 | EOS: 98.1% | Complete: 91.6%
+Val   - Loss: 9.2338 | EOS: 19.9% | Complete: 3.4%
+Adaptive EOS Weight: 30.00
+INFO:CheckpointManager:Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_001.pth
+INFO:CheckpointManager:Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+INFO:CheckpointManager:Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+INFO:CheckpointManager:Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+INFO:CheckpointManager:Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_001.pth
+✅ New best EOS rate: 19.9%
+  Batch 0/313 | Loss: 4.2833 | EOS: 93.8%
+  Batch 50/313 | Loss: 3.4340 | EOS: 100.0%
+  Batch 100/313 | Loss: 3.5413 | EOS: 100.0%
+  Batch 150/313 | Loss: 3.2620 | EOS: 100.0%
+  Batch 200/313 | Loss: 3.3031 | EOS: 100.0%
+  Batch 250/313 | Loss: 3.3917 | EOS: 100.0%
+  Batch 300/313 | Loss: 3.1662 | EOS: 100.0%
+
+Epoch 2/22
+Time: 1542.5s | Max Length: 10
+Train - Loss: 3.6457 | EOS: 95.0% | Complete: 75.4%
+Val   - Loss: 5.8693 | EOS: 22.8% | Complete: 1.2%
+Adaptive EOS Weight: 30.00
+INFO:CheckpointManager:Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_002.pth
+INFO:CheckpointManager:Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+INFO:CheckpointManager:Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+INFO:CheckpointManager:Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+INFO:CheckpointManager:Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_002.pth
+✅ New best EOS rate: 22.8%
+  Batch 0/313 | Loss: 3.2708 | EOS: 100.0%
+  Batch 50/313 | Loss: 3.3205 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.9770 | EOS: 100.0%
+  Batch 150/313 | Loss: 3.5540 | EOS: 100.0%
+  Batch 200/313 | Loss: 3.0366 | EOS: 100.0%
+  Batch 250/313 | Loss: 2.9761 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.9089 | EOS: 100.0%
+
+Epoch 3/22
+Time: 1571.4s | Max Length: 10
+Train - Loss: 3.2687 | EOS: 96.3% | Complete: 67.2%
+Val   - Loss: 10.1823 | EOS: 15.1% | Complete: 0.0%
+Adaptive EOS Weight: 30.00
+  Batch 0/313 | Loss: 0.6510 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.2012 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.8828 | EOS: 100.0%
+  Batch 150/313 | Loss: 4.0397 | EOS: 75.0%
+  Batch 200/313 | Loss: 3.3844 | EOS: 100.0%
+  Batch 250/313 | Loss: 3.0057 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.9015 | EOS: 100.0%
+
+Epoch 4/22
+Time: 1585.3s | Max Length: 10
+Train - Loss: 3.1462 | EOS: 96.4% | Complete: 64.6%
+Val   - Loss: 10.2561 | EOS: 13.8% | Complete: 0.0%
+Adaptive EOS Weight: 30.00
+
+Phase completed! Best EOS rate: 22.8%
+
+🔄 Phase 2/5
+
+============================================================
+Phase 2: Slightly longer (max_length=15)
+============================================================
+  Batch 0/313 | Loss: 4.5472 | EOS: 100.0%
+  Batch 50/313 | Loss: 3.1567 | EOS: 93.8%
+  Batch 100/313 | Loss: 0.9094 | EOS: 100.0%
+  Batch 150/313 | Loss: 3.0510 | EOS: 100.0%
+  Batch 200/313 | Loss: 3.0626 | EOS: 100.0%
+  Batch 250/313 | Loss: 3.1071 | EOS: 90.6%
+  Batch 300/313 | Loss: 2.9669 | EOS: 96.9%
+
+Epoch 5/22
+Time: 1532.8s | Max Length: 15
+Train - Loss: 3.0441 | EOS: 96.2% | Complete: 64.6%
+Val   - Loss: 7.6983 | EOS: 1.8% | Complete: 0.0%
+Adaptive EOS Weight: 20.00
+  Batch 0/313 | Loss: 2.8825 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.7629 | EOS: 96.9%
+  Batch 100/313 | Loss: 2.9914 | EOS: 93.8%
+  Batch 150/313 | Loss: 4.9411 | EOS: 34.4%
+  Batch 200/313 | Loss: 3.0994 | EOS: 93.8%
+  Batch 250/313 | Loss: 3.1935 | EOS: 84.4%
+  Batch 300/313 | Loss: 0.9669 | EOS: 96.9%
+
+Epoch 6/22
+Time: 1570.7s | Max Length: 15
+Train - Loss: 2.8812 | EOS: 97.4% | Complete: 67.0%
+Val   - Loss: 5.5368 | EOS: 23.6% | Complete: 0.0%
+Adaptive EOS Weight: 20.00
+INFO:CheckpointManager:Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_006.pth
+INFO:CheckpointManager:Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+INFO:CheckpointManager:Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+INFO:CheckpointManager:Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+INFO:CheckpointManager:Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_006.pth
+✅ New best EOS rate: 23.6%
+  Batch 0/313 | Loss: 2.8519 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.9902 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.9789 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.5578 | EOS: 100.0%
+  Batch 200/313 | Loss: 2.8169 | EOS: 100.0%
+  Batch 250/313 | Loss: 2.5743 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.7796 | EOS: 93.8%
+
+Epoch 7/22
+Time: 1567.1s | Max Length: 15
+Train - Loss: 2.8220 | EOS: 97.3% | Complete: 64.9%
+Val   - Loss: 7.4375 | EOS: 13.1% | Complete: 0.0%
+Adaptive EOS Weight: 20.00
+  Batch 0/313 | Loss: 2.6875 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.8359 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.7182 | EOS: 100.0%
+  Batch 150/313 | Loss: 2.6810 | EOS: 100.0%
+  Batch 200/313 | Loss: 2.8442 | EOS: 93.8%
+  Batch 250/313 | Loss: 2.9333 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.6736 | EOS: 100.0%
+
+Epoch 8/22
+Time: 1590.1s | Max Length: 15
+Train - Loss: 2.7530 | EOS: 97.6% | Complete: 64.5%
+Val   - Loss: 8.0514 | EOS: 9.9% | Complete: 0.0%
+Adaptive EOS Weight: 20.00
+
+Phase completed! Best EOS rate: 23.6%
+
+🔄 Phase 3/5
+
+============================================================
+Phase 3: Medium sequences (max_length=20)
+============================================================
+  Batch 0/313 | Loss: 4.0977 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.6498 | EOS: 93.8%
+  Batch 100/313 | Loss: 2.7950 | EOS: 100.0%
+  Batch 150/313 | Loss: 2.7680 | EOS: 93.8%
+  Batch 200/313 | Loss: 3.2059 | EOS: 68.8%
+  Batch 250/313 | Loss: 2.6010 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.5663 | EOS: 100.0%
+
+Epoch 9/22
+Time: 1616.7s | Max Length: 20
+Train - Loss: 2.7114 | EOS: 96.7% | Complete: 61.3%
+Val   - Loss: 6.7305 | EOS: 4.7% | Complete: 0.0%
+Adaptive EOS Weight: 15.00
+  Batch 0/313 | Loss: 2.4378 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.6601 | EOS: 100.0%
+  Batch 100/313 | Loss: 1.0330 | EOS: 100.0%
+  Batch 150/313 | Loss: 2.5631 | EOS: 96.9%
+  Batch 200/313 | Loss: 2.7754 | EOS: 100.0%
+  Batch 250/313 | Loss: 2.4385 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.7162 | EOS: 96.9%
+
+Epoch 10/22
+Time: 1639.9s | Max Length: 20
+Train - Loss: 2.6274 | EOS: 97.1% | Complete: 63.9%
+Val   - Loss: 6.4203 | EOS: 7.7% | Complete: 0.0%
+Adaptive EOS Weight: 15.00
+  Batch 0/313 | Loss: 2.5172 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.6060 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.9012 | EOS: 90.6%
+  Batch 150/313 | Loss: 2.7201 | EOS: 96.9%
+  Batch 200/313 | Loss: 2.6033 | EOS: 96.9%
+  Batch 250/313 | Loss: 2.8403 | EOS: 90.6%
+  Batch 300/313 | Loss: 2.4447 | EOS: 100.0%
+
+Epoch 11/22
+Time: 1556.3s | Max Length: 20
+Train - Loss: 2.6062 | EOS: 97.2% | Complete: 62.9%
+Val   - Loss: 7.3272 | EOS: 6.7% | Complete: 0.0%
+Adaptive EOS Weight: 15.00
+  Batch 0/313 | Loss: 2.7184 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.5704 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.6313 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.6175 | EOS: 93.8%
+  Batch 200/313 | Loss: 2.6258 | EOS: 93.8%
+  Batch 250/313 | Loss: 2.5409 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.4636 | EOS: 100.0%
+
+Epoch 12/22
+Epoch 11/22
+Time: 1556.3s | Max Length: 20
+Train - Loss: 2.6062 | EOS: 97.2% | Complete: 62.9%
+Val   - Loss: 7.3272 | EOS: 6.7% | Complete: 0.0%
+Adaptive EOS Weight: 15.00
+  Batch 0/313 | Loss: 2.7184 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.5704 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.6313 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.6175 | EOS: 93.8%
+  Batch 200/313 | Loss: 2.6258 | EOS: 93.8%
+  Batch 250/313 | Loss: 2.5409 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.4636 | EOS: 100.0%
+
+Epoch 12/22
+Time: 1529.7s | Max Length: 20
+Train - Loss: 2.5610 | EOS: 97.2% | Complete: 61.9%
+Time: 1556.3s | Max Length: 20
+Train - Loss: 2.6062 | EOS: 97.2% | Complete: 62.9%
+Val   - Loss: 7.3272 | EOS: 6.7% | Complete: 0.0%
+Adaptive EOS Weight: 15.00
+  Batch 0/313 | Loss: 2.7184 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.5704 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.6313 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.6175 | EOS: 93.8%
+  Batch 200/313 | Loss: 2.6258 | EOS: 93.8%
+  Batch 250/313 | Loss: 2.5409 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.4636 | EOS: 100.0%
+
+Epoch 12/22
+Time: 1529.7s | Max Length: 20
+Train - Loss: 2.5610 | EOS: 97.2% | Complete: 61.9%
+Val   - Loss: 7.3272 | EOS: 6.7% | Complete: 0.0%
+Adaptive EOS Weight: 15.00
+  Batch 0/313 | Loss: 2.7184 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.5704 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.6313 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.6175 | EOS: 93.8%
+  Batch 200/313 | Loss: 2.6258 | EOS: 93.8%
+  Batch 250/313 | Loss: 2.5409 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.4636 | EOS: 100.0%
+
+Epoch 12/22
+Time: 1529.7s | Max Length: 20
+Train - Loss: 2.5610 | EOS: 97.2% | Complete: 61.9%
+Adaptive EOS Weight: 15.00
+  Batch 0/313 | Loss: 2.7184 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.5704 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.6313 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.6175 | EOS: 93.8%
+  Batch 200/313 | Loss: 2.6258 | EOS: 93.8%
+  Batch 250/313 | Loss: 2.5409 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.4636 | EOS: 100.0%
+
+Epoch 12/22
+Time: 1529.7s | Max Length: 20
+Train - Loss: 2.5610 | EOS: 97.2% | Complete: 61.9%
+  Batch 100/313 | Loss: 2.6313 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.6175 | EOS: 93.8%
+  Batch 200/313 | Loss: 2.6258 | EOS: 93.8%
+  Batch 250/313 | Loss: 2.5409 | EOS: 100.0%
+  Batch 300/313 | Loss: 2.4636 | EOS: 100.0%
+
+Epoch 12/22
+Time: 1529.7s | Max Length: 20
+Train - Loss: 2.5610 | EOS: 97.2% | Complete: 61.9%
+  Batch 300/313 | Loss: 2.4636 | EOS: 100.0%
+
+Epoch 12/22
+Time: 1529.7s | Max Length: 20
+Train - Loss: 2.5610 | EOS: 97.2% | Complete: 61.9%
+Val   - Loss: 5.1793 | EOS: 16.0% | Complete: 5.0%
+Adaptive EOS Weight: 15.00
+
+Phase completed! Best EOS rate: 16.0%
+
+Time: 1529.7s | Max Length: 20
+Train - Loss: 2.5610 | EOS: 97.2% | Complete: 61.9%
+Val   - Loss: 5.1793 | EOS: 16.0% | Complete: 5.0%
+Adaptive EOS Weight: 15.00
+
+Phase completed! Best EOS rate: 16.0%
+
+🔄 Phase 4/5
+
+============================================================
+Val   - Loss: 5.1793 | EOS: 16.0% | Complete: 5.0%
+Adaptive EOS Weight: 15.00
+
+Phase completed! Best EOS rate: 16.0%
+
+🔄 Phase 4/5
+
+============================================================
+Phase 4: Extended sequences (max_length=30)
+
+Phase completed! Best EOS rate: 16.0%
+
+🔄 Phase 4/5
+
+============================================================
+Phase 4: Extended sequences (max_length=30)
+============================================================
+  Batch 0/313 | Loss: 4.4092 | EOS: 37.5%
+🔄 Phase 4/5
+
+============================================================
+Phase 4: Extended sequences (max_length=30)
+============================================================
+  Batch 0/313 | Loss: 4.4092 | EOS: 37.5%
+Phase 4: Extended sequences (max_length=30)
+============================================================
+  Batch 0/313 | Loss: 4.4092 | EOS: 37.5%
+  Batch 50/313 | Loss: 2.6256 | EOS: 100.0%
+============================================================
+  Batch 0/313 | Loss: 4.4092 | EOS: 37.5%
+  Batch 50/313 | Loss: 2.6256 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.6256 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4619 | EOS: 90.6%
+  Batch 100/313 | Loss: 2.4619 | EOS: 90.6%
+  Batch 150/313 | Loss: 2.5031 | EOS: 96.9%
+  Batch 200/313 | Loss: 2.6795 | EOS: 93.8%
+  Batch 250/313 | Loss: 2.6272 | EOS: 96.9%
+  Batch 300/313 | Loss: 2.6338 | EOS: 93.8%
+
+  Batch 300/313 | Loss: 2.6338 | EOS: 93.8%
+
+
+Epoch 13/22
+Time: 1589.7s | Max Length: 30
+Epoch 13/22
+Time: 1589.7s | Max Length: 30
+Train - Loss: 2.4875 | EOS: 94.1% | Complete: 53.1%
+Val   - Loss: 5.6642 | EOS: 9.2% | Complete: 0.9%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5746 | EOS: 100.0%
+Train - Loss: 2.4875 | EOS: 94.1% | Complete: 53.1%
+Val   - Loss: 5.6642 | EOS: 9.2% | Complete: 0.9%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5746 | EOS: 100.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5746 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.4672 | EOS: 93.8%
+  Batch 0/313 | Loss: 2.5746 | EOS: 100.0%
+  Batch 50/313 | Loss: 2.4672 | EOS: 93.8%
+  Batch 50/313 | Loss: 2.4672 | EOS: 93.8%
+  Batch 100/313 | Loss: 2.1835 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.1835 | EOS: 100.0%
+  Batch 150/313 | Loss: 2.5985 | EOS: 65.6%
+  Batch 150/313 | Loss: 2.5985 | EOS: 65.6%
+  Batch 200/313 | Loss: 2.2543 | EOS: 100.0%
+  Batch 200/313 | Loss: 2.2543 | EOS: 100.0%
+  Batch 250/313 | Loss: 2.3649 | EOS: 96.9%
+  Batch 300/313 | Loss: 2.1618 | EOS: 100.0%
+
+Epoch 14/22
+Time: 1609.9s | Max Length: 30
+Train - Loss: 2.3929 | EOS: 95.2% | Complete: 55.2%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.3825 | EOS: 96.9%
+  Batch 200/313 | Loss: 2.3636 | EOS: 100.0%
+  Batch 250/313 | Loss: 2.2414 | EOS: 96.9%
+  Batch 300/313 | Loss: 2.5409 | EOS: 100.0%
+
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.3825 | EOS: 96.9%
+  Batch 200/313 | Loss: 2.3636 | EOS: 100.0%
+  Batch 250/313 | Loss: 2.2414 | EOS: 96.9%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.3825 | EOS: 96.9%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Val   - Loss: 5.6894 | EOS: 5.9% | Complete: 0.0%
+Adaptive EOS Weight: 10.00
+  Batch 0/313 | Loss: 2.5137 | EOS: 87.5%
+  Batch 50/313 | Loss: 2.0628 | EOS: 100.0%
+  Batch 100/313 | Loss: 2.4626 | EOS: 96.9%
+  Batch 150/313 | Loss: 2.3825 | EOS: 96.9%
+  Batch 200/313 | Loss: 2.3636 | EOS: 100.0%
+  Batch 250/313 | Loss: 2.2414 | EOS: 96.9%
+  Batch 300/313 | Loss: 2.5409 | EOS: 100.0%
+
+Epoch 15/22
+Time: 1630.2s | Max Length: 30
+Train - Loss: 2.3412 | EOS: 95.4% | Complete: 53.6%
+Val   - Loss: 4.8828 | EOS: 50.2% | Complete: 53.6%
+Adaptive EOS Weight: 10.00
+INFO:CheckpointManager:Saved checkpoint: models\checkpoints\curriculum_eos_v1\checkpoint_epoch_015.pth
+INFO:CheckpointManager:Saved best model: models\checkpoints\curriculum_eos_v1\best_model.pth
+INFO:CheckpointManager:Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+INFO:CheckpointManager:Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+INFO:CheckpointManager:Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_015.pth
+INFO:CheckpointManager:Removed old checkpoint: checkpoint_epoch_001.pth
+✅ New best EOS rate: 50.2%
+  Batch 0/313 | Loss: 2.3031 | EOS: 93.8%
+  Batch 50/313 | Loss: 2.4284 | EOS: 96.9%
+  Batch 100/313 | Loss: 2.2938 | EOS: 100.0%
+  Batch 150/313 | Loss: 2.2496 | EOS: 96.9%
+  Batch 200/313 | Loss: 1.2552 | EOS: 100.0%
+
+⚠️  Training interrupted by user
+
+================================================================================
+📊 CURRICULUM TRAINING SUMMARY
+================================================================================
+Phase 1: Phase 1: Short sequences
+  Max Length: 10 | EOS Rate: 22.8%
+Phase 2: Phase 2: Slightly longer
+  Max Length: 15 | EOS Rate: 23.6%
+Phase 3: Phase 3: Medium sequences
+  Max Length: 20 | EOS Rate: 16.0%
+
+🏆 Overall Best EOS Rate: 50.2%
+📁 Checkpoints saved to: models/checkpoints/curriculum_eos_v1

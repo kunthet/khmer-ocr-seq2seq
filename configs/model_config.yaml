@@ -1,41 +1,90 @@
-# Khmer OCR Seq2Seq Model Architecture Configuration
+# Khmer OCR Seq2Seq Model Configuration
+# Updated for 132-token vocabulary
 
-# Model Architecture
 model:
-  # Encoder Configuration (CRNN)
-  encoder:
-    input_channels: 1
-    conv_channels: [64, 128, 256, 256, 512, 512, 512]
-    kernel_sizes: [3, 3, 3, 3, 3, 3, 3]
-    pool_sizes: [[2,2], [2,2], [2,1], [2,1]]
-    gru_hidden_size: 256
-    gru_num_layers: 2
-    bidirectional: true
+  # Architecture
+  name: "seq2seq_attention"
+  type: "encoder_decoder"
   
-  # Attention Configuration
+  # Vocabulary
+  vocab_size: 132  # Updated from 131 to 132 tokens
+  max_sequence_length: 256
+  
+  # Encoder Configuration
+  encoder:
+    type: "cnn_gru"
+    
+    # CNN Feature Extractor
+    cnn:
+      input_channels: 1  # Grayscale images
+      conv_channels: [64, 128, 256, 256, 512, 512, 512]
+      kernel_sizes: [3, 3, 3, 3, 3, 3, 2]
+      strides: [1, 1, 1, 1, 1, 1, 1]
+      paddings: [1, 1, 1, 1, 1, 1, 0]
+      batch_norm: true
+      dropout: 0.1
+    
+    # GRU Sequence Encoder
+    gru:
+      hidden_size: 256
+      num_layers: 2
+      bidirectional: true
+      dropout: 0.1
+      
+  # Attention Mechanism
   attention:
     type: "bahdanau"
     hidden_size: 512
-    
-  # Decoder Configuration
-  decoder:
-    embedding_dim: 256
-    hidden_size: 512
-    vocab_size: 117
-    max_length: 256
     dropout: 0.1
+    
+  # Decoder Configuration  
+  decoder:
+    type: "gru_attention"
+    
+    # Embedding
+    embedding:
+      vocab_size: 132  # Updated from 131 to 132 tokens
+      embedding_dim: 256
+      dropout: 0.1
+    
+    # GRU Decoder
+    gru:
+      hidden_size: 512
+      num_layers: 1
+      dropout: 0.1
+    
+    # Output Projection
+    output:
+      hidden_size: 512
+      vocab_size: 132  # Updated from 131 to 132 tokens
+      
+  # Model Dimensions Summary
+  dimensions:
+    encoder_output: 512  # bidirectional GRU: 256 * 2
+    attention_hidden: 512
+    decoder_hidden: 512
+    vocab_size: 132  # Updated from 131 to 132 tokens
 
-# Model Parameters
-parameters:
-  total_params: 16327989
-  trainable_params: 16327989
+# Training Hyperparameters
+training:
+  # Optimization
+  optimizer: "adam"
+  learning_rate: 1e-6
+  weight_decay: 1e-5
+  gradient_clip: 5.0
   
-# Input/Output Specifications
-input:
-  image_height: 32
-  image_width: "variable"
-  channels: 1
+  # Training Strategy
+  teacher_forcing_ratio: 1.0
+  max_epochs: 150
+  early_stopping_patience: 10
   
-output:
-  vocab_size: 117
-  max_sequence_length: 256 
+  # Loss Function
+  loss_function: "cross_entropy"
+  label_smoothing: 0.1
+  ignore_index: 2  # PAD token index
+  
+# Regularization
+regularization:
+  dropout: 0.1
+  batch_norm: true
+  layer_norm: false 

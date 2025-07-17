@@ -414,10 +414,10 @@ class Trainer:
         self.optimizer.load_state_dict(checkpoint_data['optimizer_state_dict'])
         
         # Restore training state
-        self.current_epoch = checkpoint_data['epoch'] + 1
-        self.training_history = checkpoint_data['training_history']
-        self.best_cer = checkpoint_data['best_cer']
-        self.global_step = checkpoint_data['global_step']
+        self.current_epoch = checkpoint_data.get('epoch', -1) + 1
+        self.training_history = checkpoint_data.get('training_history', [])
+        self.best_cer = checkpoint_data.get('best_cer', float('inf'))
+        self.global_step = checkpoint_data.get('global_step', 0)
         
         self.logger.info(f"Resumed from epoch {self.current_epoch}")
         self.logger.info(f"Best CER so far: {self.best_cer:.2%}") 

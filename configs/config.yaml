@@ -1,28 +1,77 @@
-# Khmer OCR Seq2Seq Model Configuration
-# Based on PRD specifications
+# Khmer OCR Seq2Seq Configuration
+project_name: "khmer_ocr_seq2seq"
+version: "1.0.0"
+
+# Model Configuration
+model:
+  name: "seq2seq_attention"
+  vocab_size: 132  # Updated from 131 to 132 tokens
+  max_sequence_length: 256
+  
+  encoder:
+    type: "cnn_gru"
+    input_channels: 1
+    conv_channels: [64, 128, 256, 256, 512, 512, 512]
+    gru_hidden_size: 256
+    gru_num_layers: 2
+    bidirectional: true
+    
+  attention:
+    type: "bahdanau"
+    hidden_size: 512
+    
+  decoder:
+    type: "gru_attention"
+    embedding_dim: 256
+    hidden_size: 512
+    vocab_size: 132  # Updated from 131 to 132 tokens
+    max_length: 256
+
+# Training Configuration  
+training:
+  epochs: 150
+  batch_size: 32  # Reduced for memory efficiency
+  learning_rate: 1e-6
+  optimizer: "adam"
+  loss_function: "cross_entropy"
+  teacher_forcing_ratio: 1.0
+  gradient_clip: 5.0
+  
+  scheduler:
+    type: "step"
+    step_size: 30
+    gamma: 0.1
 
 # Data Configuration
 data:
   image_height: 32
-  image_channels: 1  # Grayscale
+  image_width: 800  # Variable width
+  image_channels: 1
+  vocab_size: 132  # Updated from 131 to 132 tokens
   max_sequence_length: 256
-  vocab_size: 117
-  augmentation_prob: 0.5
-  concatenation_prob: 0.5
+  
+  augmentation:
+    probability: 0.5
+    concatenation:
+      probability: 0.5
+      max_images: 3
+    
+    transformations:
+      rotation: 2.0
+      perspective: 0.1
+      noise: 0.05
+      blur: 0.5
 
-# Vocabulary Configuration
-vocab:
-  special_tokens:
-    sos: "SOS"
-    eos: "EOS"
-    pad: "PAD"
-    unk: "UNK"
-  
-  # Token indices
-  sos_idx: 0
-  eos_idx: 1
-  pad_idx: 2
-  unk_idx: 3
-  
-  # Total vocabulary size
-  vocab_size: 117 
+# Paths
+paths:
+  data_dir: "data"
+  model_dir: "models" 
+  checkpoint_dir: "models/checkpoints"
+  log_dir: "logs"
+  vocab_file: "configs/vocabulary.yaml"
+
+# Logging
+logging:
+  level: "INFO"
+  save_frequency: 100
+  tensorboard: true 
