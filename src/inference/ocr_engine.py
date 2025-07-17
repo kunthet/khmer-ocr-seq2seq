@@ -409,11 +409,27 @@ class KhmerOCREngine:
         if device is None:
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
-        # Load model
-        model, checkpoint_info = KhmerOCRSeq2Seq.load_checkpoint(
-            checkpoint_path, 
-            device=device
-        )
+        # Load model with config manager to ensure correct architecture
+        try:
+            # Try loading with proper config first
+            checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
+            
+            # Create model with correct config and then load state
+            model = KhmerOCRSeq2Seq(config_or_vocab_size=config_manager)
+            model.load_state_dict(checkpoint['model_state_dict'])
+            model.to(device)
+            
+            checkpoint_info = {
+                'epoch': checkpoint.get('epoch', 0),
+                'best_score': checkpoint.get('best_score') or checkpoint.get('best_cer'),
+                'additional_info': checkpoint.get('additional_info'),
+            }
+        except Exception:
+            # Fallback to original method
+            model, checkpoint_info = KhmerOCRSeq2Seq.load_checkpoint(
+                checkpoint_path, 
+                device=device
+            )
         
         # Create engine
         engine = cls(

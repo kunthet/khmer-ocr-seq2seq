@@ -16,6 +16,10 @@ Fixed critical model architecture mismatch where training scripts were creating 
 - Updated — Enhanced on-the-fly training to use CurriculumDataset with max_length=150 for consistent sequence length control and syllable-based truncation, improving training stability and text quality.
 - Updated — Created CompatibleCollateFunction class in train_onthefly.py to handle batch collation directly (optimized single-pass processing instead of calling curriculum_collate_fn, provides required 'image_lengths'/'target_lengths' keys for trainer, picklable for multiprocessing).
 - Updated — Fixed training_history structure in checkpoint loading to use dictionary format instead of list, preventing "list indices must be integers" TypeError during training.
+- Updated — Fixed inference and testing scripts (inference_test.py, debug_inference.py, src/inference/demo.py, quick_test.py) to use ConfigManager for proper model architecture loading instead of default parameters.
+- Updated — Provided corrected Colab training configuration with proper parameter naming that matches current ConfigManager structure.
+- Updated — Fixed KhmerOCREngine.from_checkpoint() to use ConfigManager for model creation before loading state_dict, preventing size mismatch errors during checkpoint loading.
+- Updated — Fixed benchmark mode in inference_test.py to properly unpack 3 values (image_tensor, target_tensor, text) from SyntheticImageDataset instead of expecting only 2 values.
 
 ## Feature: [Core] EOS Generation Fix via Curriculum Learning
 **Purpose:**

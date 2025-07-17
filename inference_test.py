@@ -61,8 +61,8 @@ class KhmerOCRTester:
         
         print(f"Using device: {self.device}")
         
-        # Initialize components
-        self.config = ConfigManager()
+        # Initialize components - load correct configuration
+        self.config = ConfigManager("configs/train_config.yaml")
         self.engine = None
         self._load_model()
     
@@ -84,7 +84,7 @@ class KhmerOCRTester:
                     print("Creating model with random weights for testing...")
                     
                     from src.models.seq2seq import KhmerOCRSeq2Seq
-                    model = KhmerOCRSeq2Seq(vocab_size=len(self.config.vocab))
+                    model = KhmerOCRSeq2Seq(config_or_vocab_size=self.config)
                     self.engine = KhmerOCREngine(
                         model=model,
                         vocab=self.config.vocab,
@@ -96,7 +96,7 @@ class KhmerOCRTester:
                 print("Creating model with random weights for testing...")
                 
                 from src.models.seq2seq import KhmerOCRSeq2Seq
-                model = KhmerOCRSeq2Seq(vocab_size=len(self.config.vocab))
+                model = KhmerOCRSeq2Seq(config_or_vocab_size=self.config)
                 self.engine = KhmerOCREngine(
                     model=model,
                     vocab=self.config.vocab,
@@ -437,8 +437,8 @@ class KhmerOCRTester:
         try:
             # Load synthetic dataset
             dataset = SyntheticImageDataset(
-                split="test",
-                synthetic_dir="data/synthetic",
+                split="",
+                synthetic_dir="data/validation_fixed",
                 config_manager=self.config,
                 max_samples=num_samples
             )
@@ -455,7 +455,7 @@ class KhmerOCRTester:
                 processing_times = []
                 predictions = []
                 
-                for i, (image, target_text) in enumerate(dataset):
+                for i, (image, target_tensor, target_text) in enumerate(dataset):
                     if i >= num_samples:
                         break
                     

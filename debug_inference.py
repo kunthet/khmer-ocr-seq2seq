@@ -47,7 +47,7 @@ def debug_model_generation():
         # Create model (always use untrained for debugging)
         print("\nCreating untrained model for debugging...")
         from src.models.seq2seq import KhmerOCRSeq2Seq
-        model = KhmerOCRSeq2Seq(vocab_size=len(config.vocab))
+        model = KhmerOCRSeq2Seq(config_or_vocab_size=config)
         engine = KhmerOCREngine(
             model=model,
             vocab=config.vocab,

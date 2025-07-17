@@ -49,7 +49,7 @@ def main():
                 print(f"⚠ Checkpoint loading failed: {e}")
                 print("Creating untrained model for testing")
                 from src.models.seq2seq import KhmerOCRSeq2Seq
-                model = KhmerOCRSeq2Seq(vocab_size=len(config.vocab))
+                model = KhmerOCRSeq2Seq(config_or_vocab_size=config)
                 engine = KhmerOCREngine(
                     model=model,
                     vocab=config.vocab,
@@ -59,7 +59,7 @@ def main():
         else:
             print("⚠ Checkpoint not found, creating untrained model for testing")
             from src.models.seq2seq import KhmerOCRSeq2Seq
-            model = KhmerOCRSeq2Seq(vocab_size=len(config.vocab))
+            model = KhmerOCRSeq2Seq(config_or_vocab_size=config)
             engine = KhmerOCREngine(
                 model=model,
                 vocab=config.vocab,
