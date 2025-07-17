@@ -9,6 +9,7 @@ This training script uses:
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
+from torch.nn.utils.rnn import pad_sequence
 import argparse
 import os
 from pathlib import Path
@@ -22,7 +23,7 @@ sys.path.append(str(project_root))
 from src.models.seq2seq import KhmerOCRSeq2Seq
 from src.data.onthefly_dataset import OnTheFlyDataset, OnTheFlyCollateFunction
 from src.data.synthetic_dataset import SyntheticImageDataset, SyntheticCollateFunction
-from src.data.curriculum_dataset import CurriculumDataset, curriculum_collate_fn
+from src.data.curriculum_dataset import CurriculumDataset
 from src.utils.config import ConfigManager
 from src.training.trainer import Trainer
 
@@ -66,9 +67,8 @@ def estimate_memory_usage(model: torch.nn.Module, batch_size: int, device: torch
 
 class CompatibleCollateFunction:
     """
-    Collate function that adapts curriculum_collate_fn output 
-    to match trainer expectations for backward compatibility.
-    Picklable for multiprocessing.
+    Efficient collate function that handles data directly from batch items
+    to match trainer expectations. Picklable for multiprocessing.
     """
     
     def __init__(self, vocab):
@@ -76,52 +76,52 @@ class CompatibleCollateFunction:
         self.pad_idx = vocab.PAD_IDX
     
     def __call__(self, batch):
-        # Call the original curriculum collate function
-        collated = curriculum_collate_fn(batch)
-        
-        # Extract data
-        images = collated['image']  # curriculum returns 'image' (singular)
-        targets = collated['targets']
-        
-        # Calculate missing information
-        batch_size = images.shape[0]
+        # Extract data from batch items in single pass
+        images = []
+        targets = []
+        texts = []
         image_lengths = []
         target_lengths = []
-        texts = []
         
-        # Calculate image lengths (width of each image before padding)
-        for i in range(batch_size):
-            img = images[i]
-            # Find actual width by checking where padding starts (assuming padding is zeros)
-            if len(img.shape) == 3:  # (C, H, W)
-                # Find rightmost non-zero column
-                non_zero_cols = torch.any(torch.any(img, dim=0), dim=0)
-                if non_zero_cols.any():
-                    width = torch.where(non_zero_cols)[0][-1].item() + 1
-                else:
-                    width = 1
-            else:
-                width = img.shape[-1]
-            image_lengths.append(width)
-        
-        # Calculate target lengths (length of each sequence before padding)
-        for target in targets:
-            # Find actual length by finding last non-PAD token
-            non_pad_mask = (target != self.pad_idx)
-            if non_pad_mask.any():
-                length = torch.where(non_pad_mask)[0][-1].item() + 1
-            else:
-                length = 1
-            target_lengths.append(length)
-        
-        # Extract texts if available in batch items
         for item in batch:
+            # Extract image and record original width
+            img = item['image']
+            images.append(img)
+            image_lengths.append(img.shape[-1])  # Original width before padding
+            
+            # Extract target and record original length
+            target = item['targets']
+            targets.append(target)
+            target_lengths.append(len(target))  # Original length before padding
+            
+            # Extract text if available
             texts.append(item.get('text', ''))
+        
+        # Pad images to max width in batch
+        max_width = max(image_lengths)
+        padded_images = []
+        
+        for img in images:
+            if len(img.shape) == 3:  # (C, H, W)
+                c, h, w = img.shape
+                padded = torch.zeros(c, h, max_width, dtype=img.dtype, device=img.device)
+                padded[:, :, :w] = img
+            else:  # (H, W) or other
+                h, w = img.shape[-2:]
+                padded = torch.zeros(*img.shape[:-1], max_width, dtype=img.dtype, device=img.device)
+                padded[..., :w] = img
+            padded_images.append(padded)
+        
+        # Stack images
+        images_tensor = torch.stack(padded_images, dim=0)
+        
+        # Pad target sequences
+        targets_tensor = pad_sequence(targets, batch_first=True, padding_value=self.pad_idx)
         
         # Return in format expected by trainer
         return {
-            'images': images,  # Changed to plural to match trainer expectation
-            'targets': targets,
+            'images': images_tensor,  # Plural to match trainer expectation
+            'targets': targets_tensor,
             'image_lengths': torch.tensor(image_lengths),
             'target_lengths': torch.tensor(target_lengths),
             'texts': texts
@@ -176,7 +176,7 @@ def create_data_loaders(
         config_manager=config_manager,
         corpus_dir=corpus_dir,
         samples_per_epoch=train_samples_per_epoch,
-        augment_prob=0.8,
+        augment_prob=0.5,
         shuffle_texts=True,
         random_seed=None  # No seed for maximum variety
     )
