@@ -15,6 +15,7 @@ Fixed critical model architecture mismatch where training scripts were creating 
 - Updated — Made checkpoint loading more robust by using .get() for optional fields (training_history, best_cer, global_step) to handle different checkpoint formats gracefully.
 - Updated — Enhanced on-the-fly training to use CurriculumDataset with max_length=150 for consistent sequence length control and syllable-based truncation, improving training stability and text quality.
 - Updated — Created CompatibleCollateFunction class in train_onthefly.py to adapt curriculum_collate_fn output (maintains backward compatibility while adding required 'image_lengths'/'target_lengths' keys for trainer, picklable for multiprocessing).
+- Updated — Fixed training_history structure in checkpoint loading to use dictionary format instead of list, preventing "list indices must be integers" TypeError during training.
 
 ## Feature: [Core] EOS Generation Fix via Curriculum Learning
 **Purpose:**

@@ -415,7 +415,12 @@ class Trainer:
         
         # Restore training state
         self.current_epoch = checkpoint_data.get('epoch', -1) + 1
-        self.training_history = checkpoint_data.get('training_history', [])
+        self.training_history = checkpoint_data.get('training_history', {
+            'train_loss': [],
+            'val_loss': [],
+            'val_cer': [],
+            'learning_rate': []
+        })
         self.best_cer = checkpoint_data.get('best_cer', float('inf'))
         self.global_step = checkpoint_data.get('global_step', 0)
         
