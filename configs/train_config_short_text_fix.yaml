@@ -1,0 +1,41 @@
+# Khmer OCR Seq2Seq Training Configuration
+# Updated for 132-token vocabulary
+
+# Model Configuration
+model:
+  encoder:
+    input_channels: 1
+    conv_channels: [64, 128, 256, 256, 512, 512, 512]
+    gru_hidden_size: 256
+    gru_num_layers: 2
+    bidirectional: true
+    
+  attention:
+    type: "bahdanau"
+    hidden_size: 512
+    
+  decoder:
+    embedding_dim: 256
+    hidden_size: 512
+    vocab_size: 132  # Updated from 131 to 132 tokens
+    max_length: 256
+
+# Training Configuration
+training:
+  epochs: 150
+  batch_size: 32  # Optimized for memory efficiency
+  learning_rate: 5e-6  # Increased from 1e-6 for short text fine-tuning
+  optimizer: "adam"
+  loss_function: "cross_entropy"
+  teacher_forcing_ratio: 1.0
+  gradient_clip: 5.0
+
+# Data Configuration
+data:
+  image_height: 32
+  vocab_size: 132  # Updated from 131 to 132 tokens
+  max_sequence_length: 256
+  augmentation:
+    probability: 0.5
+    concatenation:
+      probability: 0.5 

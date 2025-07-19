@@ -452,7 +452,7 @@ def main():
     parser.add_argument(
         "--model-checkpoint",
         type=str,
-        default="models/checkpoints/full/best_model.pth",
+        default="models/checkpoints/full2/checkpoint_epoch_039.pth",
         help="Path to model checkpoint for inference"
     )
     parser.add_argument(

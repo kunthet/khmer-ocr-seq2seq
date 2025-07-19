@@ -226,9 +226,13 @@ class KhmerOCRSyntheticGenerator:
                 # Fallback if textbbox fails
                 text_width, text_height = draw.textsize(normalized_text, font=font)
             
+                       
             # Calculate text position (centered)
             x = max(0, (image_width - text_width) // 2)
             y = max(0, (self.image_height - text_height) // 2)
+            
+            if text_height <=18:
+                y = max(0, (self.image_height - 23) // 2)
             
             # Render text directly on background
             draw.text((x, y), normalized_text, font=font, fill=text_color)

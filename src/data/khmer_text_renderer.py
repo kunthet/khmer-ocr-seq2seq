@@ -212,6 +212,7 @@ class KhmerTextRenderer:
         # Center the text
         x = (image_size[0] - text_width) // 2
         y = (image_size[1] - text_height) // 2
+
         
         # Adjust for bbox offset
         x -= bbox[0]

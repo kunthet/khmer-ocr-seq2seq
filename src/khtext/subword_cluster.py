@@ -146,17 +146,17 @@ def split_syllables(text):
     
     # Use single regex.findall to get all tokens including spaces
     matches = regex.findall(pattern, text)
-    
-    # Filter out empty matches and convert whitespace to tags
-    result = []
-    for match in matches:
-        if match:
-            if match.isspace():
-                # Convert whitespace to appropriate tag
-                whitespace_tag = _classify_whitespace(match)
-                result.append(whitespace_tag)
-            else:
-                result.append(match)
+    result = [m for m in matches if m]
+    # # Filter out empty matches and convert whitespace to tags
+    # result = []
+    # for match in matches:
+    #     if match:
+    #         if match.isspace():
+    #             # Convert whitespace to appropriate tag
+    #             whitespace_tag = _classify_whitespace(match)
+    #             result.append(whitespace_tag)
+    #         else:
+    #             result.append(match)
     
     return result
 
@@ -211,17 +211,17 @@ def split_syllables_advanced(text):
     
     # Use single regex.findall to get all tokens including spaces
     matches = regex.findall(pattern, text)
-    
+    result = [m for m in matches if m]
     # Filter out empty matches and convert whitespace to tags
-    result = []
-    for match in matches:
-        if match:
-            if match.isspace():
-                # Convert whitespace to appropriate tag
-                whitespace_tag = _classify_whitespace(match)
-                result.append(whitespace_tag)
-            else:
-                result.append(match)
+    # result = []
+    # for match in matches:
+    #     if match:
+    #         if match.isspace():
+    #             # Convert whitespace to appropriate tag
+    #             whitespace_tag = _classify_whitespace(match)
+    #             result.append(whitespace_tag)
+    #         else:
+    #             result.append(match)
     
     return result
 

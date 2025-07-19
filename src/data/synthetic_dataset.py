@@ -92,7 +92,17 @@ class SyntheticImageDataset(Dataset):
             try:
                 with open(self.metadata_path, 'r', encoding='utf-8') as f:
                     metadata = json.load(f)
-                    samples = metadata.get("samples", [])
+                    raw_samples = metadata.get("samples", [])
+                    
+                    # Convert metadata format to internal format
+                    for sample in raw_samples:
+                        if "image_path" not in sample and "filename" in sample:
+                            # Create image_path from filename
+                            filename = sample["filename"]
+                            sample["image_path"] = str(self.images_dir / f"{filename}.png")
+                            sample["label_path"] = str(self.labels_dir / f"{filename}.txt")
+                    
+                    samples = raw_samples
                     logger.info(f"Loaded {len(samples)} samples from metadata")
             except Exception as e:
                 logger.warning(f"Error loading metadata: {e}")

@@ -1,0 +1,313 @@
+(ml311) PS D:\Dev\khm\khmer_ocr_seq2seq> python .\src\training\train_onthefly.py --num-epochs 150 --batch-size 32 --train-samples-per-epoch 310000 --checkpoint-dir .\models\checkpoints\full2\ --resume .\models\checkpoints\full2\checkpoint_epoch_035.pth
+Warning: Khmer normalization not available
+Warning: Khmer syllable segmentation not available
+2025-07-18 01:12:27,669 - KhmerOCROnTheFlyTraining - INFO - ======================================================================
+2025-07-18 01:12:27,670 - KhmerOCROnTheFlyTraining - INFO - Khmer OCR Seq2Seq On-the-Fly Training
+2025-07-18 01:12:27,670 - KhmerOCROnTheFlyTraining - INFO - ======================================================================
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO - Using device: cuda
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO - GPU: NVIDIA GeForce RTX 3090
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO - GPU Memory: 24.0 GB
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO - Found fixed validation set at: data\validation_fixed
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO - Loading configuration from: configs/train_config.yaml
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO - Training Configuration:
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO -   Epochs: 150
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO -   Learning rate: 1e-06
+2025-07-18 01:12:27,679 - KhmerOCROnTheFlyTraining - INFO -   Optimizer: adam
+2025-07-18 01:12:27,694 - KhmerOCROnTheFlyTraining - INFO -   Teacher forcing ratio: 1.0
+2025-07-18 01:12:27,694 - KhmerOCROnTheFlyTraining - INFO -   Gradient clip: 5.0
+2025-07-18 01:12:27,694 - KhmerOCROnTheFlyTraining - INFO -   Training samples per epoch: 310000
+2025-07-18 01:12:27,695 - root - INFO - Creating Khmer OCR Seq2Seq model...
+2025-07-18 01:12:28,002 - root - INFO - Model created successfully
+2025-07-18 01:12:28,002 - root - INFO - Total parameters: 19,268,164
+2025-07-18 01:12:28,002 - root - INFO - Trainable parameters: 19,268,164
+2025-07-18 01:12:28,002 - KhmerOCROnTheFlyTraining - INFO - Using specified batch size: 32
+2025-07-18 01:12:28,002 - root - INFO - Creating datasets...
+2025-07-18 01:12:28,002 - src.data.onthefly_dataset - INFO - Found 2 training files: ['train_0.txt', 'train_1.txt']
+2025-07-18 01:12:28,257 - src.data.onthefly_dataset - INFO - Loaded 147195 lines from train_0.txt
+2025-07-18 01:12:28,520 - src.data.onthefly_dataset - INFO - Loaded 166118 lines from train_1.txt
+2025-07-18 01:12:28,807 - src.data.onthefly_dataset - INFO - Loaded 313313 text lines for train split
+2025-07-18 01:12:28,840 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded working fonts: ['KhmerOS', 'KhmerOSbattambang', 'KhmerOSbokor', 'KhmerOSfasthand', 'KhmerOSmetalchrieng', 'KhmerOSmuol', 'KhmerOSmuollight', 'KhmerOSsiemreap']
+2025-07-18 01:12:28,841 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Khmer OCR Synthetic Generator initialized
+2025-07-18 01:12:28,842 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Image height: 32px (variable width)
+2025-07-18 01:12:28,842 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Loaded 8 fonts
+2025-07-18 01:12:28,842 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Advanced backgrounds: True
+2025-07-18 01:12:28,842 - src.synthetic_data_generator.khmer_ocr_generator - INFO - Training augmentation: True
+2025-07-18 01:12:28,842 - src.data.onthefly_dataset - INFO - Initialized on-the-fly train dataset:
+2025-07-18 01:12:28,842 - src.data.onthefly_dataset - INFO -   Text lines: 313313
+2025-07-18 01:12:28,843 - src.data.onthefly_dataset - INFO -   Samples per epoch: 310000
+2025-07-18 01:12:28,843 - src.data.onthefly_dataset - INFO -   Augmentation: enabled
+2025-07-18 01:12:28,843 - src.data.onthefly_dataset - INFO -   Fonts: 8
+🔄 Caching text strings for 310000 samples...
+✅ Text caching complete! 310000 texts cached.
+2025-07-18 01:12:29,000 - root - INFO - Applied CurriculumDataset wrapper with max_length=150 for training
+2025-07-18 01:12:29,001 - root - INFO - Loading fixed validation set from data/validation_fixed
+2025-07-18 01:12:29,127 - src.data.synthetic_dataset - INFO - Loaded 6400 samples from metadata
+2025-07-18 01:12:29,127 - src.data.synthetic_dataset - INFO - Loaded 6400 samples for val split from data/validation_fixed
+2025-07-18 01:12:29,127 - root - INFO - Created train dataloader: 9688 batches (310000 samples)
+2025-07-18 01:12:29,127 - root - INFO - Created val dataloader: 200 batches (6400 samples)
+2025-07-18 01:12:29,127 - KhmerOCROnTheFlyTraining - INFO - Initializing trainer...
+2025-07-18 01:12:30,834 - CheckpointManager - INFO - Google Drive backup enabled: \content\drive\MyDrive\KhmerOCR_Checkpoints
+2025-07-18 01:12:30,841 - KhmerOCRTrainer - INFO - Google Drive backup: [READY]
+2025-07-18 01:12:30,842 - KhmerOCRTrainer - INFO - Google Drive dir: \content\drive\MyDrive\KhmerOCR_Checkpoints
+2025-07-18 01:12:30,842 - KhmerOCROnTheFlyTraining - INFO - Starting on-the-fly training...
+2025-07-18 01:12:30,843 - KhmerOCROnTheFlyTraining - INFO - Training Method: On-the-fly image generation
+2025-07-18 01:12:30,843 - KhmerOCROnTheFlyTraining - INFO - Training Samples: 310000 per epoch (unlimited variety)
+2025-07-18 01:12:30,843 - KhmerOCROnTheFlyTraining - INFO - Validation Samples: 6400 (fixed set)
+2025-07-18 01:12:30,843 - KhmerOCROnTheFlyTraining - INFO - Target: <=1.0% CER (Character Error Rate)
+2025-07-18 01:12:30,843 - KhmerOCRTrainer - INFO - Loading checkpoint from .\models\checkpoints\full2\checkpoint_epoch_035.pth
+2025-07-18 01:12:30,947 - CheckpointManager - INFO - Loaded checkpoint: models\checkpoints\full2\checkpoint_epoch_035.pth
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO - Resumed from epoch 36
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO - Best CER so far: 0.70%
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO - Starting training...
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO - Training configuration:
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO -   Epochs: 150
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO -   Batch size: 32
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO -   Learning rate: 1e-06
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO -   Teacher forcing ratio: 1.0
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO -   Device: cuda
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO -
+============================================================
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO - Epoch 37/150
+2025-07-18 01:12:31,013 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-18 01:13:00,231 - KhmerOCRTrainer - INFO - Epoch 36, Batch 0/9688 (0.0%), Loss: 0.1456
+2025-07-18 01:15:20,757 - KhmerOCRTrainer - INFO - Epoch 36, Batch 100/9688 (1.0%), Loss: 0.2129
+2025-07-18 01:17:44,842 - KhmerOCRTrainer - INFO - Epoch 36, Batch 200/9688 (2.1%), Loss: 0.2020
+2025-07-18 01:20:07,911 - KhmerOCRTrainer - INFO - Epoch 36, Batch 300/9688 (3.1%), Loss: 0.1349
+2025-07-18 01:22:30,556 - KhmerOCRTrainer - INFO - Epoch 36, Batch 400/9688 (4.1%), Loss: 0.1212
+2025-07-18 01:24:54,284 - KhmerOCRTrainer - INFO - Epoch 36, Batch 500/9688 (5.2%), Loss: 0.1558
+2025-07-18 01:27:19,306 - KhmerOCRTrainer - INFO - Epoch 36, Batch 600/9688 (6.2%), Loss: 0.1488
+2025-07-18 01:29:41,998 - KhmerOCRTrainer - INFO - Epoch 36, Batch 700/9688 (7.2%), Loss: 0.2505
+2025-07-18 01:32:03,975 - KhmerOCRTrainer - INFO - Epoch 36, Batch 800/9688 (8.3%), Loss: 0.1572
+2025-07-18 01:34:25,659 - KhmerOCRTrainer - INFO - Epoch 36, Batch 900/9688 (9.3%), Loss: 0.0970
+2025-07-18 01:36:48,944 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1000/9688 (10.3%), Loss: 0.1145
+2025-07-18 01:39:12,148 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1100/9688 (11.4%), Loss: 0.1210
+2025-07-18 01:41:33,871 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1200/9688 (12.4%), Loss: 0.1240
+2025-07-18 01:43:53,094 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1300/9688 (13.4%), Loss: 0.1879
+2025-07-18 01:46:11,724 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1400/9688 (14.5%), Loss: 0.2126
+2025-07-18 01:48:28,730 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1500/9688 (15.5%), Loss: 0.1724
+2025-07-18 01:50:46,934 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1600/9688 (16.5%), Loss: 0.1964
+2025-07-18 01:53:07,918 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1700/9688 (17.5%), Loss: 0.0543
+2025-07-18 01:55:27,052 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1800/9688 (18.6%), Loss: 0.0591
+2025-07-18 01:57:44,604 - KhmerOCRTrainer - INFO - Epoch 36, Batch 1900/9688 (19.6%), Loss: 0.1808
+2025-07-18 02:00:03,379 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2000/9688 (20.6%), Loss: 0.1551
+2025-07-18 02:02:23,720 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2100/9688 (21.7%), Loss: 0.2262
+2025-07-18 02:04:42,893 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2200/9688 (22.7%), Loss: 0.1260
+2025-07-18 02:07:01,875 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2300/9688 (23.7%), Loss: 0.0446
+2025-07-18 02:09:18,501 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2400/9688 (24.8%), Loss: 0.0557
+2025-07-18 02:11:38,485 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2500/9688 (25.8%), Loss: 0.0990
+2025-07-18 02:13:55,943 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2600/9688 (26.8%), Loss: 0.0535
+2025-07-18 02:16:14,648 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2700/9688 (27.9%), Loss: 0.0627
+2025-07-18 02:18:32,518 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2800/9688 (28.9%), Loss: 0.1615
+2025-07-18 02:20:51,329 - KhmerOCRTrainer - INFO - Epoch 36, Batch 2900/9688 (29.9%), Loss: 0.0977
+2025-07-18 02:23:08,881 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3000/9688 (31.0%), Loss: 0.3015
+2025-07-18 02:25:28,826 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3100/9688 (32.0%), Loss: 0.0386
+2025-07-18 02:27:46,990 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3200/9688 (33.0%), Loss: 0.1553
+2025-07-18 02:30:02,403 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3300/9688 (34.1%), Loss: 0.1526
+2025-07-18 02:32:20,586 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3400/9688 (35.1%), Loss: 0.1189
+2025-07-18 02:34:39,066 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3500/9688 (36.1%), Loss: 0.0325
+2025-07-18 02:36:58,702 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3600/9688 (37.2%), Loss: 0.1506
+2025-07-18 02:39:15,574 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3700/9688 (38.2%), Loss: 0.1030
+2025-07-18 02:41:33,350 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3800/9688 (39.2%), Loss: 0.1941
+2025-07-18 02:43:50,905 - KhmerOCRTrainer - INFO - Epoch 36, Batch 3900/9688 (40.3%), Loss: 0.1828
+2025-07-18 02:46:09,535 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4000/9688 (41.3%), Loss: 0.1029
+2025-07-18 02:48:29,474 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4100/9688 (42.3%), Loss: 0.0755
+2025-07-18 02:50:48,238 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4200/9688 (43.4%), Loss: 0.0385
+2025-07-18 02:53:05,541 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4300/9688 (44.4%), Loss: 0.1368
+2025-07-18 02:55:23,392 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4400/9688 (45.4%), Loss: 0.0558
+2025-07-18 02:57:42,576 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4500/9688 (46.4%), Loss: 0.1576
+2025-07-18 03:00:01,369 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4600/9688 (47.5%), Loss: 0.0904
+2025-07-18 03:02:20,854 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4700/9688 (48.5%), Loss: 0.1483
+2025-07-18 03:04:39,383 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4800/9688 (49.5%), Loss: 0.0619
+2025-07-18 03:06:57,671 - KhmerOCRTrainer - INFO - Epoch 36, Batch 4900/9688 (50.6%), Loss: 0.0248
+2025-07-18 03:09:17,236 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5000/9688 (51.6%), Loss: 0.1616
+2025-07-18 03:11:36,011 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5100/9688 (52.6%), Loss: 0.1201
+2025-07-18 03:13:56,870 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5200/9688 (53.7%), Loss: 0.0710
+2025-07-18 03:16:14,368 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5300/9688 (54.7%), Loss: 0.0404
+2025-07-18 03:18:37,159 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5400/9688 (55.7%), Loss: 0.1222
+2025-07-18 03:20:55,223 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5500/9688 (56.8%), Loss: 0.0726
+2025-07-18 03:23:12,758 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5600/9688 (57.8%), Loss: 0.3105
+2025-07-18 03:25:31,253 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5700/9688 (58.8%), Loss: 0.0502
+2025-07-18 03:27:48,887 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5800/9688 (59.9%), Loss: 0.0460
+2025-07-18 03:30:08,040 - KhmerOCRTrainer - INFO - Epoch 36, Batch 5900/9688 (60.9%), Loss: 0.0523
+2025-07-18 03:32:26,262 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6000/9688 (61.9%), Loss: 0.1079
+2025-07-18 03:34:45,609 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6100/9688 (63.0%), Loss: 0.1243
+2025-07-18 03:37:03,653 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6200/9688 (64.0%), Loss: 0.0477
+2025-07-18 03:39:22,579 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6300/9688 (65.0%), Loss: 0.0778
+2025-07-18 03:41:41,655 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6400/9688 (66.1%), Loss: 0.1601
+2025-07-18 03:44:00,366 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6500/9688 (67.1%), Loss: 0.1417
+2025-07-18 03:46:19,591 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6600/9688 (68.1%), Loss: 0.2701
+2025-07-18 03:48:37,183 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6700/9688 (69.2%), Loss: 0.2470
+2025-07-18 03:50:55,672 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6800/9688 (70.2%), Loss: 0.1559
+2025-07-18 03:53:15,339 - KhmerOCRTrainer - INFO - Epoch 36, Batch 6900/9688 (71.2%), Loss: 0.2662
+2025-07-18 03:55:34,516 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7000/9688 (72.3%), Loss: 0.1594
+2025-07-18 03:57:52,647 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7100/9688 (73.3%), Loss: 0.1955
+2025-07-18 04:00:11,072 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7200/9688 (74.3%), Loss: 0.0848
+2025-07-18 04:02:28,574 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7300/9688 (75.4%), Loss: 0.1473
+2025-07-18 04:04:46,432 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7400/9688 (76.4%), Loss: 0.2765
+2025-07-18 04:07:04,379 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7500/9688 (77.4%), Loss: 0.1209
+2025-07-18 04:09:23,919 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7600/9688 (78.4%), Loss: 0.0333
+2025-07-18 04:11:43,344 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7700/9688 (79.5%), Loss: 0.1517
+2025-07-18 04:14:01,705 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7800/9688 (80.5%), Loss: 0.0974
+2025-07-18 04:16:20,531 - KhmerOCRTrainer - INFO - Epoch 36, Batch 7900/9688 (81.5%), Loss: 0.3693
+2025-07-18 04:18:38,568 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8000/9688 (82.6%), Loss: 0.0711
+2025-07-18 04:21:00,206 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8100/9688 (83.6%), Loss: 0.0828
+2025-07-18 04:23:17,229 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8200/9688 (84.6%), Loss: 0.0646
+2025-07-18 04:25:36,365 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8300/9688 (85.7%), Loss: 0.0899
+2025-07-18 04:27:56,397 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8400/9688 (86.7%), Loss: 0.1442
+2025-07-18 04:30:14,970 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8500/9688 (87.7%), Loss: 0.0862
+2025-07-18 04:32:32,405 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8600/9688 (88.8%), Loss: 0.0859
+2025-07-18 04:34:50,272 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8700/9688 (89.8%), Loss: 0.0815
+2025-07-18 04:37:09,590 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8800/9688 (90.8%), Loss: 0.1598
+2025-07-18 04:39:26,883 - KhmerOCRTrainer - INFO - Epoch 36, Batch 8900/9688 (91.9%), Loss: 0.0583
+2025-07-18 04:41:45,202 - KhmerOCRTrainer - INFO - Epoch 36, Batch 9000/9688 (92.9%), Loss: 0.1306
+2025-07-18 04:44:03,025 - KhmerOCRTrainer - INFO - Epoch 36, Batch 9100/9688 (93.9%), Loss: 0.0625
+2025-07-18 04:46:25,452 - KhmerOCRTrainer - INFO - Epoch 36, Batch 9200/9688 (95.0%), Loss: 0.0680
+2025-07-18 04:48:51,634 - KhmerOCRTrainer - INFO - Epoch 36, Batch 9300/9688 (96.0%), Loss: 0.1278
+2025-07-18 04:51:11,032 - KhmerOCRTrainer - INFO - Epoch 36, Batch 9400/9688 (97.0%), Loss: 0.1432
+2025-07-18 04:53:31,314 - KhmerOCRTrainer - INFO - Epoch 36, Batch 9500/9688 (98.1%), Loss: 0.0725
+2025-07-18 04:55:49,196 - KhmerOCRTrainer - INFO - Epoch 36, Batch 9600/9688 (99.1%), Loss: 0.1254
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-18 04:59:24,031 - KhmerOCRTrainer - INFO - 
+Epoch 37 Results:
+2025-07-18 04:59:24,047 - KhmerOCRTrainer - INFO -   Train Loss: 0.1264
+2025-07-18 04:59:24,047 - KhmerOCRTrainer - INFO -   Val Loss: 1.8600
+2025-07-18 04:59:24,047 - KhmerOCRTrainer - INFO -   Val CER: 1.01%
+2025-07-18 04:59:24,047 - KhmerOCRTrainer - INFO -   Epoch Time: 13518.67s
+2025-07-18 04:59:24,458 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\full2\checkpoint_epoch_036.pth
+2025-07-18 04:59:24,459 - KhmerOCRTrainer - INFO -
+============================================================
+2025-07-18 04:59:24,459 - KhmerOCRTrainer - INFO - Epoch 38/150
+2025-07-18 04:59:24,459 - KhmerOCRTrainer - INFO - ============================================================
+2025-07-18 04:59:52,009 - KhmerOCRTrainer - INFO - Epoch 37, Batch 0/9688 (0.0%), Loss: 0.1392
+2025-07-18 05:02:10,644 - KhmerOCRTrainer - INFO - Epoch 37, Batch 100/9688 (1.0%), Loss: 0.0394
+2025-07-18 05:04:27,482 - KhmerOCRTrainer - INFO - Epoch 37, Batch 200/9688 (2.1%), Loss: 0.0648
+2025-07-18 05:06:47,935 - KhmerOCRTrainer - INFO - Epoch 37, Batch 300/9688 (3.1%), Loss: 0.0339
+2025-07-18 05:09:07,036 - KhmerOCRTrainer - INFO - Epoch 37, Batch 400/9688 (4.1%), Loss: 0.2216
+2025-07-18 05:11:25,322 - KhmerOCRTrainer - INFO - Epoch 37, Batch 500/9688 (5.2%), Loss: 0.1146
+2025-07-18 05:13:49,291 - KhmerOCRTrainer - INFO - Epoch 37, Batch 600/9688 (6.2%), Loss: 0.0498
+2025-07-18 05:16:09,455 - KhmerOCRTrainer - INFO - Epoch 37, Batch 700/9688 (7.2%), Loss: 0.0625
+2025-07-18 05:18:28,992 - KhmerOCRTrainer - INFO - Epoch 37, Batch 800/9688 (8.3%), Loss: 0.1100
+2025-07-18 05:20:48,566 - KhmerOCRTrainer - INFO - Epoch 37, Batch 900/9688 (9.3%), Loss: 0.0850
+2025-07-18 05:23:07,268 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1000/9688 (10.3%), Loss: 0.1380
+2025-07-18 05:25:27,181 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1100/9688 (11.4%), Loss: 0.0935
+2025-07-18 05:27:46,336 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1200/9688 (12.4%), Loss: 0.1956
+2025-07-18 05:30:09,064 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1300/9688 (13.4%), Loss: 0.0949
+2025-07-18 05:32:28,061 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1400/9688 (14.5%), Loss: 0.0276
+2025-07-18 05:34:46,927 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1500/9688 (15.5%), Loss: 0.1512
+2025-07-18 05:37:06,563 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1600/9688 (16.5%), Loss: 0.0375
+2025-07-18 05:39:25,065 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1700/9688 (17.5%), Loss: 0.1344
+2025-07-18 05:41:45,149 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1800/9688 (18.6%), Loss: 0.2360
+2025-07-18 05:44:03,657 - KhmerOCRTrainer - INFO - Epoch 37, Batch 1900/9688 (19.6%), Loss: 0.0367
+2025-07-18 05:46:23,060 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2000/9688 (20.6%), Loss: 0.1899
+2025-07-18 05:48:42,339 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2100/9688 (21.7%), Loss: 0.1006
+2025-07-18 05:51:01,163 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2200/9688 (22.7%), Loss: 0.0521
+2025-07-18 05:53:20,575 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2300/9688 (23.7%), Loss: 0.0353
+2025-07-18 05:55:40,602 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2400/9688 (24.8%), Loss: 0.0606
+2025-07-18 05:58:00,579 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2500/9688 (25.8%), Loss: 0.0306
+2025-07-18 06:00:21,419 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2600/9688 (26.8%), Loss: 0.0391
+2025-07-18 06:02:40,039 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2700/9688 (27.9%), Loss: 0.1373
+2025-07-18 06:05:00,242 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2800/9688 (28.9%), Loss: 0.1318
+2025-07-18 06:07:21,027 - KhmerOCRTrainer - INFO - Epoch 37, Batch 2900/9688 (29.9%), Loss: 0.1278
+2025-07-18 06:09:41,740 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3000/9688 (31.0%), Loss: 0.0804
+2025-07-18 06:12:01,530 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3100/9688 (32.0%), Loss: 0.1294
+2025-07-18 06:14:20,800 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3200/9688 (33.0%), Loss: 0.0941
+2025-07-18 06:16:38,734 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3300/9688 (34.1%), Loss: 0.1313
+2025-07-18 06:18:53,718 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3400/9688 (35.1%), Loss: 0.1810
+2025-07-18 06:21:13,116 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3500/9688 (36.1%), Loss: 0.0743
+2025-07-18 06:23:31,958 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3600/9688 (37.2%), Loss: 0.2768
+2025-07-18 06:25:50,953 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3700/9688 (38.2%), Loss: 0.1802
+2025-07-18 06:28:09,275 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3800/9688 (39.2%), Loss: 0.0456
+2025-07-18 06:30:26,560 - KhmerOCRTrainer - INFO - Epoch 37, Batch 3900/9688 (40.3%), Loss: 0.0389
+2025-07-18 06:32:58,267 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4000/9688 (41.3%), Loss: 0.1433
+2025-07-18 06:35:52,312 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4100/9688 (42.3%), Loss: 0.0272
+2025-07-18 06:38:09,773 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4200/9688 (43.4%), Loss: 0.1206
+2025-07-18 06:40:28,203 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4300/9688 (44.4%), Loss: 0.0274
+2025-07-18 06:42:48,332 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4400/9688 (45.4%), Loss: 0.0631
+2025-07-18 06:45:06,558 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4500/9688 (46.4%), Loss: 0.0985
+2025-07-18 06:47:24,173 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4600/9688 (47.5%), Loss: 0.0712
+2025-07-18 06:49:41,609 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4700/9688 (48.5%), Loss: 0.2606
+2025-07-18 06:51:58,332 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4800/9688 (49.5%), Loss: 0.1353
+2025-07-18 06:54:15,852 - KhmerOCRTrainer - INFO - Epoch 37, Batch 4900/9688 (50.6%), Loss: 0.0884
+2025-07-18 06:56:33,591 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5000/9688 (51.6%), Loss: 0.0465
+2025-07-18 06:58:51,471 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5100/9688 (52.6%), Loss: 0.0494
+2025-07-18 07:01:07,922 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5200/9688 (53.7%), Loss: 0.0832
+2025-07-18 07:03:25,000 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5300/9688 (54.7%), Loss: 0.0263
+2025-07-18 07:05:41,422 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5400/9688 (55.7%), Loss: 0.3027
+2025-07-18 07:07:59,668 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5500/9688 (56.8%), Loss: 0.1228
+2025-07-18 07:10:18,078 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5600/9688 (57.8%), Loss: 0.0534
+2025-07-18 07:12:36,705 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5700/9688 (58.8%), Loss: 0.1598
+2025-07-18 07:14:56,958 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5800/9688 (59.9%), Loss: 0.2245
+2025-07-18 07:17:14,395 - KhmerOCRTrainer - INFO - Epoch 37, Batch 5900/9688 (60.9%), Loss: 0.1409
+2025-07-18 07:19:33,813 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6000/9688 (61.9%), Loss: 0.0232
+2025-07-18 07:21:55,966 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6100/9688 (63.0%), Loss: 0.2105
+2025-07-18 07:24:26,207 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6200/9688 (64.0%), Loss: 0.0288
+2025-07-18 07:26:45,739 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6300/9688 (65.0%), Loss: 0.1267
+2025-07-18 07:29:03,406 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6400/9688 (66.1%), Loss: 0.1353
+2025-07-18 07:31:22,297 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6500/9688 (67.1%), Loss: 0.0300
+2025-07-18 07:33:38,498 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6600/9688 (68.1%), Loss: 0.1182
+2025-07-18 07:35:57,018 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6700/9688 (69.2%), Loss: 0.1521
+2025-07-18 07:38:16,835 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6800/9688 (70.2%), Loss: 0.1006
+2025-07-18 07:40:34,707 - KhmerOCRTrainer - INFO - Epoch 37, Batch 6900/9688 (71.2%), Loss: 0.1105
+2025-07-18 07:42:52,171 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7000/9688 (72.3%), Loss: 0.1051
+2025-07-18 07:45:10,389 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7100/9688 (73.3%), Loss: 0.1168
+2025-07-18 07:47:27,014 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7200/9688 (74.3%), Loss: 0.0922
+2025-07-18 07:49:43,289 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7300/9688 (75.4%), Loss: 0.1754
+2025-07-18 07:52:00,371 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7400/9688 (76.4%), Loss: 0.0197
+2025-07-18 07:54:17,142 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7500/9688 (77.4%), Loss: 0.1314
+2025-07-18 07:56:39,877 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7600/9688 (78.4%), Loss: 0.0322
+2025-07-18 07:58:59,663 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7700/9688 (79.5%), Loss: 0.0398
+2025-07-18 08:01:29,672 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7800/9688 (80.5%), Loss: 0.1367
+2025-07-18 08:03:52,885 - KhmerOCRTrainer - INFO - Epoch 37, Batch 7900/9688 (81.5%), Loss: 0.0717
+2025-07-18 08:06:13,781 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8000/9688 (82.6%), Loss: 0.0305
+2025-07-18 08:08:32,541 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8100/9688 (83.6%), Loss: 0.2249
+2025-07-18 08:10:54,430 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8200/9688 (84.6%), Loss: 0.1205
+2025-07-18 08:13:22,461 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8300/9688 (85.7%), Loss: 0.1070
+2025-07-18 08:15:46,828 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8400/9688 (86.7%), Loss: 0.1206
+2025-07-18 08:18:14,031 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8500/9688 (87.7%), Loss: 0.2557
+2025-07-18 08:20:44,013 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8600/9688 (88.8%), Loss: 0.0571
+2025-07-18 08:23:04,021 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8700/9688 (89.8%), Loss: 0.1606
+2025-07-18 08:25:36,144 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8800/9688 (90.8%), Loss: 0.0936
+2025-07-18 08:27:58,947 - KhmerOCRTrainer - INFO - Epoch 37, Batch 8900/9688 (91.9%), Loss: 0.0951
+2025-07-18 08:30:20,872 - KhmerOCRTrainer - INFO - Epoch 37, Batch 9000/9688 (92.9%), Loss: 0.1739
+2025-07-18 08:32:52,327 - KhmerOCRTrainer - INFO - Epoch 37, Batch 9100/9688 (93.9%), Loss: 0.1567
+2025-07-18 08:35:43,945 - KhmerOCRTrainer - INFO - Epoch 37, Batch 9200/9688 (95.0%), Loss: 0.1619
+2025-07-18 08:38:08,336 - KhmerOCRTrainer - INFO - Epoch 37, Batch 9300/9688 (96.0%), Loss: 0.1097
+2025-07-18 08:40:28,659 - KhmerOCRTrainer - INFO - Epoch 37, Batch 9400/9688 (97.0%), Loss: 0.0621
+2025-07-18 08:42:56,076 - KhmerOCRTrainer - INFO - Epoch 37, Batch 9500/9688 (98.1%), Loss: 0.1444
+2025-07-18 08:45:26,699 - KhmerOCRTrainer - INFO - Epoch 37, Batch 9600/9688 (99.1%), Loss: 0.1201
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-18 08:49:10,145 - KhmerOCRTrainer - INFO -
+Epoch 38 Results:
+2025-07-18 08:49:10,145 - KhmerOCRTrainer - INFO -   Train Loss: 0.1083
+2025-07-18 08:49:10,145 - KhmerOCRTrainer - INFO -   Val Loss: 0.7666
+2025-07-18 08:49:10,145 - KhmerOCRTrainer - INFO -   Val CER: 0.65%
+2025-07-18 08:49:10,145 - KhmerOCRTrainer - INFO -   Epoch Time: 13688.48s
+2025-07-18 08:49:10,145 - KhmerOCRTrainer - INFO -   New best CER: 0.65%
+2025-07-18 08:49:10,490 - CheckpointManager - INFO - Saved checkpoint: models\checkpoints\full2\checkpoint_epoch_037.pth
+2025-07-18 08:49:10,816 - CheckpointManager - INFO - Saved best model: models\checkpoints\full2\best_model.pth
+2025-07-18 08:49:12,325 - CheckpointManager - INFO - Backed up best model to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\best_model.pth
+2025-07-18 08:49:12,325 - CheckpointManager - INFO - Saved training history to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\training_history.json
+2025-07-18 08:49:12,796 - CheckpointManager - INFO - Backed up checkpoint to Google Drive: \content\drive\MyDrive\KhmerOCR_Checkpoints\models\checkpoint_epoch_037.pth
+2025-07-18 08:49:12,796 - KhmerOCRTrainer - INFO -
+Target CER achieved: 0.65%
+2025-07-18 08:49:12,796 - KhmerOCRTrainer - INFO - Stopping training early!
+2025-07-18 08:49:12,796 - KhmerOCRTrainer - INFO -
+Training completed!
+2025-07-18 08:49:12,796 - KhmerOCRTrainer - INFO - Total training time: 7.61 hours
+2025-07-18 08:49:12,796 - KhmerOCRTrainer - INFO - Best CER: 0.65%
+2025-07-18 08:49:12,796 - KhmerOCROnTheFlyTraining - INFO - Training completed successfully!
+2025-07-18 08:49:12,796 - KhmerOCROnTheFlyTraining - INFO - Running final validation...
+Validation progress: 0.0%
+Validation progress: 25.0%
+Validation progress: 50.0%
+Validation progress: 75.0%
+2025-07-18 08:50:46,235 - KhmerOCROnTheFlyTraining - INFO - Final Validation Results:
+2025-07-18 08:50:46,235 - KhmerOCROnTheFlyTraining - INFO -   Loss: 0.7666
+2025-07-18 08:50:46,235 - KhmerOCROnTheFlyTraining - INFO -   CER: 0.65%
+2025-07-18 08:50:46,235 - KhmerOCROnTheFlyTraining - INFO - 🎉 SUCCESS: Target CER achieved!

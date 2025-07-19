@@ -40,7 +40,8 @@ class Trainer:
         log_dir: str = "logs",
         checkpoint_dir: str = "models/checkpoints",
         gdrive_backup: bool = True,
-        gradient_accumulation_steps: int = 1
+        gradient_accumulation_steps: int = 1,
+        target_cer: float = 0.005 # 0.5% CER target
     ):
         self.model = model
         self.config = config_manager
@@ -48,7 +49,7 @@ class Trainer:
         self.val_dataloader = val_dataloader
         self.device = device
         self.gradient_accumulation_steps = gradient_accumulation_steps
-        
+        self.target_cer = target_cer
         # Move model to device
         self.model.to(device)
         
@@ -362,7 +363,7 @@ class Trainer:
             )
             
             # Early stopping check (if CER reaches target)
-            if val_metrics['cer'] <= 0.01:  # 1.0% CER target
+            if val_metrics['cer'] <= self.target_cer:  # 0.5% CER target
                 self.logger.info(f"\nTarget CER achieved: {val_metrics['cer']:.2%}")
                 self.logger.info("Stopping training early!")
                 break

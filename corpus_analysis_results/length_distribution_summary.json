@@ -1,0 +1,218 @@
+{
+  "train_0": {
+    "very_short": {
+      "range": "1-5",
+      "count": 10669,
+      "percentage": 2.7130324221233315,
+      "avg_length": 3.5667822663792297,
+      "median_length": 4.0,
+      "std_length": 0.6398275463599261,
+      "min_length": 2,
+      "max_length": 5
+    },
+    "short": {
+      "range": "6-10",
+      "count": 49479,
+      "percentage": 12.582072472981565,
+      "avg_length": 7.748357889205521,
+      "median_length": 8.0,
+      "std_length": 1.0540842839600182,
+      "min_length": 6,
+      "max_length": 10
+    },
+    "medium": {
+      "range": "11-20",
+      "count": 80296,
+      "percentage": 20.41856325492689,
+      "avg_length": 14.8014969612434,
+      "median_length": 14.0,
+      "std_length": 2.7123822162177604,
+      "min_length": 11,
+      "max_length": 20
+    },
+    "long": {
+      "range": "21-50",
+      "count": 114494,
+      "percentage": 29.114812460267004,
+      "avg_length": 32.99990392509651,
+      "median_length": 32.0,
+      "std_length": 8.55957728475245,
+      "min_length": 21,
+      "max_length": 50
+    },
+    "very_long": {
+      "range": "51-100",
+      "count": 87511,
+      "percentage": 22.253273998728545,
+      "avg_length": 72.32827873067386,
+      "median_length": 71.0,
+      "std_length": 14.354705182007432,
+      "min_length": 51,
+      "max_length": 100
+    },
+    "extra_long": {
+      "range": "101-150",
+      "count": 50801,
+      "percentage": 12.918245390972663,
+      "avg_length": 123.22590106493966,
+      "median_length": 122.0,
+      "std_length": 14.287744197281077,
+      "min_length": 101,
+      "max_length": 149
+    },
+    "extreme_long": {
+      "range": "151+",
+      "count": 0,
+      "percentage": 0.0,
+      "avg_length": 0,
+      "median_length": 0,
+      "std_length": 0,
+      "min_length": 0,
+      "max_length": 0
+    }
+  },
+  "train_1": {
+    "very_short": {
+      "range": "1-5",
+      "count": 10354,
+      "percentage": 2.6329240103648814,
+      "avg_length": 3.568282789260189,
+      "median_length": 4.0,
+      "std_length": 0.6443034332069093,
+      "min_length": 2,
+      "max_length": 5
+    },
+    "short": {
+      "range": "6-10",
+      "count": 49346,
+      "percentage": 12.548219839237534,
+      "avg_length": 7.749037409313825,
+      "median_length": 8.0,
+      "std_length": 1.0589567311018966,
+      "min_length": 6,
+      "max_length": 10
+    },
+    "medium": {
+      "range": "11-20",
+      "count": 80287,
+      "percentage": 20.416222717806185,
+      "avg_length": 14.802234483789405,
+      "median_length": 14.0,
+      "std_length": 2.710855013221224,
+      "min_length": 11,
+      "max_length": 20
+    },
+    "long": {
+      "range": "21-50",
+      "count": 115016,
+      "percentage": 29.247478073800192,
+      "avg_length": 32.96435278569938,
+      "median_length": 32.0,
+      "std_length": 8.543715679390168,
+      "min_length": 21,
+      "max_length": 50
+    },
+    "very_long": {
+      "range": "51-100",
+      "count": 87356,
+      "percentage": 22.21380238066782,
+      "avg_length": 72.35777737075874,
+      "median_length": 71.0,
+      "std_length": 14.340471201068473,
+      "min_length": 51,
+      "max_length": 100
+    },
+    "extra_long": {
+      "range": "101-150",
+      "count": 50892,
+      "percentage": 12.941352978123385,
+      "avg_length": 123.34720584767743,
+      "median_length": 122.0,
+      "std_length": 14.20904554894801,
+      "min_length": 101,
+      "max_length": 149
+    },
+    "extreme_long": {
+      "range": "151+",
+      "count": 0,
+      "percentage": 0.0,
+      "avg_length": 0,
+      "median_length": 0,
+      "std_length": 0,
+      "min_length": 0,
+      "max_length": 0
+    }
+  },
+  "combined": {
+    "very_short": {
+      "range": "1-5",
+      "count": 21023,
+      "percentage": 2.672978165317018,
+      "avg_length": 3.567521286210341,
+      "median_length": 4.0,
+      "std_length": 0.6420362951587815,
+      "min_length": 2,
+      "max_length": 5
+    },
+    "short": {
+      "range": "6-10",
+      "count": 98825,
+      "percentage": 12.565146134588511,
+      "avg_length": 7.748697192006071,
+      "median_length": 8.0,
+      "std_length": 1.0565200922951885,
+      "min_length": 6,
+      "max_length": 10
+    },
+    "medium": {
+      "range": "11-20",
+      "count": 160583,
+      "percentage": 20.417392984878596,
+      "avg_length": 14.801865701848888,
+      "median_length": 14.0,
+      "std_length": 2.7116187901070714,
+      "min_length": 11,
+      "max_length": 20
+    },
+    "long": {
+      "range": "21-50",
+      "count": 229510,
+      "percentage": 29.181145351372727,
+      "avg_length": 32.982087926452,
+      "median_length": 32.0,
+      "std_length": 8.55165059585965,
+      "min_length": 21,
+      "max_length": 50
+    },
+    "very_long": {
+      "range": "51-100",
+      "count": 174867,
+      "percentage": 22.233538164605005,
+      "avg_length": 72.34301497709689,
+      "median_length": 71.0,
+      "std_length": 14.347603846247322,
+      "min_length": 51,
+      "max_length": 100
+    },
+    "extra_long": {
+      "range": "101-150",
+      "count": 101693,
+      "percentage": 12.929799199238145,
+      "avg_length": 123.28660773111227,
+      "median_length": 122.0,
+      "std_length": 14.248543087533688,
+      "min_length": 101,
+      "max_length": 149
+    },
+    "extreme_long": {
+      "range": "151+",
+      "count": 0,
+      "percentage": 0.0,
+      "avg_length": 0,
+      "median_length": 0,
+      "std_length": 0,
+      "min_length": 0,
+      "max_length": 0
+    }
+  }
+}

@@ -1,5 +1,23 @@
 # Change Log
 
+## Feature: Comprehensive Validation Analysis Script
+**Purpose:**
+Created a comprehensive validation analysis script to perform detailed evaluation of model performance on the full validation_fixed dataset with extensive metrics, error analysis, and performance profiling.
+
+**Implementation:**
+- Created `full_validation_analysis.py` script for comprehensive model evaluation
+- Integrates with existing validation infrastructure (`Validator`, `OCRMetrics`, `KhmerOCREngine`)
+- Loads full validation_fixed dataset (6,400 samples) and runs detailed inference analysis
+- Calculates comprehensive metrics: CER, WER, sequence accuracy, BLEU scores, confidence calibration
+- Provides performance analysis by text length, error distribution analysis, speed profiling
+- Generates detailed visualizations: CER distribution, confidence calibration, error patterns, performance by length
+- Saves multiple output formats: JSON results, CSV sample data, human-readable summary report
+- Includes error sample extraction for manual inspection and quality assessment
+- Command-line interface with configurable batch size, output directory, and logging
+
+**History:**
+- Created — Comprehensive validation analysis system with detailed metrics, visualizations, and reporting for production model evaluation.
+
 ## Feature: Image Width Limitation Fix
 **Purpose:**
 Fixed critical inference limitation where images were being cropped to 512 pixels width during inference, causing predictions to be cut off for longer text sequences, despite the configuration specifying 800px maximum width.
@@ -368,6 +386,32 @@ Remove all unsupported characters from processed corpus data to eliminate UNK to
 **History:**
 - Created — Initial implementation with character filtering, corpus processing, and safe file replacement system
 - Verified — Curriculum dataset testing shows dramatic UNK token reduction and proper length compliance
+
+## Feature: Full Validation Analysis Script
+**Purpose:**  
+Comprehensive validation analysis system for evaluating model performance on complete validation dataset with detailed metrics, visualizations, and error analysis.
+
+**Implementation:**  
+Created `full_validation_analysis.py` (775 lines) with comprehensive metrics (CER, WER, sequence accuracy, BLEU, confidence calibration), detailed analysis (performance by text length, error distribution, speed profiling), 12 visualizations, multiple output formats, and command-line interface.
+
+**History:**
+- Created — Initial implementation with comprehensive metrics, visualizations, and analysis capabilities. Documentation in `README_VALIDATION_ANALYSIS.md` and `VALIDATION_ANALYSIS_EXAMPLE.md`.
+- Updated — Fixed decoder interface error: replaced non-existent `decode_step()` method calls with `model.generate()` method for proper inference compatibility.
+
+## Feature: [Validation Analysis Performance Optimization]
+**Purpose:**  
+Dramatically improved validation analysis performance by implementing batch processing instead of individual sample processing.
+
+**Implementation:**  
+- Modified `_analyze_all_samples()` method in `full_validation_analysis.py` to use direct batch inference with `model.generate()`
+- Eliminated tensor-to-PIL-to-tensor conversion overhead by processing tensors directly
+- Increased default batch size from 32 to 64 for better GPU utilization
+- Added error handling with fallback for failed batch processing
+- Removed individual OCR engine calls in favor of batch model inference
+
+**History:**
+- Created — Optimized batch processing implementation for ~20x speed improvement (from ~4.5 to ~100+ samples/second).
+- Updated — Completed successful validation run: achieved 37x speed improvement (167 samples/second), reduced analysis time from hours to 2.2 minutes. Fixed Unicode encoding errors in Windows console logging.
 
 # Training and Development Change Log
 

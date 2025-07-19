@@ -4,8 +4,10 @@
 # Data
 corpus/
 validation_fixed/
+validation_short_text/
 models/checkpoints/
-
+sample_test_data/
+training_samples_inspection/
 *.KT-DKT.*
 
 ### Python ###

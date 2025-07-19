@@ -1,0 +1,475 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Neural Network Layer Visualizations</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+            .category { margin-bottom: 30px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .category h2 { color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
+            .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+            .image-item { text-align: center; background-color: #fafafa; padding: 10px; border-radius: 5px; }
+            .image-item img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; }
+            .image-item h4 { margin: 10px 0 5px 0; font-size: 14px; color: #555; }
+            .overview { background-color: #e8f5e8; }
+            .stats { background-color: #f0f8ff; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        </style>
+    </head>
+    <body>
+        <h1>🧠 Neural Network Layer Visualizations</h1>
+        <div class="stats">
+            <strong>Checkpoint:</strong> checkpoint_visualizations_fixed<br>
+            <strong>Generated:</strong> 77 visualization images
+        </div>
+    
+        <div class="category ">
+            <h2>Attention Layers Layers (3 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Decoder Attention Attention Scorer Weight</h4>
+                    <img src="attention_layers_layers\decoder_attention_attention_scorer_weight.png" alt="Decoder Attention Attention Scorer Weight" onclick="window.open('attention_layers_layers\decoder_attention_attention_scorer_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Attention Decoder Projection Weight</h4>
+                    <img src="attention_layers_layers\decoder_attention_decoder_projection_weight.png" alt="Decoder Attention Decoder Projection Weight" onclick="window.open('attention_layers_layers\decoder_attention_decoder_projection_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Attention Encoder Projection Weight</h4>
+                    <img src="attention_layers_layers\decoder_attention_encoder_projection_weight.png" alt="Decoder Attention Encoder Projection Weight" onclick="window.open('attention_layers_layers\decoder_attention_encoder_projection_weight.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="category ">
+            <h2>Batch Norm Layers Layers (35 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 0 Bias</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_0_bias.png" alt="Encoder Batch Norms 0 Bias" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_0_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 0 Num Batches Tracked</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_0_num_batches_tracked.png" alt="Encoder Batch Norms 0 Num Batches Tracked" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_0_num_batches_tracked.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 0 Running Mean</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_0_running_mean.png" alt="Encoder Batch Norms 0 Running Mean" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_0_running_mean.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 0 Running Var</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_0_running_var.png" alt="Encoder Batch Norms 0 Running Var" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_0_running_var.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 0 Weight</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_0_weight.png" alt="Encoder Batch Norms 0 Weight" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_0_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 1 Bias</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_1_bias.png" alt="Encoder Batch Norms 1 Bias" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_1_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 1 Num Batches Tracked</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_1_num_batches_tracked.png" alt="Encoder Batch Norms 1 Num Batches Tracked" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_1_num_batches_tracked.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 1 Running Mean</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_1_running_mean.png" alt="Encoder Batch Norms 1 Running Mean" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_1_running_mean.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 1 Running Var</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_1_running_var.png" alt="Encoder Batch Norms 1 Running Var" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_1_running_var.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 1 Weight</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_1_weight.png" alt="Encoder Batch Norms 1 Weight" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_1_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 2 Bias</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_2_bias.png" alt="Encoder Batch Norms 2 Bias" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_2_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 2 Num Batches Tracked</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_2_num_batches_tracked.png" alt="Encoder Batch Norms 2 Num Batches Tracked" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_2_num_batches_tracked.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 2 Running Mean</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_2_running_mean.png" alt="Encoder Batch Norms 2 Running Mean" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_2_running_mean.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 2 Running Var</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_2_running_var.png" alt="Encoder Batch Norms 2 Running Var" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_2_running_var.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 2 Weight</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_2_weight.png" alt="Encoder Batch Norms 2 Weight" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_2_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 3 Bias</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_3_bias.png" alt="Encoder Batch Norms 3 Bias" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_3_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 3 Num Batches Tracked</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_3_num_batches_tracked.png" alt="Encoder Batch Norms 3 Num Batches Tracked" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_3_num_batches_tracked.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 3 Running Mean</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_3_running_mean.png" alt="Encoder Batch Norms 3 Running Mean" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_3_running_mean.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 3 Running Var</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_3_running_var.png" alt="Encoder Batch Norms 3 Running Var" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_3_running_var.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 3 Weight</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_3_weight.png" alt="Encoder Batch Norms 3 Weight" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_3_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 4 Bias</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_4_bias.png" alt="Encoder Batch Norms 4 Bias" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_4_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 4 Num Batches Tracked</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_4_num_batches_tracked.png" alt="Encoder Batch Norms 4 Num Batches Tracked" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_4_num_batches_tracked.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 4 Running Mean</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_4_running_mean.png" alt="Encoder Batch Norms 4 Running Mean" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_4_running_mean.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 4 Running Var</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_4_running_var.png" alt="Encoder Batch Norms 4 Running Var" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_4_running_var.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 4 Weight</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_4_weight.png" alt="Encoder Batch Norms 4 Weight" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_4_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 5 Bias</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_5_bias.png" alt="Encoder Batch Norms 5 Bias" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_5_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 5 Num Batches Tracked</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_5_num_batches_tracked.png" alt="Encoder Batch Norms 5 Num Batches Tracked" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_5_num_batches_tracked.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 5 Running Mean</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_5_running_mean.png" alt="Encoder Batch Norms 5 Running Mean" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_5_running_mean.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 5 Running Var</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_5_running_var.png" alt="Encoder Batch Norms 5 Running Var" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_5_running_var.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 5 Weight</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_5_weight.png" alt="Encoder Batch Norms 5 Weight" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_5_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 6 Bias</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_6_bias.png" alt="Encoder Batch Norms 6 Bias" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_6_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 6 Num Batches Tracked</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_6_num_batches_tracked.png" alt="Encoder Batch Norms 6 Num Batches Tracked" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_6_num_batches_tracked.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 6 Running Mean</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_6_running_mean.png" alt="Encoder Batch Norms 6 Running Mean" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_6_running_mean.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 6 Running Var</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_6_running_var.png" alt="Encoder Batch Norms 6 Running Var" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_6_running_var.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Batch Norms 6 Weight</h4>
+                    <img src="batch_norm_layers_layers\encoder_batch_norms_6_weight.png" alt="Encoder Batch Norms 6 Weight" onclick="window.open('batch_norm_layers_layers\encoder_batch_norms_6_weight.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="category ">
+            <h2>Conv Layers Layers (7 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Encoder Conv Layers 0 Weight</h4>
+                    <img src="conv_layers_layers\encoder_conv_layers_0_weight.png" alt="Encoder Conv Layers 0 Weight" onclick="window.open('conv_layers_layers\encoder_conv_layers_0_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Conv Layers 1 Weight</h4>
+                    <img src="conv_layers_layers\encoder_conv_layers_1_weight.png" alt="Encoder Conv Layers 1 Weight" onclick="window.open('conv_layers_layers\encoder_conv_layers_1_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Conv Layers 2 Weight</h4>
+                    <img src="conv_layers_layers\encoder_conv_layers_2_weight.png" alt="Encoder Conv Layers 2 Weight" onclick="window.open('conv_layers_layers\encoder_conv_layers_2_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Conv Layers 3 Weight</h4>
+                    <img src="conv_layers_layers\encoder_conv_layers_3_weight.png" alt="Encoder Conv Layers 3 Weight" onclick="window.open('conv_layers_layers\encoder_conv_layers_3_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Conv Layers 4 Weight</h4>
+                    <img src="conv_layers_layers\encoder_conv_layers_4_weight.png" alt="Encoder Conv Layers 4 Weight" onclick="window.open('conv_layers_layers\encoder_conv_layers_4_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Conv Layers 5 Weight</h4>
+                    <img src="conv_layers_layers\encoder_conv_layers_5_weight.png" alt="Encoder Conv Layers 5 Weight" onclick="window.open('conv_layers_layers\encoder_conv_layers_5_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Conv Layers 6 Weight</h4>
+                    <img src="conv_layers_layers\encoder_conv_layers_6_weight.png" alt="Encoder Conv Layers 6 Weight" onclick="window.open('conv_layers_layers\encoder_conv_layers_6_weight.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="category ">
+            <h2>Decoder Layers Layers (8 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Decoder Gru Bias Hh L0</h4>
+                    <img src="decoder_layers_layers\decoder_gru_bias_hh_l0.png" alt="Decoder Gru Bias Hh L0" onclick="window.open('decoder_layers_layers\decoder_gru_bias_hh_l0.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Gru Bias Hh L1</h4>
+                    <img src="decoder_layers_layers\decoder_gru_bias_hh_l1.png" alt="Decoder Gru Bias Hh L1" onclick="window.open('decoder_layers_layers\decoder_gru_bias_hh_l1.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Gru Bias Ih L0</h4>
+                    <img src="decoder_layers_layers\decoder_gru_bias_ih_l0.png" alt="Decoder Gru Bias Ih L0" onclick="window.open('decoder_layers_layers\decoder_gru_bias_ih_l0.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Gru Bias Ih L1</h4>
+                    <img src="decoder_layers_layers\decoder_gru_bias_ih_l1.png" alt="Decoder Gru Bias Ih L1" onclick="window.open('decoder_layers_layers\decoder_gru_bias_ih_l1.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Gru Weight Hh L0</h4>
+                    <img src="decoder_layers_layers\decoder_gru_weight_hh_l0.png" alt="Decoder Gru Weight Hh L0" onclick="window.open('decoder_layers_layers\decoder_gru_weight_hh_l0.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Gru Weight Hh L1</h4>
+                    <img src="decoder_layers_layers\decoder_gru_weight_hh_l1.png" alt="Decoder Gru Weight Hh L1" onclick="window.open('decoder_layers_layers\decoder_gru_weight_hh_l1.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Gru Weight Ih L0</h4>
+                    <img src="decoder_layers_layers\decoder_gru_weight_ih_l0.png" alt="Decoder Gru Weight Ih L0" onclick="window.open('decoder_layers_layers\decoder_gru_weight_ih_l0.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Gru Weight Ih L1</h4>
+                    <img src="decoder_layers_layers\decoder_gru_weight_ih_l1.png" alt="Decoder Gru Weight Ih L1" onclick="window.open('decoder_layers_layers\decoder_gru_weight_ih_l1.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="category ">
+            <h2>Decoder Other Layers (4 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Decoder Input Projection Bias</h4>
+                    <img src="decoder_other_layers\decoder_input_projection_bias.png" alt="Decoder Input Projection Bias" onclick="window.open('decoder_other_layers\decoder_input_projection_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Input Projection Weight</h4>
+                    <img src="decoder_other_layers\decoder_input_projection_weight.png" alt="Decoder Input Projection Weight" onclick="window.open('decoder_other_layers\decoder_input_projection_weight.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Output Projection Bias</h4>
+                    <img src="decoder_other_layers\decoder_output_projection_bias.png" alt="Decoder Output Projection Bias" onclick="window.open('decoder_other_layers\decoder_output_projection_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Decoder Output Projection Weight</h4>
+                    <img src="decoder_other_layers\decoder_output_projection_weight.png" alt="Decoder Output Projection Weight" onclick="window.open('decoder_other_layers\decoder_output_projection_weight.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="category ">
+            <h2>Embedding Layers Layers (1 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Decoder Embedding Weight</h4>
+                    <img src="embedding_layers_layers\decoder_embedding_weight.png" alt="Decoder Embedding Weight" onclick="window.open('embedding_layers_layers\decoder_embedding_weight.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="category ">
+            <h2>Encoder Layers Layers (16 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Encoder Rnn Bias Hh L0</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_bias_hh_l0.png" alt="Encoder Rnn Bias Hh L0" onclick="window.open('encoder_layers_layers\encoder_rnn_bias_hh_l0.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Bias Hh L0 Reverse</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_bias_hh_l0_reverse.png" alt="Encoder Rnn Bias Hh L0 Reverse" onclick="window.open('encoder_layers_layers\encoder_rnn_bias_hh_l0_reverse.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Bias Hh L1</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_bias_hh_l1.png" alt="Encoder Rnn Bias Hh L1" onclick="window.open('encoder_layers_layers\encoder_rnn_bias_hh_l1.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Bias Hh L1 Reverse</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_bias_hh_l1_reverse.png" alt="Encoder Rnn Bias Hh L1 Reverse" onclick="window.open('encoder_layers_layers\encoder_rnn_bias_hh_l1_reverse.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Bias Ih L0</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_bias_ih_l0.png" alt="Encoder Rnn Bias Ih L0" onclick="window.open('encoder_layers_layers\encoder_rnn_bias_ih_l0.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Bias Ih L0 Reverse</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_bias_ih_l0_reverse.png" alt="Encoder Rnn Bias Ih L0 Reverse" onclick="window.open('encoder_layers_layers\encoder_rnn_bias_ih_l0_reverse.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Bias Ih L1</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_bias_ih_l1.png" alt="Encoder Rnn Bias Ih L1" onclick="window.open('encoder_layers_layers\encoder_rnn_bias_ih_l1.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Bias Ih L1 Reverse</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_bias_ih_l1_reverse.png" alt="Encoder Rnn Bias Ih L1 Reverse" onclick="window.open('encoder_layers_layers\encoder_rnn_bias_ih_l1_reverse.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Weight Hh L0</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_weight_hh_l0.png" alt="Encoder Rnn Weight Hh L0" onclick="window.open('encoder_layers_layers\encoder_rnn_weight_hh_l0.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Weight Hh L0 Reverse</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_weight_hh_l0_reverse.png" alt="Encoder Rnn Weight Hh L0 Reverse" onclick="window.open('encoder_layers_layers\encoder_rnn_weight_hh_l0_reverse.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Weight Hh L1</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_weight_hh_l1.png" alt="Encoder Rnn Weight Hh L1" onclick="window.open('encoder_layers_layers\encoder_rnn_weight_hh_l1.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Weight Hh L1 Reverse</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_weight_hh_l1_reverse.png" alt="Encoder Rnn Weight Hh L1 Reverse" onclick="window.open('encoder_layers_layers\encoder_rnn_weight_hh_l1_reverse.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Weight Ih L0</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_weight_ih_l0.png" alt="Encoder Rnn Weight Ih L0" onclick="window.open('encoder_layers_layers\encoder_rnn_weight_ih_l0.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Weight Ih L0 Reverse</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_weight_ih_l0_reverse.png" alt="Encoder Rnn Weight Ih L0 Reverse" onclick="window.open('encoder_layers_layers\encoder_rnn_weight_ih_l0_reverse.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Weight Ih L1</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_weight_ih_l1.png" alt="Encoder Rnn Weight Ih L1" onclick="window.open('encoder_layers_layers\encoder_rnn_weight_ih_l1.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Rnn Weight Ih L1 Reverse</h4>
+                    <img src="encoder_layers_layers\encoder_rnn_weight_ih_l1_reverse.png" alt="Encoder Rnn Weight Ih L1 Reverse" onclick="window.open('encoder_layers_layers\encoder_rnn_weight_ih_l1_reverse.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="category ">
+            <h2>Encoder Other Layers (2 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Encoder Output Projection Bias</h4>
+                    <img src="encoder_other_layers\encoder_output_projection_bias.png" alt="Encoder Output Projection Bias" onclick="window.open('encoder_other_layers\encoder_output_projection_bias.png', '_blank')">
+                </div>
+            
+                <div class="image-item">
+                    <h4>Encoder Output Projection Weight</h4>
+                    <img src="encoder_other_layers\encoder_output_projection_weight.png" alt="Encoder Output Projection Weight" onclick="window.open('encoder_other_layers\encoder_output_projection_weight.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="category overview">
+            <h2>Overview (1 images)</h2>
+            <div class="image-grid">
+        
+                <div class="image-item">
+                    <h4>Model Overview</h4>
+                    <img src="overview\model_overview.png" alt="Model Overview" onclick="window.open('overview\model_overview.png', '_blank')">
+                </div>
+            
+            </div>
+        </div>
+        
+    </body>
+    </html>
+    
